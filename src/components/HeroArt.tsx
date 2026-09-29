@@ -46,18 +46,32 @@ export function Particles() {
   return <canvas id="particles" ref={ref} aria-hidden="true" />;
 }
 
-/** One column of photos drifting slowly up the hero corner. Each photo appears once per loop. */
-export function PhotoColumn({ srcs }: { srcs: string[] }) {
+type Tile = { src: string } | { card: true };
+
+/** Two columns drifting in opposite directions in the hero corner. No photo appears in both. */
+export function PhotoColumns({ a, b }: { a: Tile[]; b: Tile[] }) {
+  const track = (tiles: Tile[]) => (
+    <div className="drift-track">
+      {[...tiles, ...tiles].map((t, i) =>
+        'src' in t ? (
+          <div className="tile photo" key={i}>
+            <img src={t.src} alt="" loading={i < 2 ? 'eager' : 'lazy'} />
+          </div>
+        ) : (
+          <div className="tile place" key={i}>
+            <span>Seattle, WA</span>
+            <span>47.6° N</span>
+            <span>122.3° W</span>
+          </div>
+        ),
+      )}
+    </div>
+  );
   return (
-    <div className="drift-wrap photo-drift" aria-hidden="true">
-      <div className="drift-col">
-        <div className="drift-track">
-          {[...srcs, ...srcs].map((src, i) => (
-            <div className="tile photo" key={i}>
-              <img src={src} alt="" loading={i < 3 ? 'eager' : 'lazy'} />
-            </div>
-          ))}
-        </div>
+    <div className="drift-wrap" aria-hidden="true">
+      <div className="drift-cols">
+        <div className="drift-col">{track(a)}</div>
+        <div className="drift-col offset">{track(b)}</div>
       </div>
       <div className="drift-fade" />
     </div>
