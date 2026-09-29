@@ -197,8 +197,8 @@ export default function Home() {
             <span className="index-label rv">[004]</span>
             <h2 id="journey-h" className="display-section rv d1">Journey</h2>
             <p className="subline rv d2">
-              Foundations, then <span className="em">research</span>, then the years things started{' '}
-              <span className="strong">shipping</span>.
+              Most recent first. The years things started <span className="strong">shipping</span>, back to
+              the <span className="em">foundations</span>.
             </p>
           </div>
           <Journey />
