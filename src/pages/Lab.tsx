@@ -11,6 +11,7 @@ export default function Lab() {
   useEffect(() => {
     document.title = 'Design lab · Ujjawal Agrawal';
   }, []);
+  const changed = DIMENSIONS.filter((d) => (lab.sel[d.id] || '') !== DEFAULTS[d.id]).length;
   let n = 0;
   return (
     <article className="cs gutter lab-page">
@@ -26,6 +27,11 @@ export default function Lab() {
         <button type="button" className="ctl" onClick={lab.reset}>Back to my pick</button>
         <Link to="/" className="ctl">See it on the home page</Link>
       </div>
+      <nav className="lab-jump" aria-label="Dimensions">
+        {DIMENSIONS.map((d) => (
+          <a key={d.id} href={`#lab-${d.id}`}>{d.name}</a>
+        ))}
+      </nav>
 
       {DIMENSIONS.map((d) => (
         <section key={d.id} className="lab-sec rv" aria-labelledby={`lab-${d.id}`}>
@@ -58,6 +64,14 @@ export default function Lab() {
           </ol>
         </section>
       ))}
+
+      {/* live status: what is applied right now, and the way to go see it */}
+      <div className={`lab-bar${changed ? ' show' : ''}`} aria-live="polite">
+        <span>{changed} {changed === 1 ? 'change' : 'changes'} applied to the whole site</span>
+        <Link to="/" className="ctl">See the home page</Link>
+        <Link to="/work/eventully" className="ctl">See a case study</Link>
+        <button type="button" className="ctl" onClick={lab.reset}>Reset</button>
+      </div>
     </article>
   );
 }
