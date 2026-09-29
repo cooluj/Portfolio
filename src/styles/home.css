@@ -103,7 +103,7 @@
 .hm-contact { padding-block: 5rem 6rem; border-top: 1px solid var(--line); }
 .hm-contact-row { margin-top: 2.5rem; }
 .hm-contact-row .c-value { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
-.hm-contact-row .c-value .text { text-align: left; font-size: clamp(1.5rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; overflow-wrap: anywhere; }
+.hm-contact-row .c-value .text { text-align: left; font-size: clamp(1.25rem, 5.5vw, 3rem); font-weight: 700; letter-spacing: -0.03em; overflow-wrap: anywhere; }
 .hm-links { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1.5rem; }
 .hm-links a { font-size: 0.9375rem; color: var(--muted-fg); border-bottom: 1px solid var(--line); padding-bottom: 2px; }
 .hm-links a:hover { color: var(--fg); border-color: var(--fg); }
