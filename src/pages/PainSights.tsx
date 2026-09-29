@@ -104,7 +104,7 @@ export default function PainSights() {
           </span>
         </p>
         <a className="ctl" href={PROTOTYPE} target="_blank" rel="noopener noreferrer" style={{ marginTop: '1.5rem' }}>
-          Open the Figma prototype <span aria-hidden="true">&nearr;</span>
+          Open the Figma prototype <span aria-hidden="true">↗</span>
         </a>
 
         <div className="cs-figs two">

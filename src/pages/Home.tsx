@@ -156,7 +156,7 @@ export default function Home() {
                       <>
                         {' '}
                         <a href={w.link} target="_blank" rel="noopener noreferrer" className="other-link">
-                          Prototype<span className="sr-only"> for {w.name}</span> <span aria-hidden="true">&nearr;</span>
+                          Prototype<span className="sr-only"> for {w.name}</span> <span aria-hidden="true">↗</span>
                         </a>
                       </>
                     )}
@@ -242,7 +242,7 @@ export default function Home() {
               <span className="mono-label">Email</span>
               <span className="c-value">
                 <span className="text">ujjawal.agrawal@outlook.com</span>
-                <span className="c-circle" aria-hidden="true">&nearr;</span>
+                <span className="c-circle" aria-hidden="true">↗</span>
               </span>
             </a>
             <div className="c-row rv">
