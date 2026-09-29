@@ -12,6 +12,7 @@ import './styles/tilt.css';
 import './styles/motion.css';
 import './styles/superpowr.css';
 import './styles/caseshell.css';
+import './styles/home.css';
 
 // Hash routing only for the single-file preview build, where there is no server to rewrite paths.
 const Router = import.meta.env.VITE_HASH_ROUTER ? HashRouter : BrowserRouter;
