@@ -10,7 +10,7 @@ const Router = import.meta.env.VITE_HASH_ROUTER ? HashRouter : BrowserRouter;
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Router>
+    <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <App />
     </Router>
   </React.StrictMode>,
