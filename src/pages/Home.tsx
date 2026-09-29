@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Glyph } from '../components/Layout';
-import { Marquee, Particles, PhotoColumns } from '../components/HeroArt';
+import { Marquee, Particles, PhotoColumn } from '../components/HeroArt';
 import { ImageSlot, Ph } from '../components/Placeholder';
 import { prefersReducedMotion, useReveal } from '../components/useReveal';
 import { caseStudies, journey, marqueeWords, otherWork, toolkit } from '../data/work';
@@ -71,9 +71,8 @@ export default function Home() {
     <>
       <section id="home" aria-label="Introduction">
         <Particles />
-        <PhotoColumns
-          a={['portrait-kerry-park.webp', 'rainier-vista.webp', 'st-peters.webp'].map(img)}
-          b={['hero-skyline-night.webp', 'skyline-night.webp', 'portrait-kerry-park.webp'].map(img)}
+        <PhotoColumn
+          srcs={['portrait-kerry-park.webp', 'rainier-vista.webp', 'hero-skyline-night.webp', 'st-peters.webp', 'skyline-night.webp'].map(img)}
         />
         <div className="gutter glyph" style={{ color: 'rgba(250,250,250,0.3)' }}>
           <Glyph />

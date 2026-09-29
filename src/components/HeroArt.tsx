@@ -46,22 +46,18 @@ export function Particles() {
   return <canvas id="particles" ref={ref} aria-hidden="true" />;
 }
 
-/** Two columns of photos drifting in opposite directions in the hero corner. */
-export function PhotoColumns({ a, b }: { a: string[]; b: string[] }) {
-  const track = (srcs: string[]) => (
-    <div className="drift-track">
-      {[...srcs, ...srcs].map((src, i) => (
-        <div className="tile photo" key={i}>
-          <img src={src} alt="" loading={i < 2 ? 'eager' : 'lazy'} />
-        </div>
-      ))}
-    </div>
-  );
+/** One column of photos drifting slowly up the hero corner. Each photo appears once per loop. */
+export function PhotoColumn({ srcs }: { srcs: string[] }) {
   return (
-    <div className="drift-wrap" aria-hidden="true">
-      <div className="drift-cols">
-        <div className="drift-col">{track(a)}</div>
-        <div className="drift-col offset">{track(b)}</div>
+    <div className="drift-wrap photo-drift" aria-hidden="true">
+      <div className="drift-col">
+        <div className="drift-track">
+          {[...srcs, ...srcs].map((src, i) => (
+            <div className="tile photo" key={i}>
+              <img src={src} alt="" loading={i < 3 ? 'eager' : 'lazy'} />
+            </div>
+          ))}
+        </div>
       </div>
       <div className="drift-fade" />
     </div>
