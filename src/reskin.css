@@ -4,6 +4,7 @@
 
 /* ============ Editorial Void: the reskin, ported from the single-file build ============ */
 :root {
+  color-scheme: dark;
   --bg: #0a0a0a;
   --fg: #fafafa;
   --muted-fg: #a1a1a1;

@@ -192,7 +192,7 @@ export default function Layout() {
 
   return (
     <>
-      <a href="#main" className="skip">Skip to content</a>
+      <a href="#main" className="skip" onClick={(e) => { e.preventDefault(); document.getElementById('main')?.focus(); }}>Skip to content</a>
       <Loader />
       <ScrollManager />
       <div id="progress" ref={progress} aria-hidden="true" />

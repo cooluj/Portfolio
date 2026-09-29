@@ -17,8 +17,8 @@ function useCaseTheme() {
   });
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'light') root.dataset.theme = 'light';
-    else delete root.dataset.theme;
+    if (theme === 'light') root.dataset.mode = 'light';
+    else delete root.dataset.mode;
     try {
       localStorage.setItem(KEY, theme);
     } catch {
@@ -26,7 +26,7 @@ function useCaseTheme() {
     }
   }, [theme]);
   // Leaving the case study returns the rest of the site to its dark reskin.
-  useEffect(() => () => void delete document.documentElement.dataset.theme, []);
+  useEffect(() => () => void delete document.documentElement.dataset.mode, []);
   return [theme, setTheme] as const;
 }
 

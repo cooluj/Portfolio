@@ -1,7 +1,8 @@
 /* ============ Content pass: placeholders, work index, case studies ============ */
 
 /* ---------- light mode (used by the Superpowr case study toggle) ---------- */
-html[data-theme='light'] {
+html[data-mode='light'] {
+  color-scheme: light;
   --bg: #f4f3ef;
   --fg: #111111;
   --muted-fg: #4d4d4d;
@@ -12,8 +13,8 @@ html[data-theme='light'] {
   --primary: #1f1f1f;
   --ember: #c2410c;
 }
-html[data-theme='light'] #header.scrolled:not(.menu-open) { background: rgba(244, 243, 239, 0.85); }
-html[data-theme='light'] ::selection { background: #111; color: #f4f3ef; }
+html[data-mode='light'] #header.scrolled:not(.menu-open) { background: rgba(244, 243, 239, 0.85); }
+html[data-mode='light'] ::selection { background: #111; color: #f4f3ef; }
 html { transition: background 0.4s; }
 
 /* ---------- placeholders: loud on purpose so they never ship by accident ---------- */
