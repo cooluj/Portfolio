@@ -1,1 +1,317 @@
-/* lab: images variants. Filled by the images agent. */
+/* ============ Lab: image treatment ============ */
+/*
+  Contract: the chosen treatment is written as html[data-l-images="<id>"]; the default (plain) is never written.
+  Targets: home thumbnails (.wb-frame img), case study figures (.cs-fig img, .ba-frame), the personal photos
+  (.hm-photos img, .hm-portrait img) and the next-case thumb (.cs-next-thumb img).
+  Every hover state also fires on keyboard focus (the link wrapping a frame, or :focus-within) and nothing is
+  ever hidden on touch: a duotone or grey image is still the whole image.
+*/
+
+/* ---------- shared tokens: dark ground by default, lighter shadows and dots on a light ground ---------- */
+html[data-l-images] {
+  --img-shadow: rgba(0, 0, 0, 0.4);
+  --img-shadow-2: rgba(0, 0, 0, 0.55);
+  --img-dot: color-mix(in srgb, var(--fg) 26%, transparent);
+  --img-chrome-line: color-mix(in srgb, var(--fg) 12%, transparent);
+  --img-ink: var(--ember);
+}
+html[data-l-images]:is([data-l-theme='paper'], [data-l-theme='sepia'], [data-l-theme='signal'], [data-l-theme='clinic'], [data-mode='light']) {
+  --img-shadow: color-mix(in srgb, var(--fg) 18%, transparent);
+  --img-shadow-2: color-mix(in srgb, var(--fg) 10%, transparent);
+  --img-dot: color-mix(in srgb, var(--fg) 22%, transparent);
+}
+/* Ink theme has no accent, so the duotone falls back to a deep grey ink. */
+html[data-l-images='duotone'][data-l-theme='ink'] { --img-ink: color-mix(in srgb, var(--fg) 55%, var(--bg)); }
+
+/* Hover sources: the link around a frame, the whole work block, a case figure, a photo tile, the next-case link. */
+/* ================================================================================================ */
+
+/* ---------- browser: screenshots sit in a minimal window ---------- */
+/* The frame keeps its aspect ratio; a 2rem strip at the top becomes the title bar, drawn by ::after (so the
+   image can still zoom underneath without poking through), and ::before is the three dots. */
+html[data-l-images='browser'] :is(.wb-frame, .cs-next-thumb, .ba-frame) {
+  position: relative;
+  padding-top: 2rem;
+  background: var(--card);
+  isolation: isolate;
+}
+html[data-l-images='browser'] :is(.wb-frame, .cs-next-thumb, .ba-frame, .cs-fig:has(> img))::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2rem;
+  background:
+    linear-gradient(var(--img-chrome-line), var(--img-chrome-line)) center / min(38%, 12rem) 0.625rem no-repeat,
+    var(--card);
+  border-bottom: 1px solid var(--img-chrome-line);
+  z-index: 2;
+  pointer-events: none;
+}
+html[data-l-images='browser'] :is(.wb-frame, .cs-next-thumb, .ba-frame, .cs-fig:has(> img))::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 14px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--img-dot);
+  box-shadow: 14px 0 0 var(--img-dot), 28px 0 0 var(--img-dot);
+  z-index: 3;
+  pointer-events: none;
+}
+html[data-l-images='browser'] :is(.wb-frame, .cs-next-thumb) img { position: relative; z-index: 1; }
+
+/* Case figures: the figure gets the bar, the image loses its top corners so bar and image read as one window. */
+html[data-l-images='browser'] .cs-fig:has(> img) { position: relative; padding-top: 2rem; }
+html[data-l-images='browser'] .cs-fig:has(> img)::after {
+  border: 1px solid var(--line);
+  border-bottom-color: var(--img-chrome-line);
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+html[data-l-images='browser'] .cs-fig > img { border-top: 0; border-radius: 0 0 0.5rem 0.5rem; }
+
+/* The before/after stage: its absolute layers, divider and tags all start below the bar. */
+html[data-l-images='browser'] .ba-frame .ba-layer { top: 2rem; }
+html[data-l-images='browser'] .ba-frame .ba-line { top: 2rem; }
+html[data-l-images='browser'] .ba-frame .ba-tag { top: calc(2rem + 0.75rem); }
+
+/* ================================================================================================ */
+
+/* ---------- sharp: no radius, a hairline, no shadow ---------- */
+html[data-l-images='sharp'] :is(.wb-frame, .cs-next-thumb, .ba-frame, .cs-fig img, .hm-portrait img, .hm-photos img, .hm-photos figure) {
+  border-radius: 0;
+  box-shadow: none;
+}
+html[data-l-images='sharp'] :is(.wb-frame, .cs-next-thumb, .ba-frame, .cs-fig img, .hm-portrait img, .hm-photos img) {
+  border: 1px solid color-mix(in srgb, var(--fg) 22%, transparent);
+}
+/* A sharp frame gets a sharp hover: the border firms up instead of anything moving. */
+html[data-l-images='sharp'] :is(a:hover, a:focus-visible, .wb:hover, .wb:focus-within) .wb-frame,
+html[data-l-images='sharp'] .cs-next-link:is(:hover, :focus-visible) .cs-next-thumb,
+html[data-l-images='sharp'] .cs-fig:hover img,
+html[data-l-images='sharp'] .hm-photos li:hover img,
+html[data-l-images='sharp'] .hm-portrait:hover img {
+  border-color: var(--fg);
+}
+html[data-l-images='sharp'] :is(.wb-frame, .cs-next-thumb, .cs-fig img, .hm-portrait img, .hm-photos img) { transition: border-color 0.3s; }
+
+/* ================================================================================================ */
+
+/* ---------- duotone: two inks (black and the accent) until hovered ---------- */
+/* Each frame is its own stacking context; ::after multiplies the accent over a grayscale image, so paper
+   white becomes the accent and shadows stay black. Hover or focus lifts both the filter and the overlay. */
+html[data-l-images='duotone'] :is(.wb-frame, .cs-next-thumb, .ba-frame, .hm-portrait) { position: relative; isolation: isolate; }
+html[data-l-images='duotone'] :is(.cs-fig:has(> img), .hm-photos figure) { display: grid; isolation: isolate; }
+html[data-l-images='duotone'] :is(.cs-fig:has(> img), .hm-photos figure) > img { grid-area: 1 / 1; }
+html[data-l-images='duotone'] :is(.cs-fig:has(> img), .hm-photos figure) > figcaption { grid-area: 2 / 1; }
+
+html[data-l-images='duotone'] :is(.wb-frame img, .cs-fig > img, .ba-layer img, .hm-portrait img, .hm-photos img, .cs-next-thumb img) {
+  filter: grayscale(1) contrast(1.1);
+  opacity: 1;
+  transition: filter 0.5s var(--expo), opacity 0.5s var(--expo);
+}
+html[data-l-images='duotone'] :is(.wb-frame, .cs-next-thumb, .ba-frame, .hm-portrait, .cs-fig:has(> img), .hm-photos figure)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--img-ink);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.5s var(--expo);
+}
+html[data-l-images='duotone'] :is(.cs-fig:has(> img), .hm-photos figure)::after {
+  position: static;
+  grid-area: 1 / 1;
+  border-radius: 0.5rem;
+}
+html[data-l-images='duotone'] .ba-frame::after { z-index: 1; }
+html[data-l-images='duotone'] .ba-frame .ba-tag { z-index: 2; }
+html[data-l-images='duotone'] .hm-portrait::after { border-radius: 0.875rem; }
+
+/* Full colour on hover or keyboard focus. */
+html[data-l-images='duotone'] :is(a:hover, a:focus-visible, .wb:hover, .wb:focus-within) .wb-frame img,
+html[data-l-images='duotone'] .cs-next-link:is(:hover, :focus-visible) .cs-next-thumb img,
+html[data-l-images='duotone'] .cs-fig:is(:hover, :focus-within) > img,
+html[data-l-images='duotone'] .ba-frame:is(:hover, :focus-within) .ba-layer img,
+html[data-l-images='duotone'] .hm-portrait:is(:hover, :focus-within) img,
+html[data-l-images='duotone'] .hm-photos li:is(:hover, :focus-within) img {
+  filter: none;
+}
+html[data-l-images='duotone'] :is(a:hover, a:focus-visible, .wb:hover, .wb:focus-within) .wb-frame::after,
+html[data-l-images='duotone'] .cs-next-link:is(:hover, :focus-visible) .cs-next-thumb::after,
+html[data-l-images='duotone'] .cs-fig:is(:hover, :focus-within)::after,
+html[data-l-images='duotone'] .ba-frame:is(:hover, :focus-within)::after,
+html[data-l-images='duotone'] .hm-portrait:is(:hover, :focus-within)::after,
+html[data-l-images='duotone'] .hm-photos li:is(:hover, :focus-within) figure::after {
+  opacity: 0;
+}
+
+/* ================================================================================================ */
+
+/* ---------- mono: black and white until hovered ---------- */
+html[data-l-images='mono'] :is(.wb-frame img, .cs-fig > img, .ba-layer img, .hm-portrait img, .hm-photos img, .cs-next-thumb img) {
+  filter: grayscale(1) contrast(1.04);
+  transition: filter 0.5s var(--expo), opacity 0.5s var(--expo), transform 0.9s var(--expo);
+}
+html[data-l-images='mono'] :is(a:hover, a:focus-visible, .wb:hover, .wb:focus-within) .wb-frame img,
+html[data-l-images='mono'] .cs-next-link:is(:hover, :focus-visible) .cs-next-thumb img,
+html[data-l-images='mono'] .cs-fig:is(:hover, :focus-within) > img,
+html[data-l-images='mono'] .ba-frame:is(:hover, :focus-within) .ba-layer img,
+html[data-l-images='mono'] .hm-portrait:is(:hover, :focus-within) img,
+html[data-l-images='mono'] .hm-photos li:is(:hover, :focus-within) img {
+  filter: none;
+}
+
+/* ================================================================================================ */
+
+/* ---------- polaroid: the personal photos only ---------- */
+/* White is the point of a polaroid, so the frame and its caption ink are fixed colours on every theme. */
+html[data-l-images='polaroid'] .hm-photos { gap: 1.5rem; padding-top: 0.5rem; }
+html[data-l-images='polaroid'] .hm-photos figure {
+  background: #fff;
+  padding: 12px 12px 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 14px 28px -10px rgba(0, 0, 0, 0.45);
+  rotate: -2.5deg;
+  transition: rotate 0.5s var(--expo), translate 0.5s var(--expo), box-shadow 0.5s var(--expo);
+}
+html[data-l-images='polaroid'] .hm-photos li:nth-child(2) figure { rotate: 1.75deg; }
+html[data-l-images='polaroid'] .hm-photos li:nth-child(3) figure { rotate: -1deg; }
+html[data-l-images='polaroid'] .hm-photos li:nth-child(4) figure { rotate: 2.25deg; }
+html[data-l-images='polaroid'] .hm-photos li:nth-child(5) figure { rotate: -1.5deg; }
+html[data-l-images='polaroid'] .hm-photos img {
+  border: 0;
+  border-radius: 0;
+  filter: saturate(0.9) contrast(1.04) sepia(0.08);
+}
+html[data-l-images='polaroid'] .hm-photos figcaption {
+  margin: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  color: #2b2b2b;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+}
+html[data-l-images='polaroid'] .hm-photos li:is(:hover, :focus-within) figure {
+  rotate: 0deg;
+  translate: 0 -4px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25), 0 22px 40px -12px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+html[data-l-images='polaroid'] .hm-photos li { position: relative; }
+@media (max-width: 700px) {
+  html[data-l-images='polaroid'] .hm-photos { padding-block: 0.75rem 1rem; gap: 1.25rem; }
+}
+
+/* The portrait: same frame, caption drawn by the frame since the markup has no figcaption. */
+html[data-l-images='polaroid'] .hm-portrait {
+  background: #fff;
+  padding: 12px 12px 32px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 20px 40px -12px rgba(0, 0, 0, 0.45);
+  rotate: 1.5deg;
+  position: relative;
+  transition: rotate 0.5s var(--expo), box-shadow 0.5s var(--expo);
+}
+html[data-l-images='polaroid'] .hm-portrait img { border: 0; border-radius: 0; filter: saturate(0.9) contrast(1.04) sepia(0.08); }
+html[data-l-images='polaroid'] .hm-portrait::after {
+  content: 'Kerry Park, Seattle';
+  position: absolute;
+  left: 12px; bottom: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  color: #2b2b2b;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+}
+html[data-l-images='polaroid'] .hm-portrait:is(:hover, :focus-within) { rotate: 0deg; }
+@media (min-width: 900px) { html[data-l-images='polaroid'] .hm-portrait { margin-top: 0.5rem; } }
+
+/* ================================================================================================ */
+
+/* ---------- tilted: case study images stack at slight angles ---------- */
+/* Two blank sheets sit behind each frame, fanned the other way, so the frame reads as the top of a stack.
+   Hover or focus straightens the whole stack. */
+html[data-l-images='tilted'] :is(.wb, .wkg-card, .wks-card, .wkn-item) .wb-frame {
+  transition: rotate 0.6s var(--expo), transform 0.5s var(--expo), border-color 0.5s var(--expo);
+}
+html[data-l-images='tilted'] :is(.wb, .wkg-card, .wks-card, .wkn-item):nth-of-type(3n + 1) .wb-frame { rotate: -2deg; }
+html[data-l-images='tilted'] :is(.wb, .wkg-card, .wks-card, .wkn-item):nth-of-type(3n + 2) .wb-frame { rotate: 1.5deg; }
+html[data-l-images='tilted'] :is(.wb, .wkg-card, .wks-card, .wkn-item):nth-of-type(3n) .wb-frame { rotate: -1deg; }
+html[data-l-images='tilted'] .wb-media { position: relative; display: block; }
+html[data-l-images='tilted'] .wb-media::before,
+html[data-l-images='tilted'] .wb-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.875rem;
+  border: 1px solid var(--line);
+  background: var(--card);
+  z-index: -1;
+  transition: rotate 0.6s var(--expo);
+}
+html[data-l-images='tilted'] .wb-media::before { rotate: 2.5deg; }
+html[data-l-images='tilted'] .wb-media::after { rotate: -1.5deg; opacity: 0.6; }
+html[data-l-images='tilted'] .wb-flip .wb-media::before { rotate: -2.5deg; }
+html[data-l-images='tilted'] .wb-flip .wb-media::after { rotate: 1.5deg; }
+html[data-l-images='tilted'] .wb { isolation: isolate; }
+html[data-l-images='tilted'] .wb:is(:hover, :focus-within) .wb-frame,
+html[data-l-images='tilted'] :is(.wkg-card, .wks-card, .wkn-item):is(:hover, :focus-within) .wb-frame,
+html[data-l-images='tilted'] .wb:is(:hover, :focus-within) .wb-media::before,
+html[data-l-images='tilted'] .wb:is(:hover, :focus-within) .wb-media::after { rotate: 0deg; }
+/* Case pages: paired figures lean away from each other, the next-case thumb leans in. */
+html[data-l-images='tilted'] .cs-figs.two .cs-fig:nth-child(odd) { rotate: -1deg; }
+html[data-l-images='tilted'] .cs-figs.two .cs-fig:nth-child(even) { rotate: 1deg; }
+html[data-l-images='tilted'] .cs-figs.two .cs-fig { transition: rotate 0.6s var(--expo); }
+html[data-l-images='tilted'] .cs-figs.two .cs-fig:is(:hover, :focus-within) { rotate: 0deg; }
+html[data-l-images='tilted'] .cs-next-thumb { rotate: 1.5deg; transition: rotate 0.6s var(--expo); }
+html[data-l-images='tilted'] .cs-next-link:is(:hover, :focus-visible) .cs-next-thumb { rotate: 0deg; }
+@media (max-width: 700px) {
+  html[data-l-images='tilted'] :is(.wb, .wkg-card, .wks-card, .wkn-item):nth-of-type(3n + 1) .wb-frame { rotate: -1.25deg; }
+  html[data-l-images='tilted'] :is(.wb, .wkg-card, .wks-card, .wkn-item):nth-of-type(3n + 2) .wb-frame { rotate: 1deg; }
+  html[data-l-images='tilted'] :is(.wb, .wkg-card, .wks-card, .wkn-item):nth-of-type(3n) .wb-frame { rotate: -0.75deg; }
+  html[data-l-images='tilted'] .wb-media::before { rotate: 1.5deg; }
+  html[data-l-images='tilted'] .wb-media::after { rotate: -1deg; }
+}
+
+/* ================================================================================================ */
+
+/* ---------- shadow: soft, long shadows lift every image off the page ---------- */
+html[data-l-images='shadow'] :is(.wb-frame, .cs-next-thumb, .ba-frame, .cs-fig > img, .hm-portrait img, .hm-photos img) {
+  box-shadow:
+    0 20px 40px -14px var(--img-shadow),
+    0 48px 80px -24px var(--img-shadow-2);
+  border-color: var(--line-50);
+  transition: box-shadow 0.6s var(--expo), translate 0.6s var(--expo), transform 0.5s var(--expo), filter 0.6s var(--expo), opacity 0.6s var(--expo);
+}
+html[data-l-images='shadow'] :is(a:hover, a:focus-visible, .wb:hover, .wb:focus-within) .wb-frame,
+html[data-l-images='shadow'] .cs-next-link:is(:hover, :focus-visible) .cs-next-thumb,
+html[data-l-images='shadow'] .cs-fig:is(:hover, :focus-within) > img,
+html[data-l-images='shadow'] .hm-portrait:is(:hover, :focus-within) img,
+html[data-l-images='shadow'] .hm-photos li:is(:hover, :focus-within) img {
+  translate: 0 -6px;
+  box-shadow:
+    0 28px 48px -14px var(--img-shadow),
+    0 64px 100px -24px var(--img-shadow-2);
+}
+/* The dark ground needs a little room for the shadow to land in, so the photo row gets breathing space. */
+html[data-l-images='shadow'] .hm-photos { padding-bottom: 2rem; }
+html[data-l-images='shadow'] .cs-fig figcaption { margin-top: 1.25rem; }
+
+/* ================================================================================================ */
+
+/* ---------- reduced motion: final states, no transitions ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html[data-l-images] :is(.wb-frame, .wb-frame img, .cs-next-thumb, .cs-next-thumb img, .cs-fig, .cs-fig > img, .ba-layer img, .hm-portrait, .hm-portrait img, .hm-photos figure, .hm-photos img, .wb-media::before, .wb-media::after),
+  html[data-l-images='duotone'] :is(.wb-frame, .cs-next-thumb, .ba-frame, .hm-portrait, .cs-fig, .hm-photos figure)::after {
+    transition: none;
+  }
+  html[data-l-images='shadow'] :is(a:hover, a:focus-visible, .wb:hover, .wb:focus-within) .wb-frame,
+  html[data-l-images='shadow'] .cs-next-link:is(:hover, :focus-visible) .cs-next-thumb,
+  html[data-l-images='shadow'] .cs-fig:hover > img,
+  html[data-l-images='shadow'] .hm-portrait:hover img,
+  html[data-l-images='shadow'] .hm-photos li:hover img,
+  html[data-l-images='polaroid'] .hm-photos li:is(:hover, :focus-within) figure { translate: none; }
+}

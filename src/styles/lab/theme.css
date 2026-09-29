@@ -1,1 +1,312 @@
-/* lab: theme variants. Filled by the theme agent. */
+/* ============ Lab: colour themes ============ */
+/*
+  Contract: the chosen theme is written as html[data-l-theme="<id>"]; the default (void) is never written.
+  Every block redefines the full token set so any element that reads tokens follows the theme.
+  Contrast (checked with the WCAG formula): --fg 11:1 or better, --muted-fg and --faint 4.8:1 or better
+  on --bg for every theme, and the accent at least 4.2:1 on --bg so it can be used as small text.
+  Derived tokens (--l-*) carry the few places the base reskin hard-codes dark values, so the scatter
+  canvas, the body-map stage, the lab panel and the header all follow the theme without editing them.
+*/
+
+/* ---------- derived tokens: dark defaults for any theme ---------- */
+html[data-l-theme] {
+  --on-ember: var(--bg);
+  --l-stage: color-mix(in srgb, var(--bg) 96%, var(--fg));
+  --l-stage-hi: color-mix(in srgb, var(--bg) 90%, var(--fg));
+  --l-stage-fg: var(--muted-fg);
+  --l-shadow: rgba(0, 0, 0, 0.35);
+  --l-shadow-2: rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- derived tokens: light ground (light themes, and any theme in Superpowr's light mode) ---------- */
+/* The two data stages stay dark on a light ground: the scatter dots are drawn light grey on canvas and the
+   body figure is a dark silhouette with pale heat glows, so both read as screens set into the page. */
+html:is([data-l-theme='paper'], [data-l-theme='sepia'], [data-l-theme='signal'], [data-l-theme='clinic'], [data-l-theme][data-mode='light']) {
+  --l-stage: color-mix(in srgb, var(--fg) 92%, var(--bg));
+  --l-stage-hi: color-mix(in srgb, var(--fg) 84%, var(--bg));
+  --l-stage-fg: color-mix(in srgb, var(--bg) 72%, var(--fg));
+  --l-shadow: rgba(0, 0, 0, 0.12);
+  --l-shadow-2: rgba(0, 0, 0, 0.16);
+}
+html:is([data-l-theme='paper'], [data-l-theme='sepia'], [data-l-theme='signal'], [data-l-theme='clinic'], [data-l-theme][data-mode='light']) .kit-tile-in {
+  --hover: var(--brand-light);
+}
+
+/* ---------- shared overrides: every rule in the reskin that hard-codes the void palette ---------- */
+html[data-l-theme] #header.scrolled:not(.menu-open) { background: color-mix(in srgb, var(--bg) 78%, transparent); }
+html[data-l-theme] ::selection { background: var(--fg); color: var(--bg); }
+html[data-l-theme] .lab-fab { box-shadow: 0 8px 30px var(--l-shadow); }
+html[data-l-theme] .lab-panel { box-shadow: 0 24px 60px var(--l-shadow-2); }
+html[data-l-theme] .lab-fab-n { color: var(--on-ember); }
+html[data-l-theme] .scatter { background: var(--l-stage); }
+html[data-l-theme] .body-stage { background: radial-gradient(ellipse at 50% 40%, var(--l-stage-hi), var(--l-stage) 70%); }
+html[data-l-theme] .body-stage .body-note { color: var(--l-stage-fg); }
+html[data-l-theme] .region-list button[aria-pressed='true'] { background: color-mix(in srgb, var(--ember) 12%, transparent); }
+html[data-l-theme] .region-list .meter i { background: color-mix(in srgb, var(--fg) 14%, transparent); }
+html[data-l-theme] .region-list .meter i.on { background: var(--heat); }
+html[data-l-theme] .queue .bar { background: color-mix(in srgb, var(--fg) 12%, transparent); }
+html[data-l-theme] .who .focus { background: color-mix(in srgb, var(--ember) 10%, transparent); }
+html[data-l-theme] #cur-dot { box-shadow: 0 0 10px 2px color-mix(in srgb, var(--ember) 70%, transparent); }
+html[data-l-theme] .loader-tile { background: var(--card); }
+html[data-l-theme] .drift-fade { background: linear-gradient(to right, var(--bg), color-mix(in srgb, var(--bg) 40%, transparent), transparent); }
+html[data-l-theme] .mask-line:nth-child(2) > span { color: color-mix(in srgb, var(--fg) 80%, transparent); }
+html[data-l-theme] .marquee-inner { color: color-mix(in srgb, var(--fg) 25%, transparent); }
+html[data-l-theme] .work-card:hover { border-color: color-mix(in srgb, var(--fg) 20%, transparent); }
+html[data-l-theme] .work-card .scrim { background: linear-gradient(to top, color-mix(in srgb, var(--bg) 92%, transparent), transparent); }
+html[data-l-theme] .spine-fill { background: color-mix(in srgb, var(--fg) 40%, transparent); }
+html[data-l-theme] .j-ghost { color: color-mix(in srgb, var(--fg) 3%, transparent); }
+
+/* ---------- paper: warm off-white ground, ink text, oxblood accent ---------- */
+html[data-l-theme='paper'] {
+  color-scheme: light;
+  --bg: #f4f1ea;
+  --fg: #17140f;
+  --muted-fg: #5b5346;
+  --faint: #6e6659;
+  --card: #eae6dc;
+  --line: rgba(23, 20, 15, 0.14);
+  --line-50: rgba(23, 20, 15, 0.07);
+  --primary: #1f1b16;
+  --ember: #7a1f23;
+}
+
+/* ---------- uw: deep purple ground, cream text, gold accent ---------- */
+html[data-l-theme='uw'] {
+  color-scheme: dark;
+  --bg: #24044f;
+  --fg: #f3ecdc;
+  --muted-fg: #c7bba3;
+  --faint: #b4a98f;
+  --card: #2e0e5e;
+  --line: rgba(243, 236, 220, 0.14);
+  --line-50: rgba(243, 236, 220, 0.07);
+  --primary: #eee1c4;
+  --ember: #e6c875;
+}
+/* Brand logos that were tuned against near-black get a lift so blues and greens still read on purple. */
+html[data-l-theme='uw']:not([data-mode='light']) .kit-tile-in { --hover: color-mix(in srgb, var(--brand) 78%, white); }
+html[data-l-theme='uw'][data-mode='light'] {
+  color-scheme: light;
+  --bg: #f6f1e7;
+  --fg: #2a0a52;
+  --muted-fg: #5c4b7a;
+  --faint: #6c5e88;
+  --card: #ece5d6;
+  --line: rgba(42, 10, 82, 0.16);
+  --line-50: rgba(42, 10, 82, 0.08);
+  --primary: #33125e;
+  --ember: #7a5d12;
+}
+
+/* ---------- midnight: deep navy ground, pale lime accent ---------- */
+html[data-l-theme='midnight'] {
+  color-scheme: dark;
+  --bg: #0b1020;
+  --fg: #e9edf6;
+  --muted-fg: #a4adc3;
+  --faint: #8f98af;
+  --card: #131a2e;
+  --line: rgba(233, 237, 246, 0.11);
+  --line-50: rgba(233, 237, 246, 0.055);
+  --primary: #dde3f0;
+  --ember: #d6f26e;
+}
+html[data-l-theme='midnight'][data-mode='light'] {
+  color-scheme: light;
+  --bg: #eef2f8;
+  --fg: #0b1020;
+  --muted-fg: #47526b;
+  --faint: #59637a;
+  --card: #e2e8f1;
+  --line: rgba(11, 16, 32, 0.14);
+  --line-50: rgba(11, 16, 32, 0.07);
+  --primary: #141b30;
+  --ember: #4a7300;
+}
+
+/* ---------- forest: dark green ground, cream text, copper accent ---------- */
+html[data-l-theme='forest'] {
+  color-scheme: dark;
+  --bg: #0f1f17;
+  --fg: #f2ecde;
+  --muted-fg: #b5b2a2;
+  --faint: #9e9b8d;
+  --card: #17291f;
+  --line: rgba(242, 236, 222, 0.12);
+  --line-50: rgba(242, 236, 222, 0.06);
+  --primary: #e8e0cc;
+  --ember: #d68c4c;
+}
+html[data-l-theme='forest'][data-mode='light'] {
+  color-scheme: light;
+  --bg: #f3efe4;
+  --fg: #0f1f17;
+  --muted-fg: #4f584f;
+  --faint: #606a60;
+  --card: #e8e3d3;
+  --line: rgba(15, 31, 23, 0.15);
+  --line-50: rgba(15, 31, 23, 0.075);
+  --primary: #17291f;
+  --ember: #9a4a1f;
+}
+
+/* ---------- graphite: warm-neutral grey ground, electric orange accent ---------- */
+html[data-l-theme='graphite'] {
+  color-scheme: dark;
+  --bg: #1c1c1e;
+  --fg: #f2f2f2;
+  --muted-fg: #a9a9ae;
+  --faint: #939398;
+  --card: #262629;
+  --line: rgba(255, 255, 255, 0.11);
+  --line-50: rgba(255, 255, 255, 0.055);
+  --primary: #e6e6e8;
+  --ember: #ff7a1a;
+}
+html[data-l-theme='graphite'][data-mode='light'] {
+  color-scheme: light;
+  --bg: #f1f1f2;
+  --fg: #1c1c1e;
+  --muted-fg: #56565b;
+  --faint: #66666b;
+  --card: #e6e6e8;
+  --line: rgba(28, 28, 30, 0.14);
+  --line-50: rgba(28, 28, 30, 0.07);
+  --primary: #262629;
+  --ember: #c24e00;
+}
+
+/* ---------- ink: pure black and pure white, the accent is white ---------- */
+html[data-l-theme='ink'] {
+  color-scheme: dark;
+  --bg: #000;
+  --fg: #fff;
+  --muted-fg: #bfbfbf;
+  --faint: #a8a8a8;
+  --card: #000;
+  --line: rgba(255, 255, 255, 0.28);
+  --line-50: rgba(255, 255, 255, 0.14);
+  --primary: #fff;
+  --ember: #fff;
+}
+html[data-l-theme='ink'][data-mode='light'] {
+  color-scheme: light;
+  --bg: #fff;
+  --fg: #000;
+  --muted-fg: #4d4d4d;
+  --faint: #5c5c5c;
+  --card: #fff;
+  --line: rgba(0, 0, 0, 0.28);
+  --line-50: rgba(0, 0, 0, 0.14);
+  --primary: #000;
+  --ember: #000;
+}
+/* With no card tint, cards are drawn by their rule alone; keep the rule visible on hover too. */
+html[data-l-theme='ink'] .kit-tile-in, html[data-l-theme='ink'] .wb-frame { border-color: var(--line); }
+
+/* ---------- sepia: aged paper, black ink, dark red accent ---------- */
+html[data-l-theme='sepia'] {
+  color-scheme: light;
+  --bg: #ece1c8;
+  --fg: #1a1408;
+  --muted-fg: #574b34;
+  --faint: #685c44;
+  --card: #e3d6b8;
+  --line: rgba(26, 20, 8, 0.16);
+  --line-50: rgba(26, 20, 8, 0.08);
+  --primary: #221b0e;
+  --ember: #8a1c12;
+}
+/* Print dossier: photos sit a touch warmer and flatter, like they were printed on the same stock. */
+html[data-l-theme='sepia'] .hm-photos img, html[data-l-theme='sepia'] .hm-portrait img { filter: saturate(0.7) sepia(0.18) contrast(1.04); }
+
+/* ---------- terminal: near-black ground, phosphor green text, amber accent ---------- */
+html[data-l-theme='terminal'] {
+  color-scheme: dark;
+  --bg: #050805;
+  --fg: #8bd48b;
+  --muted-fg: #6fae6f;
+  --faint: #5f9a5f;
+  --card: #0b120b;
+  --line: rgba(139, 212, 139, 0.16);
+  --line-50: rgba(139, 212, 139, 0.08);
+  --primary: #a6e6a6;
+  --ember: #f2b233;
+}
+html[data-l-theme='terminal'] ::selection { background: var(--ember); color: var(--bg); }
+html[data-l-theme='terminal'] :focus-visible { box-shadow: 0 0 0 1px var(--bg), 0 0 0 3px var(--ember); }
+html[data-l-theme='terminal'][data-mode='light'] {
+  color-scheme: light;
+  --bg: #eff4ea;
+  --fg: #0f3d14;
+  --muted-fg: #2e5d33;
+  --faint: #3c6b41;
+  --card: #e4ebdd;
+  --line: rgba(15, 61, 20, 0.16);
+  --line-50: rgba(15, 61, 20, 0.08);
+  --primary: #17491d;
+  --ember: #8a5a00;
+}
+
+/* ---------- signal: safety yellow ground, black text, black accent ---------- */
+html[data-l-theme='signal'] {
+  color-scheme: light;
+  --bg: #f5d000;
+  --fg: #121008;
+  --muted-fg: #3f3a12;
+  --faint: #54501e;
+  --card: #e9c400;
+  --line: rgba(18, 16, 8, 0.22);
+  --line-50: rgba(18, 16, 8, 0.11);
+  --primary: #121008;
+  --ember: #121008;
+}
+/* Brand colours vanish against yellow, so logos hover in a darkened ink of their own hue. */
+html[data-l-theme='signal'] .kit-tile-in { --hover: color-mix(in srgb, var(--brand-light) 55%, #121008); }
+/* The inline placeholder's yellow outline would merge with the ground; the block one already has a black dashed border. */
+html[data-l-theme='signal'] .ph { outline-color: #121008; }
+
+/* ---------- dusk: warm charcoal ground, coral accent ---------- */
+html[data-l-theme='dusk'] {
+  color-scheme: dark;
+  --bg: #2a2523;
+  --fg: #f6f0ea;
+  --muted-fg: #bfb3ab;
+  --faint: #a99c93;
+  --card: #352f2c;
+  --line: rgba(246, 240, 234, 0.12);
+  --line-50: rgba(246, 240, 234, 0.06);
+  --primary: #ede4db;
+  --ember: #ff8267;
+}
+html[data-l-theme='dusk'][data-mode='light'] {
+  color-scheme: light;
+  --bg: #f7f1ec;
+  --fg: #2a2523;
+  --muted-fg: #5f544e;
+  --faint: #6e635c;
+  --card: #efe7e0;
+  --line: rgba(42, 37, 35, 0.15);
+  --line-50: rgba(42, 37, 35, 0.075);
+  --primary: #352f2c;
+  --ember: #b93e24;
+}
+
+/* ---------- clinic: cool light grey ground, slate text, red accent ---------- */
+html[data-l-theme='clinic'] {
+  color-scheme: light;
+  --bg: #eef1f4;
+  --fg: #1e2a35;
+  --muted-fg: #4b5a69;
+  --faint: #5c6b7a;
+  --card: #e3e8ed;
+  --line: rgba(30, 42, 53, 0.14);
+  --line-50: rgba(30, 42, 53, 0.07);
+  --primary: #26323e;
+  --ember: #c9231c;
+}
+
+/* ---------- reduced motion: the ground change is instant ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html[data-l-theme] { transition: none; }
+}

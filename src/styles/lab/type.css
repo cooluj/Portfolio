@@ -1,1 +1,224 @@
-/* lab: type variants. Filled by the type agent. */
+/* ============ Lab: typography. One block per non-default option; the default (Schibsted) is untouched. ============ */
+
+/* ---------- shared: every display-size element reads --display, falling back to the body face ---------- */
+h1, h2, h3,
+.hm-h1, .hm-sec-head h2, .wb-title, .cs-title, .cs-next .t, .hm-about-lead,
+.menu-link, .cs-reflect p, .hm-contact-row .c-value .text {
+  font-family: var(--display, var(--sans));
+}
+
+/* ---------- the rise masks clip deep descenders at tight leading, so give them room without changing the leading ---------- */
+html[data-l-type] .hm-h1-line { padding-block: 0.14em; margin-block: -0.14em; }
+html[data-l-type] .cs-title .cs-w { padding-block: 0.24em; margin-block: -0.24em; }
+
+/* ---------- Fraunces + Inter Tight: soft wonky serif over a tight sans ---------- */
+html[data-l-type="fraunces"] {
+  --sans: 'Inter Tight', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+  --display: 'Fraunces', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+}
+html[data-l-type="fraunces"] :is(.hm-h1, .hm-sec-head h2, .wb-title, .cs-title, .cs-next .t, .menu-link, .cs-reflect p, .hm-contact-row .c-value .text) {
+  font-weight: 500; letter-spacing: -0.015em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 1;
+}
+html[data-l-type="fraunces"] .hm-h1 { font-size: clamp(3rem, 9vw, 8rem); line-height: 0.98; }
+html[data-l-type="fraunces"] .cs-title { font-size: clamp(2.75rem, 9vw, 7.5rem); line-height: 0.95; }
+html[data-l-type="fraunces"] .wb-title { font-weight: 600; letter-spacing: -0.02em; line-height: 1.02; }
+html[data-l-type="fraunces"] .hm-sec-head h2 { font-weight: 600; letter-spacing: -0.02em; font-variation-settings: 'opsz' 72, 'SOFT' 40, 'WONK' 0; }
+html[data-l-type="fraunces"] .hm-about-lead { font-weight: 400; font-style: italic; letter-spacing: 0; line-height: 1.25; font-variation-settings: 'opsz' 72, 'SOFT' 50, 'WONK' 1; }
+html[data-l-type="fraunces"] .wb-call { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 1.0625rem; font-variation-settings: 'opsz' 18, 'SOFT' 30; }
+html[data-l-type="fraunces"] .wb-call-label { font-family: var(--mono); font-style: normal; }
+html[data-l-type="fraunces"] .hm-lede { font-weight: 400; letter-spacing: -0.005em; }
+html[data-l-type="fraunces"] .wordmark { font-family: var(--display); font-weight: 600; font-size: 1.125rem; font-variation-settings: 'opsz' 24, 'SOFT' 50; }
+
+/* ---------- Space Grotesk: geometric with quirky terminals ---------- */
+html[data-l-type="space"] {
+  --sans: 'Space Grotesk', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+}
+html[data-l-type="space"] :is(.hm-h1, .hm-sec-head h2, .wb-title, .cs-title, .cs-next .t, .menu-link, .hm-contact-row .c-value .text) { font-weight: 700; letter-spacing: -0.035em; }
+html[data-l-type="space"] .hm-h1 { font-size: clamp(3rem, 9vw, 8rem); line-height: 0.96; }
+html[data-l-type="space"] .cs-title { font-size: clamp(2.75rem, 9vw, 7.5rem); letter-spacing: -0.04em; }
+html[data-l-type="space"] .hm-about-lead { font-weight: 500; letter-spacing: -0.02em; }
+html[data-l-type="space"] .cs-reflect p { font-weight: 500; letter-spacing: -0.025em; }
+html[data-l-type="space"] .hm-lede { letter-spacing: -0.01em; }
+html[data-l-type="space"] .wordmark { font-weight: 700; letter-spacing: -0.02em; }
+
+/* ---------- Bricolage Grotesque: optical sizes give the hero extra character ---------- */
+html[data-l-type="bricolage"] {
+  --sans: 'Bricolage Grotesque', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+}
+html[data-l-type="bricolage"] body { font-optical-sizing: auto; font-variation-settings: 'opsz' 14; }
+html[data-l-type="bricolage"] :is(.hm-h1, .cs-title, .cs-next .t, .menu-link, .hm-contact-row .c-value .text) { font-weight: 800; letter-spacing: -0.045em; font-variation-settings: 'opsz' 96; }
+html[data-l-type="bricolage"] .hm-h1 { font-size: clamp(3.25rem, 9.5vw, 8.5rem); line-height: 0.92; }
+html[data-l-type="bricolage"] .cs-title { line-height: 0.9; }
+html[data-l-type="bricolage"] :is(.wb-title, .hm-sec-head h2) { font-weight: 700; letter-spacing: -0.035em; font-variation-settings: 'opsz' 60; }
+html[data-l-type="bricolage"] .hm-about-lead { font-weight: 600; letter-spacing: -0.025em; font-variation-settings: 'opsz' 40; }
+html[data-l-type="bricolage"] .cs-reflect p { font-weight: 600; letter-spacing: -0.03em; font-variation-settings: 'opsz' 60; }
+html[data-l-type="bricolage"] .hm-lede { font-variation-settings: 'opsz' 20; }
+html[data-l-type="bricolage"] .wordmark { font-weight: 800; letter-spacing: -0.03em; font-variation-settings: 'opsz' 24; }
+
+/* ---------- Instrument Sans + Instrument Serif: clean sans, sharp serif with a real italic ---------- */
+html[data-l-type="instrument"] {
+  --sans: 'Instrument Sans', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+  --display: 'Instrument Serif', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+}
+html[data-l-type="instrument"] :is(.hm-h1, .hm-sec-head h2, .wb-title, .cs-title, .cs-next .t, .menu-link, .cs-reflect p, .hm-contact-row .c-value .text) { font-weight: 400; letter-spacing: -0.01em; }
+html[data-l-type="instrument"] .hm-h1 { font-size: clamp(3.5rem, 10.5vw, 9.5rem); line-height: 0.96; }
+html[data-l-type="instrument"] .hm-h1-line:nth-child(2) { font-style: italic; }
+html[data-l-type="instrument"] .cs-title { font-size: clamp(3.25rem, 10.5vw, 8.75rem); letter-spacing: -0.015em; line-height: 0.92; }
+html[data-l-type="instrument"] .cs-next .t { font-size: clamp(2.25rem, 6.5vw, 4.5rem); }
+html[data-l-type="instrument"] .wb-title { font-size: clamp(2.5rem, 4.5vw, 4rem); line-height: 0.98; }
+html[data-l-type="instrument"] .hm-sec-head h2 { font-size: clamp(2rem, 3.6vw, 2.875rem); letter-spacing: -0.005em; }
+html[data-l-type="instrument"] .hm-about-lead { font-style: italic; font-weight: 400; font-size: clamp(1.625rem, 2.8vw, 2.375rem); letter-spacing: 0; line-height: 1.2; }
+html[data-l-type="instrument"] .cs-reflect p { font-style: italic; }
+html[data-l-type="instrument"] .wb-call { font-family: var(--display); font-style: italic; font-size: 1.1875rem; line-height: 1.45; }
+html[data-l-type="instrument"] .wb-call-label { font-family: var(--mono); font-style: normal; }
+html[data-l-type="instrument"] .hm-lede { font-weight: 400; }
+html[data-l-type="instrument"] .wordmark { font-family: var(--display); font-weight: 400; font-size: 1.25rem; letter-spacing: 0; }
+
+/* ---------- Syne: wide, extra-bold display; the body stays quiet at regular ---------- */
+html[data-l-type="syne"] {
+  --sans: 'Syne', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+}
+html[data-l-type="syne"] :is(.hm-h1, .cs-title, .cs-next .t, .menu-link, .hm-contact-row .c-value .text) { font-weight: 800; letter-spacing: -0.035em; }
+html[data-l-type="syne"] .hm-h1 { font-size: clamp(2.375rem, 7.5vw, 6.75rem); line-height: 0.95; }
+html[data-l-type="syne"] .cs-title { font-size: clamp(2.25rem, 7.5vw, 6.25rem); letter-spacing: -0.04em; line-height: 0.92; }
+html[data-l-type="syne"] .cs-next .t { font-size: clamp(1.75rem, 5vw, 3.5rem); }
+html[data-l-type="syne"] :is(.wb-title, .hm-sec-head h2) { font-weight: 700; letter-spacing: -0.03em; }
+html[data-l-type="syne"] .wb-title { font-size: clamp(2rem, 3.4vw, 3rem); }
+html[data-l-type="syne"] .hm-sec-head h2 { font-size: clamp(1.625rem, 2.8vw, 2.25rem); }
+html[data-l-type="syne"] .hm-about-lead { font-weight: 600; letter-spacing: -0.02em; font-size: clamp(1.25rem, 2.1vw, 1.75rem); }
+html[data-l-type="syne"] .cs-reflect p { font-weight: 600; letter-spacing: -0.025em; font-size: clamp(1.5rem, 3.6vw, 3rem); }
+html[data-l-type="syne"] .hm-lede { font-size: clamp(1.0625rem, 1.5vw, 1.25rem); letter-spacing: -0.01em; }
+html[data-l-type="syne"] .wordmark { font-weight: 800; letter-spacing: -0.03em; }
+
+/* ---------- Archivo: Black at display width, a slightly condensed body ---------- */
+html[data-l-type="archivo"] {
+  --sans: 'Archivo', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+}
+html[data-l-type="archivo"] body { font-variation-settings: 'wdth' 96; }
+html[data-l-type="archivo"] :is(.hm-h1, .cs-title, .cs-next .t, .menu-link, .hm-contact-row .c-value .text) { font-weight: 900; letter-spacing: -0.04em; font-variation-settings: 'wdth' 100; }
+html[data-l-type="archivo"] .hm-h1 { font-size: clamp(3.25rem, 9.5vw, 8.5rem); line-height: 0.9; }
+html[data-l-type="archivo"] .cs-title { line-height: 0.88; }
+html[data-l-type="archivo"] :is(.wb-title, .hm-sec-head h2) { font-weight: 800; letter-spacing: -0.035em; font-variation-settings: 'wdth' 100; }
+html[data-l-type="archivo"] .hm-about-lead { font-weight: 700; letter-spacing: -0.03em; font-variation-settings: 'wdth' 100; }
+html[data-l-type="archivo"] .cs-reflect p { font-weight: 700; letter-spacing: -0.035em; font-variation-settings: 'wdth' 100; }
+html[data-l-type="archivo"] .hm-lede { font-variation-settings: 'wdth' 100; }
+html[data-l-type="archivo"] .wordmark { font-weight: 900; letter-spacing: -0.03em; font-variation-settings: 'wdth' 110; }
+
+/* ---------- Manrope: rounded geometric, friendly and modern ---------- */
+html[data-l-type="manrope"] {
+  --sans: 'Manrope', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+}
+html[data-l-type="manrope"] :is(.hm-h1, .cs-title, .cs-next .t, .menu-link, .hm-contact-row .c-value .text) { font-weight: 800; letter-spacing: -0.045em; }
+html[data-l-type="manrope"] .hm-h1 { font-size: clamp(3.25rem, 9.5vw, 8.5rem); line-height: 0.96; }
+html[data-l-type="manrope"] .cs-title { line-height: 0.92; }
+html[data-l-type="manrope"] :is(.wb-title, .hm-sec-head h2) { font-weight: 700; letter-spacing: -0.035em; }
+html[data-l-type="manrope"] .hm-about-lead { font-weight: 600; letter-spacing: -0.025em; }
+html[data-l-type="manrope"] .cs-reflect p { font-weight: 600; letter-spacing: -0.03em; }
+html[data-l-type="manrope"] body { font-weight: 450; }
+html[data-l-type="manrope"] .hm-lede { letter-spacing: -0.01em; }
+html[data-l-type="manrope"] .wordmark { font-weight: 800; letter-spacing: -0.03em; }
+
+/* ---------- IBM Plex Sans + Plex Mono: engineered, slightly retro ---------- */
+html[data-l-type="plex"] {
+  --sans: 'IBM Plex Sans', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+}
+html[data-l-type="plex"] :is(.hm-h1, .cs-title, .cs-next .t, .menu-link, .hm-contact-row .c-value .text) { font-weight: 600; letter-spacing: -0.035em; }
+html[data-l-type="plex"] .hm-h1 { font-size: clamp(3rem, 9vw, 8rem); line-height: 0.98; }
+html[data-l-type="plex"] .cs-title { font-size: clamp(2.75rem, 9vw, 7.5rem); line-height: 0.94; }
+html[data-l-type="plex"] :is(.wb-title, .hm-sec-head h2) { font-weight: 600; letter-spacing: -0.03em; }
+html[data-l-type="plex"] .hm-about-lead { font-weight: 500; letter-spacing: -0.02em; }
+html[data-l-type="plex"] .cs-reflect p { font-weight: 500; letter-spacing: -0.025em; }
+html[data-l-type="plex"] .hm-lede { letter-spacing: -0.005em; }
+html[data-l-type="plex"] .wordmark { font-weight: 600; letter-spacing: -0.02em; }
+
+/* ---------- Unbounded + Inter Tight: very wide display, loud only where it should be ---------- */
+html[data-l-type="unbounded"] {
+  --sans: 'Inter Tight', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+  --display: 'Unbounded', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+}
+html[data-l-type="unbounded"] :is(.hm-h1, .cs-title, .cs-next .t, .menu-link, .hm-contact-row .c-value .text) { font-weight: 700; letter-spacing: -0.045em; }
+html[data-l-type="unbounded"] .hm-h1 { font-size: clamp(2.25rem, 6.5vw, 5.75rem); line-height: 1.02; }
+html[data-l-type="unbounded"] .cs-title { font-size: clamp(2.125rem, 6.5vw, 5.5rem); line-height: 1; }
+html[data-l-type="unbounded"] .cs-next .t { font-size: clamp(1.5rem, 4.5vw, 3rem); }
+html[data-l-type="unbounded"] .menu-link { font-size: clamp(1.75rem, 5.5vh, 2.5rem); }
+html[data-l-type="unbounded"] .hm-contact-row .c-value .text { font-size: clamp(1.25rem, 3vw, 2.25rem); }
+html[data-l-type="unbounded"] :is(.wb-title, .hm-sec-head h2) { font-weight: 600; letter-spacing: -0.04em; }
+html[data-l-type="unbounded"] .wb-title { font-size: clamp(1.75rem, 3vw, 2.75rem); line-height: 1.05; }
+html[data-l-type="unbounded"] .hm-sec-head h2 { font-size: clamp(1.375rem, 2.4vw, 1.875rem); }
+html[data-l-type="unbounded"] .hm-about-lead { font-weight: 500; letter-spacing: -0.035em; font-size: clamp(1.125rem, 1.9vw, 1.5rem); line-height: 1.3; }
+html[data-l-type="unbounded"] .cs-reflect p { font-weight: 500; letter-spacing: -0.04em; font-size: clamp(1.375rem, 3.2vw, 2.5rem); line-height: 1.2; }
+html[data-l-type="unbounded"] .hm-lede { font-weight: 400; letter-spacing: -0.005em; }
+html[data-l-type="unbounded"] .wordmark { font-family: var(--display); font-weight: 700; font-size: 0.9375rem; letter-spacing: -0.03em; }
+
+/* ---------- Newsreader: newspaper serif with real italics; the site reads like an essay ---------- */
+html[data-l-type="newsreader"] {
+  --sans: 'Newsreader', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+}
+html[data-l-type="newsreader"] body { font-optical-sizing: auto; font-size: 1.0625rem; }
+html[data-l-type="newsreader"] :is(.hm-h1, .cs-title, .cs-next .t, .menu-link, .hm-contact-row .c-value .text) { font-weight: 500; letter-spacing: -0.015em; font-variation-settings: 'opsz' 72; }
+html[data-l-type="newsreader"] .hm-h1 { font-size: clamp(3.25rem, 9.5vw, 8.5rem); line-height: 0.96; }
+html[data-l-type="newsreader"] .hm-h1-line:nth-child(2) { font-style: italic; font-weight: 400; }
+html[data-l-type="newsreader"] .cs-title { line-height: 0.92; letter-spacing: -0.02em; }
+html[data-l-type="newsreader"] :is(.wb-title, .hm-sec-head h2) { font-weight: 500; letter-spacing: -0.015em; font-variation-settings: 'opsz' 48; }
+html[data-l-type="newsreader"] .wb-title { line-height: 1.02; }
+html[data-l-type="newsreader"] .hm-about-lead { font-style: italic; font-weight: 400; letter-spacing: 0; line-height: 1.22; font-size: clamp(1.5rem, 2.6vw, 2.125rem); font-variation-settings: 'opsz' 36; }
+html[data-l-type="newsreader"] .cs-reflect p { font-style: italic; font-weight: 400; letter-spacing: -0.01em; font-variation-settings: 'opsz' 48; }
+html[data-l-type="newsreader"] .wb-call { font-style: italic; font-weight: 400; font-size: 1.125rem; line-height: 1.5; }
+html[data-l-type="newsreader"] .wb-call-label { font-family: var(--mono); font-style: normal; }
+html[data-l-type="newsreader"] .hm-lede { font-weight: 400; font-size: clamp(1.1875rem, 1.7vw, 1.4375rem); line-height: 1.5; }
+html[data-l-type="newsreader"] :is(.wb-problem, .prose p, .hm-about-text > p + p) { line-height: 1.6; }
+html[data-l-type="newsreader"] .wordmark { font-weight: 600; font-size: 1.1875rem; letter-spacing: -0.01em; }
+
+/* ---------- All mono: the whole site reads like source ---------- */
+html[data-l-type="mono"] {
+  --sans: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+html[data-l-type="mono"] body { letter-spacing: -0.01em; }
+html[data-l-type="mono"] :is(.hm-h1, .hm-sec-head h2, .wb-title, .cs-title, .cs-next .t, .menu-link, .hm-about-lead, .cs-reflect p, .hm-contact-row .c-value .text) { font-weight: 600; letter-spacing: -0.02em; }
+html[data-l-type="mono"] .hm-h1 { font-size: clamp(2.5rem, 7.5vw, 6.5rem); line-height: 1; }
+html[data-l-type="mono"] .cs-title { font-size: clamp(2.25rem, 7.5vw, 6rem); line-height: 0.98; }
+html[data-l-type="mono"] .cs-next .t { font-size: clamp(1.625rem, 5vw, 3.25rem); }
+html[data-l-type="mono"] .wb-title { font-size: clamp(1.875rem, 3.2vw, 2.75rem); line-height: 1.05; }
+html[data-l-type="mono"] .hm-sec-head h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+html[data-l-type="mono"] .hm-about-lead { font-size: clamp(1.25rem, 2vw, 1.625rem); line-height: 1.3; }
+html[data-l-type="mono"] .cs-reflect p { font-size: clamp(1.5rem, 3.4vw, 2.75rem); line-height: 1.2; }
+html[data-l-type="mono"] .hm-contact-row .c-value .text { font-size: clamp(1.25rem, 3.2vw, 2.25rem); }
+html[data-l-type="mono"] .hm-lede { font-size: clamp(1rem, 1.4vw, 1.1875rem); line-height: 1.6; }
+html[data-l-type="mono"] .menu-link { font-size: clamp(1.75rem, 5.5vh, 2.5rem); }
+html[data-l-type="mono"] .wordmark { font-weight: 600; letter-spacing: -0.02em; }
+html[data-l-type="mono"] .cta-pill { letter-spacing: 0.02em; }
+
+/* ---------- DM Serif Display + DM Sans: high-contrast serif headings, quiet sans body ---------- */
+html[data-l-type="dm"] {
+  --sans: 'DM Sans', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+  --display: 'DM Serif Display', 'Playfair Display', 'Bodoni 72', Didot, Georgia, serif;
+}
+html[data-l-type="dm"] body { font-optical-sizing: auto; }
+html[data-l-type="dm"] :is(.hm-h1, .hm-sec-head h2, .wb-title, .cs-title, .cs-next .t, .menu-link, .cs-reflect p, .hm-contact-row .c-value .text) { font-weight: 400; letter-spacing: -0.01em; }
+html[data-l-type="dm"] .hm-h1 { font-size: clamp(3.5rem, 10vw, 9rem); line-height: 0.96; }
+html[data-l-type="dm"] .cs-title { font-size: clamp(3rem, 10vw, 8.25rem); line-height: 0.92; letter-spacing: -0.015em; }
+html[data-l-type="dm"] .cs-next .t { font-size: clamp(2.25rem, 6.5vw, 4.5rem); }
+html[data-l-type="dm"] .wb-title { font-size: clamp(2.375rem, 4.4vw, 3.875rem); line-height: 1; }
+html[data-l-type="dm"] .hm-sec-head h2 { font-size: clamp(1.875rem, 3.4vw, 2.75rem); letter-spacing: -0.005em; }
+html[data-l-type="dm"] .hm-about-lead { font-style: italic; font-weight: 400; letter-spacing: 0; line-height: 1.2; font-size: clamp(1.5rem, 2.6vw, 2.25rem); }
+html[data-l-type="dm"] .cs-reflect p { font-style: italic; }
+html[data-l-type="dm"] .wb-call { font-family: var(--display); font-style: italic; font-size: 1.125rem; line-height: 1.45; }
+html[data-l-type="dm"] .wb-call-label { font-family: var(--mono); font-style: normal; }
+html[data-l-type="dm"] .hm-lede { font-weight: 400; letter-spacing: -0.005em; }
+html[data-l-type="dm"] .wordmark { font-family: var(--display); font-weight: 400; font-size: 1.25rem; letter-spacing: 0; }
+
+/* ---------- Familjen Grotesk: narrow, warm grotesque; dense headlines ---------- */
+html[data-l-type="familjen"] {
+  --sans: 'Familjen Grotesk', ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif;
+}
+html[data-l-type="familjen"] :is(.hm-h1, .cs-title, .cs-next .t, .menu-link, .hm-contact-row .c-value .text) { font-weight: 700; letter-spacing: -0.03em; }
+html[data-l-type="familjen"] .hm-h1 { font-size: clamp(3.5rem, 10.5vw, 9.5rem); line-height: 0.92; }
+html[data-l-type="familjen"] .cs-title { font-size: clamp(3.25rem, 10.5vw, 8.75rem); line-height: 0.88; letter-spacing: -0.035em; }
+html[data-l-type="familjen"] .cs-next .t { font-size: clamp(2.25rem, 6.5vw, 4.5rem); }
+html[data-l-type="familjen"] :is(.wb-title, .hm-sec-head h2) { font-weight: 700; letter-spacing: -0.025em; }
+html[data-l-type="familjen"] .wb-title { font-size: clamp(2.5rem, 4.4vw, 3.875rem); line-height: 0.96; }
+html[data-l-type="familjen"] .hm-about-lead { font-weight: 600; letter-spacing: -0.02em; font-size: clamp(1.5rem, 2.6vw, 2.25rem); }
+html[data-l-type="familjen"] .cs-reflect p { font-weight: 600; letter-spacing: -0.025em; }
+html[data-l-type="familjen"] .hm-lede { font-size: clamp(1.1875rem, 1.7vw, 1.4375rem); }
+html[data-l-type="familjen"] .wordmark { font-weight: 700; letter-spacing: -0.02em; }

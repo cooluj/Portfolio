@@ -1,1 +1,150 @@
-/* lab: texture variants. Filled by the texture agent. */
+/* ============ Lab: surface textures ============ */
+/*
+  Contract: the chosen surface is written as html[data-l-texture="<id>"]; the default (flat) is never written.
+  Every surface is one fixed, full-viewport, pointer-events-free layer drawn by html::before (halftone adds
+  html::after for its second dot size). The layer sits at z-index 90: above every page surface, below the
+  header (100), the menu (99 is under it on purpose: the menu is an opaque sheet), the cursor layers (201+),
+  the progress bar (250) and the lab panel (399+). Every pattern is drawn in the text colour at low alpha
+  through color-mix so it reads on dark and light grounds alike, including Superpowr's light mode.
+*/
+
+html[data-l-texture] {
+  --tx-ink: color-mix(in srgb, var(--fg) 6%, transparent);
+  --tx-ink-2: color-mix(in srgb, var(--fg) 10%, transparent);
+  --tx-ink-3: color-mix(in srgb, var(--fg) 14%, transparent);
+}
+html[data-l-texture]:not([data-l-texture='flat'])::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+}
+
+/* ---------- grain: film grain from an SVG turbulence tile ---------- */
+/* The tile's alpha channel is the noise, so it is used as a mask over a flat text-colour fill:
+   the grain is always the ink of the current theme, never a fixed grey. */
+html[data-l-texture='grain']::before {
+  background: var(--fg);
+  opacity: 0.07;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.6 -0.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.6 -0.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 256px 256px;
+  mask-size: 256px 256px;
+  animation: tx-grain 0.6s steps(1) infinite;
+}
+@keyframes tx-grain {
+  0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+  25% { -webkit-mask-position: -64px 96px; mask-position: -64px 96px; }
+  50% { -webkit-mask-position: 128px -32px; mask-position: 128px -32px; }
+  75% { -webkit-mask-position: 32px 160px; mask-position: 32px 160px; }
+}
+
+/* ---------- dots: a layout canvas ---------- */
+/* Single-pixel marks need more ink than a field to be seen at all, so dots and lines sit at 10 to 14%
+   while the surfaces (grain, scanlines) stay at 4 to 7%. */
+html[data-l-texture='dots']::before {
+  background-image: radial-gradient(circle, var(--tx-ink-3) 0.75px, transparent 1.25px);
+  background-size: 24px 24px;
+  background-position: 12px 12px;
+}
+
+/* ---------- blueprint: drafting paper, 24px minor and 96px major lines ---------- */
+html[data-l-texture='blueprint']::before {
+  background-image:
+    linear-gradient(to right, var(--tx-ink-2) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--tx-ink-2) 1px, transparent 1px),
+    linear-gradient(to right, var(--tx-ink) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--tx-ink) 1px, transparent 1px);
+  background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+  background-position: -1px -1px;
+}
+
+/* ---------- ruled: a notebook, rules at the reading line height ---------- */
+html[data-l-texture='ruled']::before {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 calc(1.75rem - 1px),
+    var(--tx-ink-2) calc(1.75rem - 1px) 1.75rem
+  );
+  background-position: 0 4rem;
+}
+/* The margin rule: one faint line in the accent, only where the gutter is wide enough to hold it and no
+   layout owns the left edge. */
+@media (min-width: 768px) {
+  html[data-l-texture='ruled']:not([data-l-layout='sidebar'])::before {
+    background-image:
+      linear-gradient(to right, transparent 2.5rem, color-mix(in srgb, var(--ember) 24%, transparent) 2.5rem calc(2.5rem + 1px), transparent calc(2.5rem + 1px)),
+      repeating-linear-gradient(to bottom, transparent 0 calc(1.75rem - 1px), var(--tx-ink-2) calc(1.75rem - 1px) 1.75rem);
+    background-repeat: no-repeat, repeat;
+    background-position: 0 0, 0 4rem;
+  }
+}
+
+/* ---------- scanlines: 2px lines every 4px, with a faint flicker ---------- */
+html[data-l-texture='scanlines']::before {
+  background-image: repeating-linear-gradient(to bottom, color-mix(in srgb, var(--fg) 4%, transparent) 0 2px, transparent 2px 4px);
+  animation: tx-flicker 3.2s steps(1) infinite;
+}
+@keyframes tx-flicker {
+  0%, 100% { opacity: 1; }
+  11% { opacity: 0.82; }
+  13% { opacity: 1; }
+  47% { opacity: 0.9; }
+  49% { opacity: 1; }
+  71% { opacity: 0.86; }
+  72% { opacity: 1; }
+  88% { opacity: 0.94; }
+  90% { opacity: 1; }
+}
+
+/* ---------- vignette: the edges fall off to the ground colour ---------- */
+/* Drawn in --bg, so it darkens a dark theme and pales a light one, and the middle stays untouched. */
+html[data-l-texture='vignette']::before {
+  background:
+    radial-gradient(ellipse 85% 75% at 50% 42%, transparent 55%, color-mix(in srgb, var(--bg) 78%, transparent) 100%),
+    linear-gradient(to bottom, color-mix(in srgb, var(--bg) 35%, transparent), transparent 18%, transparent 82%, color-mix(in srgb, var(--bg) 35%, transparent));
+}
+
+/* ---------- halftone: print dots that grow toward the corners ---------- */
+/* Two dot sizes, each masked by its own radial ramp: the fine dots emerge first and the coarse dots take
+   over nearer the corners, so the screen reads as one growing halftone. The classic 45 degree screen angle
+   comes from drawing each dot twice, on the cell origin and on the half-cell offset, which makes a diagonal
+   lattice without a transform, so the layer stays viewport-sized and cheap. The mask radii are 72% of the
+   box, which is exactly where the viewport's corners sit, so the ramp ends at the corners on any screen. */
+html[data-l-texture='halftone']::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+}
+html[data-l-texture='halftone']::before,
+html[data-l-texture='halftone']::after {
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+}
+html[data-l-texture='halftone']::before {
+  background-image:
+    radial-gradient(circle, var(--tx-ink-2) 0.9px, transparent 1.5px),
+    radial-gradient(circle, var(--tx-ink-2) 0.9px, transparent 1.5px);
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at center, transparent 28%, #000 85%);
+  mask-image: radial-gradient(ellipse 72% 72% at center, transparent 28%, #000 85%);
+}
+html[data-l-texture='halftone']::after {
+  background-image:
+    radial-gradient(circle, var(--tx-ink-2) 2.1px, transparent 2.7px),
+    radial-gradient(circle, var(--tx-ink-2) 2.1px, transparent 2.7px);
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at center, transparent 58%, #000 100%);
+  mask-image: radial-gradient(ellipse 72% 72% at center, transparent 58%, #000 100%);
+}
+
+/* ---------- motion and print ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html[data-l-texture='grain']::before,
+  html[data-l-texture='scanlines']::before { animation: none; }
+}
+@media print {
+  html[data-l-texture]::before,
+  html[data-l-texture]::after { display: none; }
+}

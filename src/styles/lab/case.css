@@ -1,1 +1,245 @@
-/* lab: case variants. Filled by the case agent. */
+/* ============ Lab: case study page layouts. One block per non-default option; the default (sticky labels) is untouched. ============ */
+
+/* ---------- Magazine: kicker headings on rules, two text columns, a drop cap, the reflection set as a pull quote ---------- */
+html[data-l-case="magazine"] .cs-head .cs-lede { max-width: 54ch; padding-top: 1.25rem; border-top: 1px solid var(--fg); }
+html[data-l-case="magazine"] .cs-block { grid-template-columns: 1fr; gap: 1.75rem; padding-block: 3.5rem; border-top: 1px solid var(--line); }
+html[data-l-case="magazine"] .cs > section.cs-block:first-of-type { border-top: 2px solid var(--fg); }
+html[data-l-case="magazine"] .cs-block > h2 {
+  position: static; top: auto; display: flex; align-items: center; gap: 1rem;
+  color: var(--fg); letter-spacing: 0.22em;
+}
+html[data-l-case="magazine"] .cs-block > h2 .n { display: inline; margin: 0; color: var(--ember); }
+html[data-l-case="magazine"] .cs-block > h2::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+html[data-l-case="magazine"] .cs-fig figcaption { padding-top: 0.5rem; border-top: 1px solid var(--line); }
+/* the first paragraph of the first section opens with a drop cap in the display face */
+html[data-l-case="magazine"] .cs > section.cs-block:first-of-type .prose > p:first-child::first-letter {
+  float: left; padding: 0.06em 0.14em 0 0;
+  font-family: var(--display, var(--sans)); font-weight: 900; font-size: 4.4em; line-height: 0.8;
+  color: var(--fg);
+}
+@media (min-width: 1000px) {
+  html[data-l-case="magazine"] .cs-block { padding-block: 4.5rem; }
+  html[data-l-case="magazine"] .prose { max-width: none; columns: 2; column-gap: 3.5rem; column-rule: 1px solid var(--line); }
+  html[data-l-case="magazine"] .prose p { break-inside: avoid; font-size: 1.0625rem; line-height: 1.7; }
+  html[data-l-case="magazine"] .prose p + p { margin-top: 1rem; }
+}
+html[data-l-case="magazine"] .cs-reflect {
+  border-top: 0; margin-top: 1rem; padding-block: 2.5rem 5rem;
+  padding-left: clamp(1.25rem, 4vw, 3rem); border-left: 6px solid var(--ember);
+}
+html[data-l-case="magazine"] .cs-reflect h2 { color: var(--ember); }
+html[data-l-case="magazine"] .cs-reflect p {
+  max-width: 30ch; margin-top: 1.25rem;
+  font-style: normal; font-weight: 600; letter-spacing: -0.03em; line-height: 1.04;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+}
+
+/* ---------- Table of contents: the sticky labels become a numbered rail on one line; the latest revealed block is current ---------- */
+html[data-l-case="toc"] { --toc-dot: 0.625rem; }
+html[data-l-case="toc"] .cs-block { position: relative; border-top: 0; padding-block: 3rem; }
+html[data-l-case="toc"] .cs-block::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: calc(var(--toc-dot) / 2); width: 1px; translate: -50% 0;
+  background: var(--line);
+  transition: background 0.5s var(--expo);
+}
+html[data-l-case="toc"] .cs-block > h2 {
+  position: relative; top: auto; display: grid; gap: 0.3rem; padding-left: 1.75rem;
+  color: var(--faint); transition: color 0.4s;
+}
+html[data-l-case="toc"] .cs-block > h2 .n { margin: 0; font-weight: 400; color: inherit; font-variant-numeric: tabular-nums; }
+html[data-l-case="toc"] .cs-block > h2::before {
+  content: ''; position: absolute; left: 0; top: 0.1em; width: var(--toc-dot); height: var(--toc-dot);
+  border-radius: 50%; background: var(--bg); border: 1px solid var(--line);
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+html[data-l-case="toc"] .cs-block > div { padding-left: 1.75rem; }
+@media (min-width: 1024px) {
+  html[data-l-case="toc"] .cs-block { padding-block: 4rem; }
+  html[data-l-case="toc"] .cs-block > h2 { position: sticky; top: 6rem; }
+  html[data-l-case="toc"] .cs-block > div { padding-left: 0; }
+}
+/* passed: line and dot in the muted ink; current: ember dot with a halo, label in the full ink */
+html[data-l-case="toc"] .cs-block.in > h2 { color: var(--muted-fg); }
+html[data-l-case="toc"] .cs-block.in > h2::before { border-color: var(--muted-fg); background: var(--muted-fg); }
+html[data-l-case="toc"] .cs-block.in:has(~ .cs-block.in)::before { background: var(--muted-fg); }
+html[data-l-case="toc"] .cs-block.in:not(:has(~ .cs-block.in)) > h2 { color: var(--fg); }
+html[data-l-case="toc"] .cs-block.in:not(:has(~ .cs-block.in)) > h2::before {
+  background: var(--ember); border-color: var(--ember);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ember) 22%, transparent);
+}
+/* where view timelines exist, current means the block is crossing the 40% line, in either scroll direction; the :has guess stands down */
+@supports (animation-timeline: view()) {
+  html[data-l-case="toc"] .cs-block { view-timeline: --cs-blk block; view-timeline-inset: 0 60%; }
+  html[data-l-case="toc"] .cs-block > h2 { animation: csLabTocOn linear; animation-timeline: --cs-blk; animation-range: entry-crossing 0% entry-crossing 100%; }
+  html[data-l-case="toc"] .cs-block > h2::before { animation: csLabTocDot linear; animation-timeline: --cs-blk; animation-range: entry-crossing 0% entry-crossing 100%; }
+  html[data-l-case="toc"] .cs-block.in:not(:has(~ .cs-block.in)) > h2 { color: var(--muted-fg); }
+  html[data-l-case="toc"] .cs-block.in:not(:has(~ .cs-block.in)) > h2::before { background: var(--muted-fg); border-color: var(--muted-fg); box-shadow: none; }
+}
+@keyframes csLabTocOn { from, to { color: var(--fg); } }
+@keyframes csLabTocDot { from, to { background: var(--ember); border-color: var(--ember); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ember) 22%, transparent); } }
+/* the reflection is the end of the rail */
+html[data-l-case="toc"] .cs-reflect { position: relative; border-top: 0; padding-top: 0; }
+html[data-l-case="toc"] .cs-reflect::before {
+  content: ''; position: absolute; top: 0; height: 1.5rem; left: calc(var(--toc-dot) / 2); width: 1px; translate: -50% 0;
+  background: var(--line);
+}
+html[data-l-case="toc"] .cs-reflect h2 { position: relative; display: block; padding-left: 1.75rem; padding-top: 1.5rem; }
+html[data-l-case="toc"] .cs-reflect h2::before {
+  content: ''; position: absolute; left: 0; top: calc(1.5rem + 0.1em); width: var(--toc-dot); height: var(--toc-dot);
+  border-radius: 2px; background: var(--fg);
+}
+html[data-l-case="toc"] .cs-reflect p { padding-left: 1.75rem; }
+@media (min-width: 1024px) { html[data-l-case="toc"] .cs-reflect p { padding-left: 0; } }
+
+/* ---------- Numbered steps: the block number is a display numeral, the label sits under it, an ember rule closes it ---------- */
+html[data-l-case="steps"] .cs-block > h2 { font-size: 0.75rem; letter-spacing: 0.22em; }
+html[data-l-case="steps"] .cs-block > h2 .n {
+  margin-bottom: 0.875rem;
+  font-family: var(--display, var(--sans)); font-weight: 900; letter-spacing: -0.06em; line-height: 0.85;
+  font-size: clamp(4rem, 8vw, 6rem); font-variant-numeric: tabular-nums;
+  color: var(--fg); opacity: 0.22;
+  transition: opacity 1s var(--expo);
+}
+html[data-l-case="steps"] .cs-block.in > h2 .n { opacity: 1; }
+html[data-l-case="steps"] .cs-block > h2::after { content: ''; display: block; width: 2.25rem; height: 2px; margin-top: 0.875rem; background: var(--ember); }
+html[data-l-case="steps"] .cs-reflect h2 { font-weight: 700; }
+@media (min-width: 1024px) {
+  html[data-l-case="steps"] .cs-block { grid-template-columns: 18rem 1fr; }
+}
+
+/* ---------- Wide media: figures break out of the text column across the section; the sticky label tucks under them ---------- */
+html[data-l-case="wide"] .cs-figs { margin-top: 3rem; gap: 2rem; }
+html[data-l-case="wide"] .cs-fig figcaption { margin-top: 1rem; }
+html[data-l-case="wide"] .cs-fig img { border-radius: 0.75rem; }
+html[data-l-case="wide"] .body-stage svg { max-height: 88vh; }
+html[data-l-case="wide"] .cs > .rv > .cs-fig { margin-top: 1rem; }
+html[data-l-case="wide"] .cs > .rv > .cs-fig figcaption { margin-top: 1rem; text-align: right; }
+@media (min-width: 1024px) {
+  html[data-l-case="wide"] .cs-block > div > :is(.cs-figs, .ba):not(:first-child) { position: relative; z-index: 1; margin-left: -20rem; }
+  html[data-l-case="wide"] .cs-block > div > .cs-figs.two { gap: 2.5rem; }
+  html[data-l-case="wide"] .cs-block > h2 { z-index: 0; }
+}
+@media (min-width: 900px) {
+  html[data-l-case="wide"] .cs-next .cs-next-link { grid-template-columns: minmax(0, 1fr) minmax(0, 34rem); }
+  html[data-l-case="wide"] .cs-next .cs-next-thumb { max-width: 34rem; }
+}
+/* phones: figures bleed to the screen edge, square-cornered, captions kept in the gutter */
+@media (max-width: 767px) {
+  html[data-l-case="wide"] .cs-block > div > .cs-figs { margin-inline: -1rem; }
+  html[data-l-case="wide"] .cs-block > div > .cs-figs .cs-fig img { border-radius: 0; border-inline: 0; }
+  html[data-l-case="wide"] .cs-block > div > .cs-figs figcaption { padding-inline: 1rem; }
+}
+
+/* ---------- Minimal: no numbers, no rules, one centred column, 8rem between blocks ---------- */
+html[data-l-case="minimal"] .cs-head { text-align: center; }
+html[data-l-case="minimal"] .cs-lede { margin-inline: auto; }
+html[data-l-case="minimal"] .cs-meta { text-align: left; }
+/* the column is centred by the block's own padding, so the label and the content share one measure (62ch at the prose size) */
+html[data-l-case="minimal"] .cs-block {
+  grid-template-columns: 1fr; gap: 1.5rem; border-top: 0;
+  padding-block: 4rem; padding-inline: max(0px, calc((100% - 62ch * 1.1875) / 2));
+}
+html[data-l-case="minimal"] .cs-block > h2 {
+  position: static; top: auto;
+  font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.26em; color: var(--faint);
+}
+html[data-l-case="minimal"] .cs-block > h2 .n { display: none; }
+html[data-l-case="minimal"] .prose { max-width: 62ch; font-size: 1.1875rem; }
+html[data-l-case="minimal"] .prose p { font-size: 1em; line-height: 1.8; }
+html[data-l-case="minimal"] .cs-fig img { border: 0; }
+html[data-l-case="minimal"] .cs-reflect { border-top: 0; padding-block: 4rem 6rem; text-align: center; }
+html[data-l-case="minimal"] .cs-reflect p { margin-inline: auto; font-weight: 400; }
+html[data-l-case="minimal"] .cs-next { border-top-color: var(--line-50); }
+
+/* ---------- Timeline: sections hang off one vertical line with a dot each, like a changelog ---------- */
+html[data-l-case="timeline"] { --tl-x: 2.25rem; --tl-dot: 0.9375rem; }
+@media (min-width: 768px) { html[data-l-case="timeline"] { --tl-x: 3.5rem; } }
+html[data-l-case="timeline"] .cs > section.cs-block:first-of-type { margin-top: 4rem; }
+html[data-l-case="timeline"] .cs-block {
+  position: relative; grid-template-columns: 1fr; gap: 1.5rem;
+  border-top: 0; padding-block: 0 4.5rem; padding-left: var(--tl-x);
+}
+html[data-l-case="timeline"] .cs-block::before,
+html[data-l-case="timeline"] .cs-reflect::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: calc(var(--tl-dot) / 2); width: 1px; translate: -50% 0;
+  background: var(--line);
+}
+html[data-l-case="timeline"] .cs > section.cs-block:first-of-type::before { top: 0.75rem; }
+html[data-l-case="timeline"] .cs-block > h2 {
+  position: relative; top: auto; display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem;
+  font-family: var(--display, var(--sans)); font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 700;
+  letter-spacing: -0.02em; text-transform: none; line-height: 1.1; color: var(--fg);
+}
+html[data-l-case="timeline"] .cs-block > h2 .n {
+  margin: 0; padding: 0.3rem 0.65rem; border: 1px solid var(--line); border-radius: 9999px;
+  font-family: var(--mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.2em; line-height: 1.2;
+  color: var(--muted-fg); font-variant-numeric: tabular-nums;
+}
+html[data-l-case="timeline"] .cs-block > h2::before,
+html[data-l-case="timeline"] .cs-reflect h2::before {
+  content: ''; position: absolute; left: calc(-1 * var(--tl-x)); top: 0.3rem;
+  width: var(--tl-dot); height: var(--tl-dot); border-radius: 50%;
+  background: var(--bg); border: 1px solid var(--muted-fg); box-shadow: 0 0 0 4px var(--bg);
+  transition: background 0.5s var(--expo), border-color 0.5s var(--expo);
+}
+html[data-l-case="timeline"] .cs-block.in > h2::before { background: var(--ember); border-color: var(--ember); }
+html[data-l-case="timeline"] .prose { max-width: 66ch; }
+html[data-l-case="timeline"] .cs-reflect { position: relative; border-top: 0; padding-top: 0; padding-left: var(--tl-x); }
+html[data-l-case="timeline"] .cs-reflect::before { bottom: auto; height: 0.75rem; }
+html[data-l-case="timeline"] .cs-reflect h2 { position: relative; display: block; padding-top: 0.75rem; }
+html[data-l-case="timeline"] .cs-reflect h2::before { top: 0.75rem; border-radius: 2px; border-color: var(--fg); background: var(--fg); }
+
+/* ---------- Reader: a scroll-driven progress bar, a "Reading progress" line under the lede, a position rail on wide screens ---------- */
+html[data-l-case="reader"] .prose { max-width: 66ch; }
+html[data-l-case="reader"] .prose p { font-size: 1.1875rem; line-height: 1.8; }
+html[data-l-case="reader"] .cs-head .cs-lede::after {
+  content: 'Reading progress'; display: block; width: min(100%, 18rem); margin-top: 2rem; padding-top: 0.75rem;
+  font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint);
+  background:
+    linear-gradient(var(--ember), var(--ember)) no-repeat 0 0 / 0% 1px,
+    linear-gradient(var(--line), var(--line)) no-repeat 0 0 / 100% 1px;
+}
+@supports (animation-timeline: scroll()) {
+  html[data-l-case="reader"] .cs::before {
+    content: ''; position: fixed; left: 0; top: 0; z-index: 300; height: 3px; width: 100%;
+    background: var(--ember); transform-origin: 0 50%; transform: scaleX(0);
+    pointer-events: none;
+    /* the bar tracks the document scroll; the fade waits for the route transition to settle so it never jumps */
+    animation: csLabReadBar linear both, csLabReadIn 0.4s var(--expo) 0.5s both;
+    animation-timeline: scroll(root), auto;
+  }
+  html[data-l-case="reader"] .cs-head .cs-lede::after {
+    animation: csLabReadFill linear both;
+    animation-timeline: scroll(root);
+  }
+  @media (min-width: 1024px) {
+    html[data-l-case="reader"] .cs::after {
+      content: ''; position: fixed; right: 2rem; top: 50%; translate: 0 -50%; z-index: 90; width: 1px; height: 14rem;
+      background:
+        linear-gradient(var(--fg), var(--fg)) no-repeat 0 0 / 1px 0%,
+        linear-gradient(var(--line), var(--line)) no-repeat 0 0 / 1px 100%;
+      pointer-events: none;
+      animation: csLabReadRail linear both, csLabReadIn 0.4s var(--expo) 0.5s both;
+      animation-timeline: scroll(root), auto;
+    }
+  }
+}
+@keyframes csLabReadBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes csLabReadFill { from { background-size: 0% 1px, 100% 1px; } to { background-size: 100% 1px, 100% 1px; } }
+@keyframes csLabReadRail { from { background-size: 1px 0%, 1px 100%; } to { background-size: 1px 100%, 1px 100%; } }
+@keyframes csLabReadIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- reduced motion: state changes are instant; the scroll-driven indicators still report position ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html[data-l-case="toc"] .cs-block::before,
+  html[data-l-case="toc"] .cs-block > h2,
+  html[data-l-case="toc"] .cs-block > h2::before,
+  html[data-l-case="steps"] .cs-block > h2 .n,
+  html[data-l-case="timeline"] .cs-block > h2::before { transition: none; }
+  html[data-l-case="steps"] .cs-block > h2 .n { opacity: 1; }
+  html[data-l-case="toc"] .cs-block > h2,
+  html[data-l-case="toc"] .cs-block > h2::before,
+  html[data-l-case="reader"] .cs::before,
+  html[data-l-case="reader"] .cs::after,
+  html[data-l-case="reader"] .cs-head .cs-lede::after { animation-duration: auto, 0.01ms !important; opacity: 1; }
+}

@@ -1,1 +1,117 @@
-/* lab: motion variants. Filled by the motion agent. */
+/* ============ Lab: motion variants (transition + reveal) ============ */
+/* Selections land on <html> as data-l-transition / data-l-reveal. The defaults (fade, rise) are never
+   written, so only the non-default options live here. Everything is off under prefers-reduced-motion. */
+
+/* ---------- transition: wipe ---------- */
+/* A full-viewport panel in --fg enters from the left, covers the screen, then exits to the right while
+   thinning out. The new page fades in behind it while covered. The fade runs on the page's children, not
+   on .page itself: opacity there would also fade the panel, and a transform would unpin the fixed pseudo. */
+html[data-l-transition='wipe'] .page { animation: none; opacity: 1; transform: none; }
+html[data-l-transition='wipe'] .page > * { animation: labWipeContent 0.9s var(--expo) both; }
+html[data-l-transition='wipe'] .page::before {
+  content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none;
+  background: var(--fg);
+  animation: labWipePanel 0.9s var(--hard) both;
+}
+@keyframes labWipePanel {
+  0% { transform: translateX(-101%); opacity: 1; }
+  42% { transform: translateX(0); opacity: 1; }
+  52% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(101%); opacity: 0.35; visibility: hidden; }
+}
+@keyframes labWipeContent {
+  0%, 44% { opacity: 0; }
+  72%, 100% { opacity: 1; }
+}
+
+/* ---------- transition: curtain ---------- */
+/* Two --fg halves hold for a beat, then part from the centre. Content fades in beneath. */
+html[data-l-transition='curtain'] .page { animation: none; opacity: 1; transform: none; }
+html[data-l-transition='curtain'] .page > * { animation: labCurtainContent 0.9s var(--expo) both; }
+html[data-l-transition='curtain'] .page::before,
+html[data-l-transition='curtain'] .page::after {
+  content: ''; position: fixed; top: 0; bottom: 0; width: 50.5%; z-index: 90; pointer-events: none;
+  background: var(--fg);
+  animation: labCurtainPanel 0.9s var(--hard) both;
+}
+html[data-l-transition='curtain'] .page::before { left: 0; transform-origin: left center; }
+html[data-l-transition='curtain'] .page::after { right: 0; transform-origin: right center; }
+@keyframes labCurtainPanel {
+  0%, 14% { transform: scaleX(1); }
+  100% { transform: scaleX(0); visibility: hidden; }
+}
+@keyframes labCurtainContent {
+  0%, 12% { opacity: 0; }
+  60%, 100% { opacity: 1; }
+}
+
+/* ---------- transition: zoom ---------- */
+/* Scales up from 96%, anchored near the top of the viewport so the fold does not drift. */
+html[data-l-transition='zoom'] .page {
+  transform-origin: 50% 40vh;
+  animation: labZoom 0.7s var(--expo) both;
+}
+@keyframes labZoom {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- transition: slide ---------- */
+/* main clips (not hides) so the 40px offset never widens the document; clip keeps the sticky hero working. */
+html[data-l-transition='slide'] main { overflow-x: clip; }
+html[data-l-transition='slide'] .page { animation: labSlide 0.6s var(--expo) both; }
+@keyframes labSlide {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- transition: none ---------- */
+html[data-l-transition='none'] .page { animation: none; opacity: 1; transform: none; }
+
+/* ---------- reveal: blur ---------- */
+html[data-l-reveal='blur'] .rv {
+  opacity: 0; transform: none; filter: blur(12px);
+  transition: opacity 0.8s var(--expo), filter 0.8s var(--expo);
+}
+html[data-l-reveal='blur'] .rv.in { opacity: 1; transform: none; filter: blur(0); }
+
+/* ---------- reveal: mask ---------- */
+/* The block is clipped to nothing and rises 24px as the clip opens, so lines climb out of their box. */
+html[data-l-reveal='mask'] .rv {
+  opacity: 1; filter: none;
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(24px);
+  transition: clip-path 0.8s var(--expo), transform 0.8s var(--expo);
+}
+html[data-l-reveal='mask'] .rv.in { clip-path: inset(0 0 0 0); transform: none; }
+
+/* ---------- reveal: scale ---------- */
+html[data-l-reveal='scale'] .rv {
+  opacity: 0; filter: none; transform: scale(0.96); transform-origin: 50% 100%;
+  transition: opacity 0.7s var(--expo), transform 0.7s var(--expo);
+}
+html[data-l-reveal='scale'] .rv.in { opacity: 1; transform: none; }
+
+/* ---------- reveal: clip ---------- */
+/* Opens left to right like a ruler being drawn across; no fade so the edge stays crisp. */
+html[data-l-reveal='clip'] .rv {
+  opacity: 1; filter: none; transform: none;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.9s var(--expo);
+}
+html[data-l-reveal='clip'] .rv.in { clip-path: inset(0 0 0 0); }
+
+/* ---------- reveal: none ---------- */
+html[data-l-reveal='none'] .rv,
+html[data-l-reveal='none'] .rv.in { opacity: 1; transform: none; filter: none; clip-path: none; transition: none; }
+
+/* ---------- reduced motion: final state, no panels, no transitions ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html[data-l-transition] .page,
+  html[data-l-transition] .page > * { animation: none; opacity: 1; transform: none; }
+  html[data-l-transition='wipe'] .page::before,
+  html[data-l-transition='curtain'] .page::before,
+  html[data-l-transition='curtain'] .page::after { display: none; animation: none; }
+  html[data-l-reveal] .rv,
+  html[data-l-reveal] .rv.in { opacity: 1; transform: none; filter: none; clip-path: none; transition: none; }
+}
