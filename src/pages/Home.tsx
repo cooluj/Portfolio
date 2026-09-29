@@ -5,11 +5,14 @@ import { Marquee, Particles, PhotoColumns } from '../components/HeroArt';
 import { ImageSlot, Ph } from '../components/Placeholder';
 import { prefersReducedMotion, useReveal } from '../components/useReveal';
 import { caseStudies, journey, marqueeWords, otherWork, toolkit } from '../data/work';
-import { EventullyThumb, PainThumb, SuperpowrThumb } from '../visuals/Thumbs';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 
-const thumbs = { eventully: EventullyThumb, superpowr: SuperpowrThumb, painsights: PainThumb };
+const thumbs: Record<string, { src: string; alt: string; pos?: string }> = {
+  eventully: { src: 'eventully-landing.webp', alt: 'Eventully landing page', pos: '0% 30%' },
+  superpowr: { src: 'superpowr-research-plan.webp', alt: 'Superpowr research plan on candidate drop-off', pos: '0% 0%' },
+  painsights: { src: 'painsights-scan.webp', alt: 'PainSights body map after a scan, with pain regions glowing', pos: '40% 20%' },
+};
 
 function SectionHead({ index, title, sub, center }: { index: string; title: string; sub?: React.ReactNode; center?: boolean }) {
   return (
@@ -120,7 +123,7 @@ export default function Home() {
 
           <ol className="cs-index">
             {caseStudies.map((c, i) => {
-              const Thumb = thumbs[c.slug];
+              const t = thumbs[c.slug];
               return (
                 <li key={c.slug} className="rv">
                   <Link to={`/work/${c.slug}`} className="cs-row" data-cursor>
@@ -131,7 +134,9 @@ export default function Home() {
                       <span className="sum" style={{ display: 'block' }}>{c.sum}</span>
                       <span className="read">Read the case study <span aria-hidden="true">&rarr;</span></span>
                     </span>
-                    <span className="thumb"><Thumb /></span>
+                    <span className="thumb">
+                      <img src={img(t.src)} alt={t.alt} loading="lazy" style={{ objectPosition: t.pos }} />
+                    </span>
                   </Link>
                 </li>
               );
