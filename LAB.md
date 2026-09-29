@@ -1,6 +1,6 @@
 # Design lab: every exploration, numbered
 
-114 things to try on the live site. Open https://cooluj.github.io/Portfolio/lab, or press **L** anywhere on the site, or append `?lab=dim:id` to any URL (several: `?lab=type:fraunces,theme:paper,hero:kinetic`). The default of each dimension is my current pick; everything else is one click away. Features stack: turn on as many as you like.
+115 things to try on the live site. Open https://cooluj.github.io/Portfolio/lab, or press **L** anywhere on the site, or append `?lab=dim:id` to any URL (several: `?lab=type:fraunces,theme:paper,hero:kinetic`). The default of each dimension is my current pick; everything else is one click away. Features stack: turn on as many as you like.
 
 ## Typography
 
@@ -62,121 +62,122 @@ The first thing on the home page.
 039. **Typewriter**: The lede types itself, then a cursor blinks. [Try](https://cooluj.github.io/Portfolio/?lab=hero:typewriter)
 040. **Field**: The Eventully dot field behind the headline; dots follow the pointer. [Try](https://cooluj.github.io/Portfolio/?lab=hero:field)
 041. **Design / Build**: A switch in the headline flips the copy between the designer and the builder. [Try](https://cooluj.github.io/Portfolio/?lab=hero:toggle)
-042. **Covers** **(my pick)**: The three case study screens fan out under the headline. [Try](https://cooluj.github.io/Portfolio/?lab=hero:covers)
-043. **Prompt**: The hero is a terminal that prints the intro line by line. [Try](https://cooluj.github.io/Portfolio/?lab=hero:terminal)
-044. **Ledger**: A compact fact table: role, location, studies, latest, contact. [Try](https://cooluj.github.io/Portfolio/?lab=hero:ledger)
+042. **Photo columns** **(my pick)**: The claim, with two columns of photos drifting past in the corner. [Try](https://cooluj.github.io/Portfolio/?lab=hero:columns)
+043. **Covers**: The three case study screens fan out under the headline. [Try](https://cooluj.github.io/Portfolio/?lab=hero:covers)
+044. **Prompt**: The hero is a terminal that prints the intro line by line. [Try](https://cooluj.github.io/Portfolio/?lab=hero:terminal)
+045. **Ledger**: A compact fact table: role, location, studies, latest, contact. [Try](https://cooluj.github.io/Portfolio/?lab=hero:ledger)
 
 ## Work layout
 
 How the three case studies are presented.
 
-045. **Alternating blocks**: Screenshot one side, problem and call the other. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=work:blocks)
-046. **Full-bleed covers**: Each project is a full-width image with the title set over it. [Try](https://cooluj.github.io/Portfolio/?lab=work:covers)
-047. **Horizontal strip**: The three projects side by side; scrolls sideways on small screens. [Try](https://cooluj.github.io/Portfolio/?lab=work:strip)
-048. **Sticky stack** **(my pick)**: Cards pin and stack as you scroll. [Try](https://cooluj.github.io/Portfolio/?lab=work:stack)
-049. **Index list**: A dense list; hovering a row previews its image. [Try](https://cooluj.github.io/Portfolio/?lab=work:list)
-050. **Grid**: Three equal cards with the call on the back on hover or focus. [Try](https://cooluj.github.io/Portfolio/?lab=work:grid)
-051. **Big numbers**: Each project led by a huge index numeral. [Try](https://cooluj.github.io/Portfolio/?lab=work:numbers)
-052. **Tabs**: One project shown at a time, switched by tabs or arrow keys. [Try](https://cooluj.github.io/Portfolio/?lab=work:tabs)
-053. **Filmstrip**: A single row of frames with sprocket edges, scrubbed by scroll. [Try](https://cooluj.github.io/Portfolio/?lab=work:filmstrip)
-054. **Magazine**: Rules, columns and a drop cap, like a feature spread. [Try](https://cooluj.github.io/Portfolio/?lab=work:magazine)
+046. **Alternating blocks**: Screenshot one side, problem and call the other. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=work:blocks)
+047. **Full-bleed covers**: Each project is a full-width image with the title set over it. [Try](https://cooluj.github.io/Portfolio/?lab=work:covers)
+048. **Horizontal strip**: The three projects side by side; scrolls sideways on small screens. [Try](https://cooluj.github.io/Portfolio/?lab=work:strip)
+049. **Sticky stack** **(my pick)**: Cards pin and stack as you scroll. [Try](https://cooluj.github.io/Portfolio/?lab=work:stack)
+050. **Index list**: A dense list; hovering a row previews its image. [Try](https://cooluj.github.io/Portfolio/?lab=work:list)
+051. **Grid**: Three equal cards with the call on the back on hover or focus. [Try](https://cooluj.github.io/Portfolio/?lab=work:grid)
+052. **Big numbers**: Each project led by a huge index numeral. [Try](https://cooluj.github.io/Portfolio/?lab=work:numbers)
+053. **Tabs**: One project shown at a time, switched by tabs or arrow keys. [Try](https://cooluj.github.io/Portfolio/?lab=work:tabs)
+054. **Filmstrip**: A single row of frames with sprocket edges, scrubbed by scroll. [Try](https://cooluj.github.io/Portfolio/?lab=work:filmstrip)
+055. **Magazine**: Rules, columns and a drop cap, like a feature spread. [Try](https://cooluj.github.io/Portfolio/?lab=work:magazine)
 
 ## Page transition
 
 What happens between routes.
 
-055. **Fade up** **(my pick)**: Content fades and rises. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=transition:fade)
-056. **Wipe**: A panel wipes across and reveals the next page. [Try](https://cooluj.github.io/Portfolio/?lab=transition:wipe)
-057. **Curtain**: Two halves part from the middle. [Try](https://cooluj.github.io/Portfolio/?lab=transition:curtain)
-058. **Zoom**: The new page scales in from 96%. [Try](https://cooluj.github.io/Portfolio/?lab=transition:zoom)
-059. **Slide**: Pages slide in from the right, back slides left. [Try](https://cooluj.github.io/Portfolio/?lab=transition:slide)
-060. **None**: Instant. Sometimes the right call. [Try](https://cooluj.github.io/Portfolio/?lab=transition:none)
+056. **Fade up** **(my pick)**: Content fades and rises. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=transition:fade)
+057. **Wipe**: A panel wipes across and reveals the next page. [Try](https://cooluj.github.io/Portfolio/?lab=transition:wipe)
+058. **Curtain**: Two halves part from the middle. [Try](https://cooluj.github.io/Portfolio/?lab=transition:curtain)
+059. **Zoom**: The new page scales in from 96%. [Try](https://cooluj.github.io/Portfolio/?lab=transition:zoom)
+060. **Slide**: Pages slide in from the right, back slides left. [Try](https://cooluj.github.io/Portfolio/?lab=transition:slide)
+061. **None**: Instant. Sometimes the right call. [Try](https://cooluj.github.io/Portfolio/?lab=transition:none)
 
 ## Scroll reveal
 
 How sections appear as you scroll.
 
-061. **Rise**: Fade and rise 30px. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:rise)
-062. **Blur**: Blurred to sharp. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:blur)
-063. **Mask** **(my pick)**: Lines rise out of a clipped box. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:mask)
-064. **Scale**: From 96% to 100%. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:scale)
-065. **Clip**: A clip-path opens from the left. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:clip)
-066. **None**: Everything is simply there. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:none)
+062. **Rise**: Fade and rise 30px. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:rise)
+063. **Blur**: Blurred to sharp. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:blur)
+064. **Mask** **(my pick)**: Lines rise out of a clipped box. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:mask)
+065. **Scale**: From 96% to 100%. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:scale)
+066. **Clip**: A clip-path opens from the left. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:clip)
+067. **None**: Everything is simply there. [Try](https://cooluj.github.io/Portfolio/?lab=reveal:none)
 
 ## Image treatment
 
 How screenshots and photos are framed.
 
-067. **Plain** **(my pick)**: Rounded, thin border. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=images:plain)
-068. **Browser chrome**: Screenshots sit in a minimal browser window. [Try](https://cooluj.github.io/Portfolio/?lab=images:browser)
-069. **Sharp**: No radius, hairline border. [Try](https://cooluj.github.io/Portfolio/?lab=images:sharp)
-070. **Duotone**: Images in two inks; full colour on hover. [Try](https://cooluj.github.io/Portfolio/?lab=images:duotone)
-071. **Grayscale**: Black and white until hovered. [Try](https://cooluj.github.io/Portfolio/?lab=images:mono)
-072. **Polaroid**: Personal photos get a white frame and a tilt. [Try](https://cooluj.github.io/Portfolio/?lab=images:polaroid)
-073. **Tilted stack**: Case study images stack at slight angles. [Try](https://cooluj.github.io/Portfolio/?lab=images:tilted)
-074. **Deep shadow**: Soft, long shadows lift images off the page. [Try](https://cooluj.github.io/Portfolio/?lab=images:shadow)
+068. **Plain** **(my pick)**: Rounded, thin border. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=images:plain)
+069. **Browser chrome**: Screenshots sit in a minimal browser window. [Try](https://cooluj.github.io/Portfolio/?lab=images:browser)
+070. **Sharp**: No radius, hairline border. [Try](https://cooluj.github.io/Portfolio/?lab=images:sharp)
+071. **Duotone**: Images in two inks; full colour on hover. [Try](https://cooluj.github.io/Portfolio/?lab=images:duotone)
+072. **Grayscale**: Black and white until hovered. [Try](https://cooluj.github.io/Portfolio/?lab=images:mono)
+073. **Polaroid**: Personal photos get a white frame and a tilt. [Try](https://cooluj.github.io/Portfolio/?lab=images:polaroid)
+074. **Tilted stack**: Case study images stack at slight angles. [Try](https://cooluj.github.io/Portfolio/?lab=images:tilted)
+075. **Deep shadow**: Soft, long shadows lift images off the page. [Try](https://cooluj.github.io/Portfolio/?lab=images:shadow)
 
 ## Cursor
 
 What the pointer looks like.
 
-075. **System**: The normal cursor. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:system)
-076. **Dot**: A small ember dot. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:dot)
-077. **Ring**: A ring that grows over links. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:ring)
-078. **Label** **(my pick)**: A ring that says View, Drag or Mail over targets. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:label)
-079. **Trail**: A short fading trail behind the pointer. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:trail)
-080. **Spotlight**: A soft light follows the pointer across the dark ground. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:spotlight)
+076. **System**: The normal cursor. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:system)
+077. **Dot**: A small ember dot. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:dot)
+078. **Ring**: A ring that grows over links. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:ring)
+079. **Label**: A ring that says View, Drag or Mail over targets. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:label)
+080. **Trail** **(my pick)**: A short fading trail behind the pointer. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:trail)
+081. **Spotlight**: A soft light follows the pointer across the dark ground. [Try](https://cooluj.github.io/Portfolio/?lab=cursor:spotlight)
 
 ## Structure
 
 The page grid and rhythm.
 
-081. **Wide** **(my pick)**: Full-width sections with big gutters. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=layout:wide)
-082. **Essay**: One narrow reading column, like a long article. [Try](https://cooluj.github.io/Portfolio/?lab=layout:narrow)
-083. **Sidebar**: A fixed left rail with name and nav; content on the right. [Try](https://cooluj.github.io/Portfolio/?lab=layout:sidebar)
-084. **Rules**: Every section boxed by hairlines, headings in the margin. [Try](https://cooluj.github.io/Portfolio/?lab=layout:rules)
-085. **Bento**: About and facts as a tiled grid. [Try](https://cooluj.github.io/Portfolio/?lab=layout:bento)
-086. **Edge to edge**: Images and rules run to the viewport edge. [Try](https://cooluj.github.io/Portfolio/?lab=layout:edge)
-087. **Compact**: Tighter spacing; the whole page fits in fewer screens. [Try](https://cooluj.github.io/Portfolio/?lab=layout:compact)
-088. **Sticky headings**: Section headings pin to the left while the content scrolls. [Try](https://cooluj.github.io/Portfolio/?lab=layout:sticky)
+082. **Wide** **(my pick)**: Full-width sections with big gutters. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=layout:wide)
+083. **Essay**: One narrow reading column, like a long article. [Try](https://cooluj.github.io/Portfolio/?lab=layout:narrow)
+084. **Sidebar**: A fixed left rail with name and nav; content on the right. [Try](https://cooluj.github.io/Portfolio/?lab=layout:sidebar)
+085. **Rules**: Every section boxed by hairlines, headings in the margin. [Try](https://cooluj.github.io/Portfolio/?lab=layout:rules)
+086. **Bento**: About and facts as a tiled grid. [Try](https://cooluj.github.io/Portfolio/?lab=layout:bento)
+087. **Edge to edge**: Images and rules run to the viewport edge. [Try](https://cooluj.github.io/Portfolio/?lab=layout:edge)
+088. **Compact**: Tighter spacing; the whole page fits in fewer screens. [Try](https://cooluj.github.io/Portfolio/?lab=layout:compact)
+089. **Sticky headings**: Section headings pin to the left while the content scrolls. [Try](https://cooluj.github.io/Portfolio/?lab=layout:sticky)
 
 ## Voice
 
 How the hero speaks.
 
-089. **Direct** **(my pick)**: "Designer who builds." Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=copy:current)
-090. **Blunt**: "I ship." Three words, then proof. [Try](https://cooluj.github.io/Portfolio/?lab=copy:blunt)
-091. **Numbers first**: Leads with 1,231 organisations, 3 built, 1 designer. [Try](https://cooluj.github.io/Portfolio/?lab=copy:numbers)
-092. **Question**: "What does a designer who codes look like?" [Try](https://cooluj.github.io/Portfolio/?lab=copy:question)
-093. **Manifesto**: Four short lines of belief. [Try](https://cooluj.github.io/Portfolio/?lab=copy:manifesto)
-094. **Third person**: Written like a magazine standfirst about him. [Try](https://cooluj.github.io/Portfolio/?lab=copy:third)
+090. **Direct** **(my pick)**: "Designer who builds." Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=copy:current)
+091. **Blunt**: "I ship." Three words, then proof. [Try](https://cooluj.github.io/Portfolio/?lab=copy:blunt)
+092. **Numbers first**: Leads with 1,231 organisations, 3 built, 1 designer. [Try](https://cooluj.github.io/Portfolio/?lab=copy:numbers)
+093. **Question**: "What does a designer who codes look like?" [Try](https://cooluj.github.io/Portfolio/?lab=copy:question)
+094. **Manifesto**: Four short lines of belief. [Try](https://cooluj.github.io/Portfolio/?lab=copy:manifesto)
+095. **Third person**: Written like a magazine standfirst about him. [Try](https://cooluj.github.io/Portfolio/?lab=copy:third)
 
 ## Case study pages
 
 The layout of the three case studies.
 
-095. **Sticky labels** **(my pick)**: Section labels pin to the left. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=case:default)
-096. **Magazine**: Two-column text with rules and a pull quote. [Try](https://cooluj.github.io/Portfolio/?lab=case:magazine)
-097. **Table of contents**: A sticky contents list tracks your position. [Try](https://cooluj.github.io/Portfolio/?lab=case:toc)
-098. **Numbered steps**: Big numerals introduce each section. [Try](https://cooluj.github.io/Portfolio/?lab=case:steps)
-099. **Wide media**: Images break out of the text column. [Try](https://cooluj.github.io/Portfolio/?lab=case:wide)
-100. **Minimal**: No labels, generous space, the words carry it. [Try](https://cooluj.github.io/Portfolio/?lab=case:minimal)
-101. **Timeline**: Sections hang off a vertical line. [Try](https://cooluj.github.io/Portfolio/?lab=case:timeline)
-102. **Reader**: Reading progress, estimated time, and a return-to-top rail. [Try](https://cooluj.github.io/Portfolio/?lab=case:reader)
+096. **Sticky labels** **(my pick)**: Section labels pin to the left. Where the site started. [Try](https://cooluj.github.io/Portfolio/?lab=case:default)
+097. **Magazine**: Two-column text with rules and a pull quote. [Try](https://cooluj.github.io/Portfolio/?lab=case:magazine)
+098. **Table of contents**: A sticky contents list tracks your position. [Try](https://cooluj.github.io/Portfolio/?lab=case:toc)
+099. **Numbered steps**: Big numerals introduce each section. [Try](https://cooluj.github.io/Portfolio/?lab=case:steps)
+100. **Wide media**: Images break out of the text column. [Try](https://cooluj.github.io/Portfolio/?lab=case:wide)
+101. **Minimal**: No labels, generous space, the words carry it. [Try](https://cooluj.github.io/Portfolio/?lab=case:minimal)
+102. **Timeline**: Sections hang off a vertical line. [Try](https://cooluj.github.io/Portfolio/?lab=case:timeline)
+103. **Reader**: Reading progress, estimated time, and a return-to-top rail. [Try](https://cooluj.github.io/Portfolio/?lab=case:reader)
 
 ## Extras
 
 Toggle any number of these on. Multi-select.
 
-103. **Command palette** **(on by default)**: Press Cmd/Ctrl+K or / to jump anywhere, copy the email or grab the resume. [Try](https://cooluj.github.io/Portfolio/?lab=features:palette)
-104. **Keyboard shortcuts** **(on by default)**: g then w, a, t, c to jump; ? shows the list. [Try](https://cooluj.github.io/Portfolio/?lab=features:shortcuts)
-105. **Inspect mode**: Press i: outlines every section with its name and shows the grid, the way a builder sees it. [Try](https://cooluj.github.io/Portfolio/?lab=features:inspect)
-106. **Konami code** **(on by default)**: Up up down down left right left right b a. Something happens. [Try](https://cooluj.github.io/Portfolio/?lab=features:konami)
-107. **Tab title** **(on by default)**: When you leave the tab, the title asks you back. [Try](https://cooluj.github.io/Portfolio/?lab=features:tabtitle)
-108. **Reading progress** **(on by default)**: A thin bar in the header tracks how far you are. [Try](https://cooluj.github.io/Portfolio/?lab=features:progress)
-109. **Time-aware line**: A line under the header knows whether it is morning in Seattle. [Try](https://cooluj.github.io/Portfolio/?lab=features:greeting)
-110. **Print stylesheet** **(on by default)**: Cmd+P prints a clean one-page resume of the site. [Try](https://cooluj.github.io/Portfolio/?lab=features:print)
-111. **Shuffle**: A button in the footer randomises the lab; every visit could be different. [Try](https://cooluj.github.io/Portfolio/?lab=features:shuffle)
-112. **Seattle clock** **(on by default)**: The footer shows the local time where he is. [Try](https://cooluj.github.io/Portfolio/?lab=features:clock)
-113. **Click sounds**: Tiny UI sounds on buttons, off by default, one switch. [Try](https://cooluj.github.io/Portfolio/?lab=features:sounds)
-114. **Layout grid**: Press g twice to show the 12-column grid the pages are built on. [Try](https://cooluj.github.io/Portfolio/?lab=features:grid)
+104. **Command palette** **(on by default)**: Press Cmd/Ctrl+K or / to jump anywhere, copy the email or grab the resume. [Try](https://cooluj.github.io/Portfolio/?lab=features:palette)
+105. **Keyboard shortcuts** **(on by default)**: g then w, a, t, c to jump; ? shows the list. [Try](https://cooluj.github.io/Portfolio/?lab=features:shortcuts)
+106. **Inspect mode**: Press i: outlines every section with its name and shows the grid, the way a builder sees it. [Try](https://cooluj.github.io/Portfolio/?lab=features:inspect)
+107. **Konami code** **(on by default)**: Up up down down left right left right b a. Something happens. [Try](https://cooluj.github.io/Portfolio/?lab=features:konami)
+108. **Tab title** **(on by default)**: When you leave the tab, the title asks you back. [Try](https://cooluj.github.io/Portfolio/?lab=features:tabtitle)
+109. **Reading progress** **(on by default)**: A thin bar in the header tracks how far you are. [Try](https://cooluj.github.io/Portfolio/?lab=features:progress)
+110. **Time-aware line**: A line under the header knows whether it is morning in Seattle. [Try](https://cooluj.github.io/Portfolio/?lab=features:greeting)
+111. **Print stylesheet** **(on by default)**: Cmd+P prints a clean one-page resume of the site. [Try](https://cooluj.github.io/Portfolio/?lab=features:print)
+112. **Shuffle**: A button in the footer randomises the lab; every visit could be different. [Try](https://cooluj.github.io/Portfolio/?lab=features:shuffle)
+113. **Seattle clock** **(on by default)**: The footer shows the local time where he is. [Try](https://cooluj.github.io/Portfolio/?lab=features:clock)
+114. **Click sounds**: Tiny UI sounds on buttons, off by default, one switch. [Try](https://cooluj.github.io/Portfolio/?lab=features:sounds)
+115. **Layout grid**: Press g twice to show the 12-column grid the pages are built on. [Try](https://cooluj.github.io/Portfolio/?lab=features:grid)

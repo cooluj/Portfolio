@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react';
+import Columns from './Columns';
 import Covers from './Covers';
 import Field from './Field';
 import Kinetic from './Kinetic';
@@ -20,6 +21,7 @@ export const HEROES: Record<string, ComponentType> = {
   field: Field,
   toggle: Toggle,
   covers: Covers,
+  columns: Columns,
   terminal: Terminal,
   ledger: Ledger,
 };
