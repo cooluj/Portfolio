@@ -2,6 +2,8 @@ import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell
 import { ImageSlot, Ph } from '../components/Placeholder';
 import DiscoveryScatter from '../visuals/DiscoveryScatter';
 
+const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
+
 export default function Eventully() {
   return (
     <article className="cs gutter">
@@ -22,8 +24,9 @@ export default function Eventully() {
       <div style={{ marginTop: '3rem' }} className="rv">
         <ImageSlot
           need="hero screenshot of Eventully"
-          alt="Eventully home screen showing student organisation recommendations"
-          caption="Eventully, live at eventully.org."
+          src={img('eventully-landing.webp')}
+          alt="Eventully landing page: the headline Find Your People, Run Your Club, beside a preview of an AI search result and a club with a match score"
+          caption="The Eventully landing page."
         />
       </div>
 
@@ -102,9 +105,17 @@ export default function Eventully() {
           </div>
         </div>
 
+        <div className="cs-figs">
+          <ImageSlot
+            need="club directory with filters"
+            src={img('eventully-directory.webp')}
+            alt="Eventully club directory listing 1,231 clubs, with category, status and sort filters above the results"
+            caption="The filter path: every club, narrowed by category, status and sort."
+          />
+        </div>
         <div className="cs-figs two">
           <ImageSlot
-            need="hybrid screen: filters plus AI search, with match score visible"
+            need="recommendations screen with the match score visible"
             alt="Eventully search with filters beside an AI search field and a match score on each result"
             caption="Filters and AI search side by side. Every result shows why it matched."
           />

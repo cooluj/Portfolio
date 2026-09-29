@@ -46,25 +46,17 @@ export function Particles() {
   return <canvas id="particles" ref={ref} aria-hidden="true" />;
 }
 
-type Tile = { src: string } | { card: true };
+type Tile = { src: string };
 
 /** Two columns drifting in opposite directions in the hero corner. No photo appears in both. */
 export function PhotoColumns({ a, b }: { a: Tile[]; b: Tile[] }) {
   const track = (tiles: Tile[]) => (
     <div className="drift-track">
-      {[...tiles, ...tiles].map((t, i) =>
-        'src' in t ? (
-          <div className="tile photo" key={i}>
-            <img src={t.src} alt="" loading={i < 2 ? 'eager' : 'lazy'} />
-          </div>
-        ) : (
-          <div className="tile place" key={i}>
-            <span>Seattle, WA</span>
-            <span>47.6° N</span>
-            <span>122.3° W</span>
-          </div>
-        ),
-      )}
+      {[...tiles, ...tiles].map((t, i) => (
+        <div className="tile photo" key={i}>
+          <img src={t.src} alt="" loading={i < 2 ? 'eager' : 'lazy'} />
+        </div>
+      ))}
     </div>
   );
   return (

@@ -73,7 +73,7 @@ export default function Home() {
         <Particles />
         <PhotoColumns
           a={['portrait-kerry-park.webp', 'rainier-vista.webp', 'st-peters.webp'].map((n) => ({ src: img(n) }))}
-          b={[{ src: img('hero-skyline-night.webp') }, { card: true }, { src: img('skyline-night.webp') }]}
+          b={['fuji-golf.webp', 'hero-skyline-night.webp', 'skyline-night.webp'].map((n) => ({ src: img(n) }))}
         />
         <div className="gutter glyph" style={{ color: 'rgba(250,250,250,0.3)' }}>
           <Glyph />

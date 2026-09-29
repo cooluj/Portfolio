@@ -7,12 +7,11 @@ Drop the file in `public/images/`, then set `src="/images/<file>"` on the matchi
 (or on the `before` / `after` side of a `BeforeAfter`). The alt text is already written.
 For text placeholders, replace the `<Ph>...</Ph>` with the real text.
 
-## Images (12)
+## Images (11)
 | Where | What | File |
 |---|---|---|
-| Eventully | Hero screenshot | `src/pages/Eventully.tsx` |
 | Eventully | AI-only search version | `src/pages/Eventully.tsx` |
-| Eventully | Hybrid screen: filters + AI search with match score | `src/pages/Eventully.tsx` |
+| Eventully | Recommendations screen with the match score visible | `src/pages/Eventully.tsx` |
 | Eventully | A/B test notes or results | `src/pages/Eventully.tsx` |
 | Superpowr | Old testing flow | `src/pages/Superpowr.tsx` |
 | Superpowr | New testing flow | `src/pages/Superpowr.tsx` |
@@ -35,6 +34,10 @@ Before/after pairs should be the same size and crop so the slider lines up.
 
 ## Links (1)
 - Resume PDF (put it at `public/resume.pdf` and replace the placeholder in the About section)
+
+## Already filled in
+- Portrait and six hero photos
+- Eventully landing page and club directory, screenshotted from a local run of `cooluj/Eventully-Project`
 
 ## Please double-check
 - Superpowr dates: shown as "Full time, summer 2025" (the year comes from the old Journey timeline)
