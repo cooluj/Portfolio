@@ -30,7 +30,7 @@
 .lab-dim-desc { font-weight: 400; color: var(--muted-fg); font-size: 0.8125rem; margin-left: 0.5rem; }
 .lab-opts { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
 .lab-opt {
-  display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;
+  position: relative; display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;
   border: 1px solid var(--line); border-radius: 9999px; padding: 0.35rem 0.7rem;
   font-size: 0.8125rem; color: var(--muted-fg); transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
@@ -61,6 +61,7 @@
 .lab-try[aria-pressed='true'] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 
 @media (prefers-reduced-motion: reduce) { .lab-panel { transition: none; } }
+#menu.open ~ .lab-fab, #menu.open ~ .lab-panel { visibility: hidden; }
 @media print { .lab-fab, .lab-panel { display: none; } }
 
 /* /lab page: jump links and the applied-changes bar */

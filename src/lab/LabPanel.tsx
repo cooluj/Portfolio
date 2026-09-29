@@ -8,6 +8,7 @@ export default function LabPanel() {
   const lab = useLab();
   const [copied, setCopied] = useState(false);
   const panel = useRef<HTMLDivElement>(null);
+  const fab = useRef<HTMLButtonElement>(null);
   const changed = DIMENSIONS.filter((d) => lab.sel[d.id] !== DEFAULTS[d.id]).length;
 
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function LabPanel() {
 
   useEffect(() => {
     if (lab.open) panel.current?.querySelector<HTMLElement>('button, input')?.focus();
+    else if (panel.current?.contains(document.activeElement)) fab.current?.focus();
   }, [lab.open]);
 
   const copy = async () => {
@@ -43,7 +45,7 @@ export default function LabPanel() {
 
   return (
     <>
-      <button type="button" className="lab-fab" aria-expanded={lab.open} aria-controls="lab-panel" onClick={() => lab.setOpen(!lab.open)}>
+      <button type="button" ref={fab} className="lab-fab" aria-expanded={lab.open} aria-controls="lab-panel" onClick={() => lab.setOpen(!lab.open)}>
         Lab{changed ? <span className="lab-fab-n">{changed}</span> : null}
       </button>
       <div id="lab-panel" ref={panel} className={`lab-panel${lab.open ? ' open' : ''}`} role="dialog" aria-label="Design lab" aria-hidden={!lab.open}>

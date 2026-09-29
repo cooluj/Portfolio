@@ -25,7 +25,7 @@ export const VOICES: Record<string, Voice> = {
   // Leads with the figures, then tells you what each one means.
   numbers: {
     eyebrow: 'Three numbers about Ujjawal Agrawal, product designer in Seattle.',
-    h1: ['1,231 organisations.', '3 products shipped.', '1 designer who codes.'],
+    h1: ['1,231 organisations.', '3 products built.', '1 designer who codes.'],
     lede: '1,231 is every UW student organisation indexed on Eventully, the campus platform I founded, with AI search and a match score on every result. 3 is Eventully, the Superpowr.ai redesign, and the PainSights clinical dashboard. 1 is me, designing in Figma and writing the React that ships.',
     cta: 'Count them yourself',
   },
@@ -40,7 +40,7 @@ export const VOICES: Record<string, Voice> = {
   manifesto: {
     eyebrow: 'How I work. Ujjawal Agrawal, product designer and front-end developer, Seattle.',
     h1: ['Research first.', 'Decide, then build.', 'Ship it yourself.', 'Test it with people.'],
-    lede: 'Four habits, each one visible in Eventully, Superpowr.ai and PainSights, and each one learned from synthesising 100+ studies as a UX research assistant at UW before I ever shipped a product of my own.',
+    lede: 'Four habits, each one visible in Eventully, Superpowr.ai and PainSights, and each one learned from synthesising 100+ studies as a UX research assistant at UW.',
     cta: 'See the habits at work',
   },
   // A magazine standfirst about him, written as if by an editor.

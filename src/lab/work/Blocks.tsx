@@ -1,14 +1,18 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { TiltBox } from '../../components/useTilt';
 import { featured } from '../../data/home';
+import { useRevealIn } from './shared';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 
 /** Alternating blocks: screenshot one side, problem and call the other. The default. */
 export default function Blocks() {
+  const root = useRef<HTMLDivElement>(null);
+  useRevealIn(root);
   return (
-    <>
-        {featured.map((f, i) => (
+    <div ref={root}>
+      {featured.map((f, i) => (
         <article className={`wb rv${i % 2 ? ' wb-flip' : ''}`} key={f.slug}>
           <Link to={`/work/${f.slug}`} className="wb-media" aria-label={`${f.title} case study`} data-cursor="View">
             <TiltBox className="wb-frame" max={3}>
@@ -34,6 +38,6 @@ export default function Blocks() {
           </div>
         </article>
       ))}
-    </>
+    </div>
   );
 }

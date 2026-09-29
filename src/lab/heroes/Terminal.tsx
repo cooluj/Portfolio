@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { prefersReducedMotion } from '../../components/useReveal';
 import { featured } from '../../data/home';
@@ -24,6 +24,7 @@ const END = SCRIPT.length;
 /** The hero is a shell that prints the intro line by line: typed at 12ms a character, skippable, instant under reduced motion. */
 export default function Terminal() {
   const v = useVoice();
+  const body = useRef<HTMLDivElement>(null);
   const still = prefersReducedMotion();
   const [{ idx, chars }, setS] = useState({ idx: still ? END : 0, chars: 0 });
   const done = idx >= END;
@@ -65,12 +66,19 @@ export default function Terminal() {
         <div className="hero-term-bar">
           <span className="hero-term-title" aria-hidden="true">ujjawal@seattle: ~</span>
           {!done && (
-            <button type="button" className="hero-term-skip" onClick={() => setS({ idx: END, chars: 0 })}>
+            <button
+              type="button"
+              className="hero-term-skip"
+              onClick={() => {
+                setS({ idx: END, chars: 0 });
+                body.current?.focus();
+              }}
+            >
               Skip
             </button>
           )}
         </div>
-        <div className="hero-term-body">
+        <div className="hero-term-body" ref={body} tabIndex={-1}>
           {SCRIPT.map((e, k) => {
             const state = k < idx ? 'is-shown' : k === idx ? 'is-live' : 'is-pending';
             if ('cmd' in e) {
@@ -85,7 +93,7 @@ export default function Terminal() {
               );
             }
             return (
-              <div className={`hero-term-line hero-term-out ${state}`} key={k}>
+              <div className={`hero-term-line hero-term-out ${state}`} key={k} {...(k > idx ? { inert: '' } : {})}>
                 {outputs[e.out]}
               </div>
             );

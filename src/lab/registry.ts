@@ -32,7 +32,7 @@ export const DIMENSIONS: Dimension[] = [
     options: [
       { id: 'void', name: 'Void', desc: 'Near-black, off-white, one ember accent. The current default.' },
       { id: 'paper', name: 'Paper', desc: 'Warm off-white ground, ink text, oxblood accent.' },
-      { id: 'uw', name: 'Husky', desc: 'UW purple and gold, since two of the three projects are from UW.' },
+      { id: 'uw', name: 'Husky', desc: 'UW purple and gold, for the campus Eventully was built for.' },
       { id: 'midnight', name: 'Midnight', desc: 'Deep navy ground with a pale lime accent.' },
       { id: 'forest', name: 'Forest', desc: 'Dark green ground, cream text, copper accent.' },
       { id: 'graphite', name: 'Graphite', desc: 'Mid-dark grey with an electric orange accent.' },
@@ -69,7 +69,7 @@ export const DIMENSIONS: Dimension[] = [
       { id: 'toggle', name: 'Design / Build', desc: 'A switch in the headline flips the copy between the designer and the builder.' },
       { id: 'covers', name: 'Covers', desc: 'The three case study screens fan out under the headline.' },
       { id: 'terminal', name: 'Prompt', desc: 'The hero is a terminal that prints the intro line by line.' },
-      { id: 'ledger', name: 'Ledger', desc: 'A compact fact table: role, location, status, next available.' },
+      { id: 'ledger', name: 'Ledger', desc: 'A compact fact table: role, location, studies, latest, contact.' },
     ],
   },
   {
@@ -151,7 +151,7 @@ export const DIMENSIONS: Dimension[] = [
     options: [
       { id: 'current', name: 'Direct', desc: '"Designer who builds." The current default.' },
       { id: 'blunt', name: 'Blunt', desc: '"I ship." Three words, then proof.' },
-      { id: 'numbers', name: 'Numbers first', desc: 'Leads with 1,231 organisations, 3 shipped, 1 designer.' },
+      { id: 'numbers', name: 'Numbers first', desc: 'Leads with 1,231 organisations, 3 built, 1 designer.' },
       { id: 'question', name: 'Question', desc: '"What does a designer who codes look like?"' },
       { id: 'manifesto', name: 'Manifesto', desc: 'Four short lines of belief.' },
       { id: 'third', name: 'Third person', desc: 'Written like a magazine standfirst about him.' },
@@ -179,7 +179,7 @@ export const DIMENSIONS: Dimension[] = [
       { id: 'konami', name: 'Konami code', desc: 'Up up down down left right left right b a. Something happens.' },
       { id: 'tabtitle', name: 'Tab title', desc: 'When you leave the tab, the title asks you back.' },
       { id: 'progress', name: 'Reading progress', desc: 'A thin bar in the header tracks how far you are.' },
-      { id: 'greeting', name: 'Time-aware line', desc: 'The hero eyebrow knows whether it is morning in Seattle.' },
+      { id: 'greeting', name: 'Time-aware line', desc: 'A line under the header knows whether it is morning in Seattle.' },
       { id: 'print', name: 'Print stylesheet', desc: 'Cmd+P prints a clean one-page resume of the site.' },
       { id: 'shuffle', name: 'Shuffle', desc: 'A button in the footer randomises the lab; every visit could be different.' },
       { id: 'clock', name: 'Seattle clock', desc: 'The footer shows the local time where he is.' },

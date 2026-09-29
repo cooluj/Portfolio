@@ -119,6 +119,6 @@ footer.hm-foot a:hover { color: var(--fg); }
 .hm-contact-row .c-value, .hm-contact-row .copy-email { justify-content: flex-start; margin-left: 0; }
 
 /* Voices with three or four headline lines get a smaller size so the lede stays in the first screen. */
-html[data-l-copy="numbers"] .hm-h1, html[data-l-copy="manifesto"] .hm-h1 { font-size: clamp(2.5rem, 7vw, 6rem); }
+html[data-l-copy="numbers"] .hm-hero .hm-h1, html[data-l-copy="manifesto"] .hm-hero .hm-h1 { font-size: clamp(2.5rem, 7vw, 6rem); }
 html[data-l-copy="numbers"] .hm-h1-line { overflow-wrap: anywhere; }
 html[data-l-copy="manifesto"] .hm-h1-line:nth-child(4) { color: var(--muted-fg); }

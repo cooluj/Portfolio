@@ -5,7 +5,7 @@ const ROWS: { k: string; v: string; accent?: boolean }[] = [
   { k: 'Role', v: 'Product designer who writes the front-end' },
   { k: 'Based in', v: 'Seattle, WA' },
   { k: 'Studying', v: 'HCDE at the University of Washington, class of 2027' },
-  { k: 'Status', v: 'Open to 2027 roles', accent: true },
+  { k: 'Graduating', v: 'June 2027', accent: true },
   { k: 'Latest', v: 'Superpowr redesign shipped' },
 ];
 

@@ -121,6 +121,7 @@ html[data-l-layout='narrow'] .cs-next .cs-next-thumb { order: -1; justify-self: 
   html[data-l-layout='sidebar'] .hero-split-fig { margin-right: -4rem; }
   html[data-l-layout='sidebar'] .cs { padding-top: 5rem; }
   html[data-l-layout='sidebar'] .skip { left: 17rem; }
+  html[data-l-layout='sidebar'] .ft-greet { left: 16rem; }
 }
 
 /* ======================================================================
