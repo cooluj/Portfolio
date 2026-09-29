@@ -23,7 +23,7 @@ export default function Home() {
       <section id="work" className="hm-work gutter" aria-labelledby="work-h">
         <div className="hm-sec-head">
           <h2 id="work-h">Selected work</h2>
-          <p>Three products. What broke, the call I made, and what shipped.</p>
+          <p>What broke, the call, what shipped.</p>
         </div>
 
         <WorkSwitch />
@@ -103,7 +103,6 @@ export default function Home() {
       <section id="journey" className="hm-timeline gutter" aria-labelledby="tl-h">
         <div className="hm-sec-head">
           <h2 id="tl-h">Timeline</h2>
-          <p>Most recent first.</p>
         </div>
         <ol className="hm-tl">
           {timeline.map((t, i) => (
@@ -120,7 +119,7 @@ export default function Home() {
       <section id="contact" className="hm-contact gutter" aria-labelledby="contact-h">
         <div className="hm-sec-head">
           <h2 id="contact-h">Hiring for product design?</h2>
-          <p>Email is fastest. I answer within a day.</p>
+          <p>Email is fastest.</p>
         </div>
         <div className="hm-contact-row rv">
           <CopyEmail email="ujjawal.agrawal@outlook.com" />

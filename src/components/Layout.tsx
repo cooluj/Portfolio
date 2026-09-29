@@ -7,7 +7,6 @@ import LabMount from '../lab/features/Mount';
 const NAV = [
   { label: 'Work', hash: '#work' },
   { label: 'About', hash: '#about' },
-  { label: 'Timeline', hash: '#journey' },
   { label: 'Contact', hash: '#contact' },
 ];
 const RESUME = `${import.meta.env.BASE_URL}Ujjawal-Agrawal-Resume.pdf`;
@@ -88,12 +87,11 @@ export default function Layout() {
 
       <header id="header" className={`${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
         <div className="gutter header-row">
-          <Link to="/" className="wordmark" aria-label="Ujjawal Agrawal, home">Ujjawal Agrawal</Link>
+          <Link to="/" className="wordmark" aria-label="Ujjawal Agrawal, home">UA</Link>
           <nav className="hd-nav" aria-label="Primary">
             {NAV.map((n) => (
               <Link key={n.hash} to={{ pathname: '/', hash: n.hash }}>{n.label}</Link>
             ))}
-            <Link to="/lab">Lab</Link>
             <a href={RESUME} target="_blank" rel="noopener noreferrer" className="hd-cta">Resume</a>
           </nav>
           <button
@@ -140,6 +138,7 @@ export default function Layout() {
 
       <footer className="gutter hm-foot">
         <span>&copy; 2026 Ujjawal Agrawal · Seattle</span>
+        <Link to="/lab" className="foot-lab">Lab</Link>
         <span id="foot-slot" className="foot-slot" />
         <a href="#main" id="to-top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' }); }}>
           Back to top &uarr;

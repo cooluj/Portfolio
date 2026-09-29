@@ -10,9 +10,9 @@ export type Voice = {
 
 export const VOICES: Record<string, Voice> = {
   current: {
-    eyebrow: 'Product designer who writes the front-end. Seattle. HCDE at UW, class of 2027.',
+    eyebrow: 'Product designer, Seattle',
     h1: ['Designer', 'who builds.'],
-    lede: 'I take products from the first user interview to production code. I founded Eventully, a live platform UW students use to find their people, and I led the Superpowr.ai redesign that shipped this summer.',
+    lede: 'From the first interview to production code. Founder of Eventully; led the Superpowr.ai redesign.',
     cta: 'See the work',
   },
   // Three words, then proof. The shortest possible claim, backed by two things that are live.

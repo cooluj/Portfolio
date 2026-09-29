@@ -4,14 +4,13 @@
 .cs-title { text-transform: none; font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; font-size: clamp(2.75rem, 7.5vw, 6.5rem); }
 .cs-next .t { text-transform: none; font-weight: 800; letter-spacing: -0.03em; }
 .menu-link { text-transform: none; font-weight: 700; letter-spacing: -0.02em; }
-.wordmark { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.01em; text-transform: none; }
+.wordmark { font-family: var(--mono); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
 
 /* ---------- header with inline nav ---------- */
-.hd-nav { display: none; align-items: center; gap: 2rem; }
-.hd-nav a { font-size: 0.9375rem; color: var(--muted-fg); transition: color 0.2s; }
+.hd-nav { display: none; align-items: center; gap: 1.75rem; }
+.hd-nav a { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-fg); transition: color 0.2s; }
 .hd-nav a:hover, .hd-nav a:focus-visible { color: var(--fg); }
-.hd-nav a.hd-cta { color: var(--fg); border: 1px solid var(--line); border-radius: 9999px; padding: 0.4rem 0.9rem; }
-.hd-nav a.hd-cta:hover { border-color: var(--fg); }
+.hd-nav a.hd-cta { color: var(--fg); }
 @media (min-width: 900px) {
   .hd-nav { display: flex; }
   #burger { display: none; }
