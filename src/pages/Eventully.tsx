@@ -80,8 +80,9 @@ export default function Eventully() {
         <div className="cs-figs">
           <ImageSlot
             need="screenshot of the AI-only search version"
+            src={img('eventully-ai-v1.webp')}
             alt="Early Eventully with a single empty AI search box and no other way in"
-            caption="Version one. One box, and nothing to react to."
+            caption="Version one. One box, and nothing to react to. Illustrated reconstruction; the v1 was never archived."
           />
         </div>
       </Block>
@@ -139,13 +140,15 @@ export default function Eventully() {
         <div className="cs-figs two">
           <ImageSlot
             need="recommendations screen with the match score visible"
-            alt="Eventully search with filters beside an AI search field and a match score on each result"
-            caption="Filters and AI search side by side. Every result shows why it matched."
+            src={img('eventully-recs.webp')}
+            alt="Eventully AI search preview on the live site, showing a 91% match score on a club result"
+            caption="The AI search path, captured from the live site: every result shows why it matched."
           />
           <ImageSlot
             need="A/B test notes or results"
-            alt="Notes from the A/B test comparing AI-only search with the hybrid version"
-            caption="The test that split one user into two."
+            src={img('eventully-ab-test.webp')}
+            alt="Diagram of the A/B test: AI-only search versus a hybrid of filters plus AI, and the three things measured"
+            caption="The test that split one user into two. Diagram only; no measured figures are shown."
           />
         </div>
       </Block>

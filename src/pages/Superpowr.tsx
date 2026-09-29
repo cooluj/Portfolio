@@ -142,15 +142,15 @@ export default function Superpowr() {
         </div>
         <BeforeAfter
           label="Compare testing flow"
-          before={{ need: 'old testing flow screenshot', alt: 'The original Superpowr testing flow' }}
-          after={{ need: 'new testing flow screenshot', alt: 'The redesigned Superpowr testing flow' }}
-          caption="Testing flow. Drag the slider, or focus it and use the arrow keys."
+          before={{ need: 'old testing flow screenshot', alt: 'The original Superpowr testing flow', src: img('superpowr-testing-before.webp') }}
+          after={{ need: 'new testing flow screenshot', alt: 'The redesigned Superpowr testing flow', src: img('superpowr-testing-after.webp') }}
+          caption="Testing flow, illustrated reconstruction. Drag the slider, or focus it and use the arrow keys."
         />
         <BeforeAfter
           label="Compare landing page"
-          before={{ need: 'old landing page screenshot', alt: 'The original Superpowr landing page' }}
-          after={{ need: 'new landing page screenshot', alt: 'The rebuilt Superpowr landing page' }}
-          caption="Landing page, before and after."
+          before={{ need: 'old landing page screenshot', alt: 'The original Superpowr landing page', src: img('superpowr-landing-before.webp') }}
+          after={{ need: 'new landing page screenshot', alt: 'The rebuilt Superpowr landing page', src: img('superpowr-landing-after.webp') }}
+          caption="Landing page, before and after: archived April 2026 versus the redesign."
         />
       </Block>
 
@@ -163,11 +163,11 @@ export default function Superpowr() {
           </p>
         </div>
         <div className="cs-figs">
-          <ImageSlot need="brand system overview" alt="Superpowr brand system: logo, type and colour" caption="The brand system." />
+          <ImageSlot need="brand system overview" src={img('superpowr-brand.webp')} alt="Superpowr brand system: logo, type and colour" caption="The brand system, reconstructed from the shipped site." />
         </div>
         <div className="cs-figs two">
-          <ImageSlot need="light mode screen" alt="Superpowr interface in light mode" caption="Light mode." />
-          <ImageSlot need="dark mode screen" alt="Superpowr interface in dark mode" caption="Dark mode." />
+          <ImageSlot need="light mode screen" src={img('superpowr-light.webp')} alt="Superpowr interface in light mode" caption="Light mode, captured from the live site." />
+          <ImageSlot need="dark mode screen" src={img('superpowr-dark.webp')} alt="Superpowr interface in dark mode" caption="Dark mode, captured from the live site." />
         </div>
       </Block>
 
