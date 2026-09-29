@@ -27,10 +27,9 @@ Before/after pairs should be the same size and crop so the slider lines up.
 - Superpowr: any before/after metric (flow completion, sign-up rate)
 - PainSights: what I owned on the team (Devpost lists the team but not who did what)
 
-## Links (1)
-- Resume PDF (put it at `public/resume.pdf` and replace the placeholder in the About section)
-
 ## Already filled in
+- Resume PDF, dates, journey and toolkit, from your resume
+- Earlier Eventully design (July 2026 rebuild, from the Eventully-Project git history)
 - PainSights scan result, patient queue, EEG prop and team photo, from the Figma prototype and FigBuild deck
 - Superpowr research plan (deliverable 01 from the Superpowr Figma file)
 - ArtisanCrafts prototype link
@@ -39,6 +38,6 @@ Before/after pairs should be the same size and crop so the slider lines up.
 - Eventully landing page and club directory, screenshotted from a local run of `cooluj/Eventully-Project`
 
 ## Please double-check
-- Superpowr dates: shown as "Full time, summer 2025" (the year comes from the old Journey timeline)
-- Eventully year: shown as "2026"
-- The body map and caseload on the PainSights page use illustrative readings, and they are labelled as illustrative
+- Email: the site uses ujjawal.agrawal@outlook.com (from your brief), but your resume says ujjawal-agrawal@outlook.com. One of them is wrong.
+- The resume PDF on the site includes your phone number.
+- The PainSights body map and caseload on the page use illustrative readings, and they are labelled as illustrative

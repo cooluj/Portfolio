@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Glyph } from '../components/Layout';
 import { Marquee, Particles, PhotoColumns } from '../components/HeroArt';
-import { ImageSlot, Ph } from '../components/Placeholder';
+import { ImageSlot } from '../components/Placeholder';
 import { prefersReducedMotion, useReveal } from '../components/useReveal';
 import { caseStudies, journey, marqueeWords, otherWork, toolkit } from '../data/work';
 
@@ -187,11 +187,12 @@ export default function Home() {
                 <span className="strong">ship them</span>, working directly with engineering.
               </p>
               <dl className="about-facts rv">
-                <div><dt>Studying</dt><dd>Human Centered Design &amp; Engineering, University of Washington</dd></div>
+                <div><dt>Studying</dt><dd>BS, Human Centered Design &amp; Engineering, University of Washington. Dean’s List</dd></div>
                 <div><dt>Minor</dt><dd>Business Management</dd></div>
                 <div><dt>Graduating</dt><dd>June 2027</dd></div>
                 <div><dt>Based in</dt><dd>Seattle, WA</dd></div>
-                <div><dt>Resume</dt><dd><Ph>resume PDF link</Ph></dd></div>
+                <div><dt>Certifications</dt><dd>IBM UX Design Capstone, Google UX Design, AWS Academy Cloud Foundations, PMI Project Leadership</dd></div>
+                <div><dt>Resume</dt><dd><a href={`${import.meta.env.BASE_URL}Ujjawal-Agrawal-Resume.pdf`} target="_blank" rel="noopener noreferrer" className="other-link">Download PDF <span aria-hidden="true">&darr;</span></a></dd></div>
               </dl>
             </div>
           </div>

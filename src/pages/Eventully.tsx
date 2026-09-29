@@ -11,9 +11,9 @@ export default function Eventully() {
         slug="eventully"
         lede="Supply was never the problem at UW. Discovery was."
         meta={[
-          { k: 'Role', v: 'Founder. Designed and built end to end.' },
+          { k: 'Role', v: 'Founder, product designer and developer. Designed and built end to end.' },
           { k: 'Status', v: <>Live at <a href="https://eventully.org" target="_blank" rel="noopener noreferrer">eventully.org</a></> },
-          { k: 'Year', v: '2026' },
+          { k: 'Timeline', v: 'June 2024 to now' },
         ]}
       />
 
@@ -128,6 +128,20 @@ export default function Eventully() {
       </Block>
 
       <Block n="04" title="The outcome">
+        <div className="cs-figs two" style={{ marginTop: 0, marginBottom: '2.5rem' }}>
+          <ImageSlot
+            need="earlier Eventully design"
+            src={img('eventully-earlier.webp')}
+            alt="An earlier Eventully landing page in cream and gold: UW has 1231 clubs, Eventully finds yours, with a three-step sample route explaining how clubs are scored"
+            caption="Earlier: the first full rebuild, July 2026."
+          />
+          <ImageSlot
+            need="current Eventully design"
+            src={img('eventully-landing.webp')}
+            alt="The current Eventully landing page: Find Your People, Run Your Club, with an AI search preview and a club match score"
+            caption="Now: the design live at eventully.org."
+          />
+        </div>
         <div className="prose">
           <p>
             A deployed product covering the full body of campus organisations, used by real students, with search

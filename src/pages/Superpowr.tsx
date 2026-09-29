@@ -56,7 +56,7 @@ export default function Superpowr() {
         lede="Real capability underneath, and people couldn't get to it."
         meta={[
           { k: 'Role', v: 'Product Design & Development Intern' },
-          { k: 'Time', v: 'Full time, summer 2025' },
+          { k: 'Time', v: 'June to September 2026, full time' },
           { k: 'Status', v: 'Shipped to production' },
         ]}
       />
