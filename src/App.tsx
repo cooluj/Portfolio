@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Eventully from './pages/Eventully';
 import Superpowr from './pages/Superpowr';
 import PainSights from './pages/PainSights';
+import Lab from './pages/Lab';
 
 function NotFound() {
   const { pathname } = useLocation();
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="work/eventully" element={<Eventully />} />
         <Route path="work/superpowr" element={<Superpowr />} />
         <Route path="work/painsights" element={<PainSights />} />
+        <Route path="lab" element={<Lab />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

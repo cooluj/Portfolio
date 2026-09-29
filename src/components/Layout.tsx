@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { prefersReducedMotion } from './useReveal';
+import LabPanel from '../lab/LabPanel';
+import LabMount from '../lab/features/Mount';
 
 const NAV = [
   { label: 'Work', hash: '#work' },
@@ -91,6 +93,7 @@ export default function Layout() {
             {NAV.map((n) => (
               <Link key={n.hash} to={{ pathname: '/', hash: n.hash }}>{n.label}</Link>
             ))}
+            <Link to="/lab">Lab</Link>
             <a href={RESUME} target="_blank" rel="noopener noreferrer" className="hd-cta">Resume</a>
           </nav>
           <button
@@ -132,8 +135,12 @@ export default function Layout() {
         </div>
       </main>
 
+      <LabPanel />
+      <LabMount />
+
       <footer className="gutter hm-foot">
         <span>&copy; 2026 Ujjawal Agrawal · Seattle</span>
+        <span id="foot-slot" className="foot-slot" />
         <a href="#main" id="to-top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' }); }}>
           Back to top &uarr;
         </a>
