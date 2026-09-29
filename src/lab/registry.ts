@@ -11,7 +11,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'type', name: 'Typography', desc: 'The face the whole site is set in.',
     options: [
-      { id: 'schibsted', name: 'Schibsted Grotesk', desc: 'Sturdy editorial grotesque. The current default.' },
+      { id: 'schibsted', name: 'Schibsted Grotesk', desc: 'Sturdy editorial grotesque. Where the site started.' },
       { id: 'fraunces', name: 'Fraunces + Inter Tight', desc: 'A wonky soft serif for headings over a tight sans for text.', fonts: G + 'family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:wght@400;500;600&display=swap' },
       { id: 'space', name: 'Space Grotesk', desc: 'Geometric with quirky terminals; reads technical.', fonts: G + 'family=Space+Grotesk:wght@400;500;700&display=swap' },
       { id: 'bricolage', name: 'Bricolage Grotesque', desc: 'Variable optical sizes; big headings get extra character.', fonts: G + 'family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap' },
@@ -30,7 +30,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'theme', name: 'Colour', desc: 'The palette tokens every element reads from.',
     options: [
-      { id: 'void', name: 'Void', desc: 'Near-black, off-white, one ember accent. The current default.' },
+      { id: 'void', name: 'Void', desc: 'Near-black, off-white, one ember accent. Where the site started.' },
       { id: 'paper', name: 'Paper', desc: 'Warm off-white ground, ink text, oxblood accent.' },
       { id: 'uw', name: 'Husky', desc: 'UW purple and gold, for the campus Eventully was built for.' },
       { id: 'midnight', name: 'Midnight', desc: 'Deep navy ground with a pale lime accent.' },
@@ -47,7 +47,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'texture', name: 'Surface', desc: 'What sits on the background.',
     options: [
-      { id: 'flat', name: 'Flat', desc: 'Nothing on the ground. The current default.' },
+      { id: 'flat', name: 'Flat', desc: 'Nothing on the ground. Where the site started.' },
       { id: 'grain', name: 'Grain', desc: 'Fine film grain over everything.' },
       { id: 'dots', name: 'Dot grid', desc: 'A faint dot grid, like a layout canvas.' },
       { id: 'blueprint', name: 'Blueprint', desc: 'Ruled major and minor lines, like drafting paper.' },
@@ -60,7 +60,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'hero', name: 'Hero', desc: 'The first thing on the home page.',
     options: [
-      { id: 'statement', name: 'Statement', desc: 'Two-line claim and a lede. The current default.' },
+      { id: 'statement', name: 'Statement', desc: 'Two-line claim and a lede. Where the site started.' },
       { id: 'nameplate', name: 'Nameplate', desc: 'The name at full width, the claim underneath.' },
       { id: 'split', name: 'Split portrait', desc: 'Text left, the Kerry Park portrait bleeding off the right edge.' },
       { id: 'kinetic', name: 'Kinetic', desc: 'One word in the headline cycles: designs, researches, prototypes, ships.' },
@@ -75,7 +75,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'work', name: 'Work layout', desc: 'How the three case studies are presented.',
     options: [
-      { id: 'blocks', name: 'Alternating blocks', desc: 'Screenshot one side, problem and call the other. The current default.' },
+      { id: 'blocks', name: 'Alternating blocks', desc: 'Screenshot one side, problem and call the other. Where the site started.' },
       { id: 'covers', name: 'Full-bleed covers', desc: 'Each project is a full-width image with the title set over it.' },
       { id: 'strip', name: 'Horizontal strip', desc: 'The three projects side by side; scrolls sideways on small screens.' },
       { id: 'stack', name: 'Sticky stack', desc: 'Cards pin and stack as you scroll.' },
@@ -90,7 +90,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'transition', name: 'Page transition', desc: 'What happens between routes.',
     options: [
-      { id: 'fade', name: 'Fade up', desc: 'Content fades and rises. The current default.' },
+      { id: 'fade', name: 'Fade up', desc: 'Content fades and rises. Where the site started.' },
       { id: 'wipe', name: 'Wipe', desc: 'A panel wipes across and reveals the next page.' },
       { id: 'curtain', name: 'Curtain', desc: 'Two halves part from the middle.' },
       { id: 'zoom', name: 'Zoom', desc: 'The new page scales in from 96%.' },
@@ -101,7 +101,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'reveal', name: 'Scroll reveal', desc: 'How sections appear as you scroll.',
     options: [
-      { id: 'rise', name: 'Rise', desc: 'Fade and rise 30px. The current default.' },
+      { id: 'rise', name: 'Rise', desc: 'Fade and rise 30px. Where the site started.' },
       { id: 'blur', name: 'Blur', desc: 'Blurred to sharp.' },
       { id: 'mask', name: 'Mask', desc: 'Lines rise out of a clipped box.' },
       { id: 'scale', name: 'Scale', desc: 'From 96% to 100%.' },
@@ -112,7 +112,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'images', name: 'Image treatment', desc: 'How screenshots and photos are framed.',
     options: [
-      { id: 'plain', name: 'Plain', desc: 'Rounded, thin border. The current default.' },
+      { id: 'plain', name: 'Plain', desc: 'Rounded, thin border. Where the site started.' },
       { id: 'browser', name: 'Browser chrome', desc: 'Screenshots sit in a minimal browser window.' },
       { id: 'sharp', name: 'Sharp', desc: 'No radius, hairline border.' },
       { id: 'duotone', name: 'Duotone', desc: 'Images in two inks; full colour on hover.' },
@@ -125,7 +125,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'cursor', name: 'Cursor', desc: 'What the pointer looks like.',
     options: [
-      { id: 'system', name: 'System', desc: 'The normal cursor. The current default.' },
+      { id: 'system', name: 'System', desc: 'The normal cursor. Where the site started.' },
       { id: 'dot', name: 'Dot', desc: 'A small ember dot.' },
       { id: 'ring', name: 'Ring', desc: 'A ring that grows over links.' },
       { id: 'label', name: 'Label', desc: 'A ring that says View, Drag or Mail over targets.' },
@@ -136,7 +136,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'layout', name: 'Structure', desc: 'The page grid and rhythm.',
     options: [
-      { id: 'wide', name: 'Wide', desc: 'Full-width sections with big gutters. The current default.' },
+      { id: 'wide', name: 'Wide', desc: 'Full-width sections with big gutters. Where the site started.' },
       { id: 'narrow', name: 'Essay', desc: 'One narrow reading column, like a long article.' },
       { id: 'sidebar', name: 'Sidebar', desc: 'A fixed left rail with name and nav; content on the right.' },
       { id: 'rules', name: 'Rules', desc: 'Every section boxed by hairlines, headings in the margin.' },
@@ -149,7 +149,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'copy', name: 'Voice', desc: 'How the hero speaks.',
     options: [
-      { id: 'current', name: 'Direct', desc: '"Designer who builds." The current default.' },
+      { id: 'current', name: 'Direct', desc: '"Designer who builds." Where the site started.' },
       { id: 'blunt', name: 'Blunt', desc: '"I ship." Three words, then proof.' },
       { id: 'numbers', name: 'Numbers first', desc: 'Leads with 1,231 organisations, 3 built, 1 designer.' },
       { id: 'question', name: 'Question', desc: '"What does a designer who codes look like?"' },
@@ -160,7 +160,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'case', name: 'Case study pages', desc: 'The layout of the three case studies.',
     options: [
-      { id: 'default', name: 'Sticky labels', desc: 'Section labels pin to the left. The current default.' },
+      { id: 'default', name: 'Sticky labels', desc: 'Section labels pin to the left. Where the site started.' },
       { id: 'magazine', name: 'Magazine', desc: 'Two-column text with rules and a pull quote.' },
       { id: 'toc', name: 'Table of contents', desc: 'A sticky contents list tracks your position.' },
       { id: 'steps', name: 'Numbered steps', desc: 'Big numerals introduce each section.' },
@@ -190,8 +190,18 @@ export const DIMENSIONS: Dimension[] = [
 ];
 
 export const DEFAULTS: Record<string, string> = {
-  type: 'schibsted', theme: 'void', texture: 'flat', hero: 'statement', work: 'blocks', transition: 'fade',
-  reveal: 'rise', images: 'plain', cursor: 'system', layout: 'wide', copy: 'current', case: 'default', features: '',
+  type: 'schibsted', theme: 'void', texture: 'grain', hero: 'covers', work: 'stack', transition: 'fade',
+  reveal: 'mask', images: 'plain', cursor: 'label', layout: 'wide', copy: 'current', case: 'default',
+  features: 'palette shortcuts progress tabtitle print clock konami',
+};
+
+/** True when a selection is not the default; feature sets compare as sets, whatever their order. */
+export const differs = (dim: string, value: string | undefined): boolean => {
+  const v = value || '';
+  if (dim !== 'features') return v !== DEFAULTS[dim];
+  const a = new Set(v.split(' ').filter(Boolean));
+  const b = new Set(DEFAULTS.features.split(' ').filter(Boolean));
+  return a.size !== b.size || [...a].some((f) => !b.has(f));
 };
 
 /** Every option with a running number, for the list of 100. */

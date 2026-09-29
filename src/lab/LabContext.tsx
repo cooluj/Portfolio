@@ -14,7 +14,7 @@ type Lab = {
   setOpen: (v: boolean) => void;
 };
 
-const KEY = 'ua-lab';
+const KEY = 'ua-lab-2';
 const Ctx = createContext<Lab | null>(null);
 
 const parse = (s: string): Sel =>
@@ -63,8 +63,9 @@ export function LabProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const root = document.documentElement;
     for (const d of DIMENSIONS) {
+      // every dimension is written, defaults included, so a curated default can be any option
       const v = sel[d.id];
-      if (!v || v === DEFAULTS[d.id]) delete root.dataset[`l${d.id[0].toUpperCase()}${d.id.slice(1)}`];
+      if (!v) delete root.dataset[`l${d.id[0].toUpperCase()}${d.id.slice(1)}`];
       else root.dataset[`l${d.id[0].toUpperCase()}${d.id.slice(1)}`] = v;
     }
     const type = DIMENSIONS[0].options.find((o) => o.id === sel.type);

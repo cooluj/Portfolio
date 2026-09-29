@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLab } from './LabContext';
-import { DEFAULTS, DIMENSIONS, NUMBERED } from './registry';
+import { DIMENSIONS, NUMBERED, differs } from './registry';
 
 /** Floating panel: every dimension as a radio group, features as checkboxes. Toggle with the button or the L key. */
 export default function LabPanel() {
@@ -9,7 +9,7 @@ export default function LabPanel() {
   const [copied, setCopied] = useState(false);
   const panel = useRef<HTMLDivElement>(null);
   const fab = useRef<HTMLButtonElement>(null);
-  const changed = DIMENSIONS.filter((d) => lab.sel[d.id] !== DEFAULTS[d.id]).length;
+  const changed = DIMENSIONS.filter((d) => differs(d.id, lab.sel[d.id])).length;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

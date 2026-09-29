@@ -22,7 +22,8 @@ for (const d of DIMENSIONS) {
   lines.push('');
   for (const o of d.options) {
     n += 1;
-    const tag = !d.multi && DEFAULTS[d.id] === o.id ? ' **(my pick)**' : '';
+    const on = d.multi ? DEFAULTS[d.id].split(' ').includes(o.id) : DEFAULTS[d.id] === o.id;
+    const tag = on ? (d.multi ? ' **(on by default)**' : ' **(my pick)**') : '';
     const link = d.multi ? `${site}?lab=features:${o.id}` : `${site}?lab=${d.id}:${o.id}`;
     lines.push(`${String(n).padStart(3, '0')}. **${o.name}**${tag}: ${o.desc} [Try](${link})`);
   }

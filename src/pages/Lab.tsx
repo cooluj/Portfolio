@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLab } from '../lab/LabContext';
-import { DEFAULTS, DIMENSIONS, NUMBERED } from '../lab/registry';
+import { DEFAULTS, DIMENSIONS, NUMBERED, differs } from '../lab/registry';
 import { useReveal } from '../components/useReveal';
 
 /** The numbered list of every exploration, each with a one-click Try. */
@@ -11,7 +11,7 @@ export default function Lab() {
   useEffect(() => {
     document.title = 'Design lab · Ujjawal Agrawal';
   }, []);
-  const changed = DIMENSIONS.filter((d) => (lab.sel[d.id] || '') !== DEFAULTS[d.id]).length;
+  const changed = DIMENSIONS.filter((d) => differs(d.id, lab.sel[d.id])).length;
   let n = 0;
   return (
     <article className="cs gutter lab-page">
@@ -41,13 +41,13 @@ export default function Lab() {
             {d.options.map((o) => {
               n += 1;
               const active = d.multi ? lab.has(o.id) : lab.sel[d.id] === o.id;
-              const isDefault = !d.multi && DEFAULTS[d.id] === o.id;
+              const isDefault = d.multi ? DEFAULTS.features.split(' ').includes(o.id) : DEFAULTS[d.id] === o.id;
               return (
                 <li key={o.id} className={active ? 'on' : ''}>
                   <span className="lab-n">{String(n).padStart(3, '0')}</span>
                   <span className="lab-name">
                     {o.name}
-                    {isDefault && <span className="lab-tag">my pick</span>}
+                    {isDefault && <span className="lab-tag">{d.multi ? 'on by default' : 'my pick'}</span>}
                   </span>
                   <span className="lab-desc">{o.desc}</span>
                   <button
