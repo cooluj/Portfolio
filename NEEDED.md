@@ -7,10 +7,9 @@ Drop the file in `public/images/`, then set `src="/images/<file>"` on the matchi
 (or on the `before` / `after` side of a `BeforeAfter`). The alt text is already written.
 For text placeholders, replace the `<Ph>...</Ph>` with the real text.
 
-## Images (13)
+## Images (12)
 | Where | What | File |
 |---|---|---|
-| Home, About | Real photo of me (portrait, about 4:5) | `src/pages/Home.tsx` |
 | Eventully | Hero screenshot | `src/pages/Eventully.tsx` |
 | Eventully | AI-only search version | `src/pages/Eventully.tsx` |
 | Eventully | Hybrid screen: filters + AI search with match score | `src/pages/Eventully.tsx` |

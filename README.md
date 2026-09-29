@@ -11,5 +11,7 @@ npm run build    # copy check (no em dashes, banned phrases), typecheck, build
 - `/` home: work index, about, toolkit, journey, contact
 - `/work/eventully`, `/work/superpowr`, `/work/painsights`
 
-Deploys to GitHub Pages on every push (`.github/workflows/pages.yml`), at https://cooluj.github.io/Portfolio/. `vercel.json` covers Vercel too.
+Hosted free on GitHub Pages from the `docs/` folder, at https://cooluj.github.io/Portfolio/.
+After changing anything, run `npm run build && npm run build:pages` and commit `docs/`.
+`vercel.json` covers Vercel too.
 Missing assets are listed in [NEEDED.md](NEEDED.md).
