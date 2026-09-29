@@ -7,7 +7,7 @@ Drop the file in `public/images/`, then set `src="/images/<file>"` on the matchi
 (or on the `before` / `after` side of a `BeforeAfter`). The alt text is already written.
 For text placeholders, replace the `<Ph>...</Ph>` with the real text.
 
-## Images (11)
+## Images (12)
 | Where | What | File |
 |---|---|---|
 | Eventully | AI-only search version | `src/pages/Eventully.tsx` |
@@ -19,24 +19,24 @@ For text placeholders, replace the `<Ph>...</Ph>` with the real text.
 | Superpowr | New landing page | `src/pages/Superpowr.tsx` |
 | Superpowr | Brand system | `src/pages/Superpowr.tsx` |
 | Superpowr | Light mode screen + dark mode screen (2) | `src/pages/Superpowr.tsx` |
-| PainSights | 3D body model screen | `src/pages/PainSights.tsx` |
-| PainSights | Patient prioritisation dashboard | `src/pages/PainSights.tsx` |
-| PainSights | Team photo or my-role breakdown | `src/pages/PainSights.tsx` |
+| PainSights | Pain visualisation screen (body map) | `src/pages/PainSights.tsx` |
+| PainSights | Patient queue dashboard | `src/pages/PainSights.tsx` |
+| PainSights | Photo of the 3D-printed EEG prop | `src/pages/PainSights.tsx` |
+| PainSights | Team photo at FigBuild | `src/pages/PainSights.tsx` |
 
 Before/after pairs should be the same size and crop so the slider lines up.
 
-## Numbers and facts (5)
+## Numbers and facts (3)
 - Eventully: usage numbers (sign-ups, searches, clubs joined), if you have them
 - Superpowr: any before/after metric (flow completion, sign-up rate)
-- PainSights: my role and the team
-- PainSights: team members and what I owned
-- PainSights: FigBuild result, if any
+- PainSights: what I owned on the team (Devpost lists the team but not who did what)
 
 ## Links (1)
 - Resume PDF (put it at `public/resume.pdf` and replace the placeholder in the About section)
 
 ## Already filled in
 - Portrait and six hero photos
+- PainSights team, tools, workflow and patient groups, from the Devpost page
 - Eventully landing page and club directory, screenshotted from a local run of `cooluj/Eventully-Project`
 
 ## Please double-check

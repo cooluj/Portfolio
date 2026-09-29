@@ -2,6 +2,18 @@ import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell
 import { ImageSlot, Ph } from '../components/Placeholder';
 import BodyMap, { Caseload } from '../visuals/BodyMap';
 
+const DEVPOST = 'https://devpost.com/software/painsights';
+const PROTOTYPE = 'https://www.figma.com/proto/3qsWtlluXq8KKnCkaAjHPk/PainSights?node-id=0-1';
+
+/** The prototype's clinical workflow, in the order a doctor moves through it. */
+const WORKFLOW = [
+  { name: 'Patient queue', does: 'Every patient, prioritised by urgency and whether they need a scan.' },
+  { name: 'Patient profile', does: 'Vitals, medical history, and whether the patient can communicate.' },
+  { name: 'Neural pain scan', does: 'Reads the brain activity associated with pain perception.' },
+  { name: 'Pain visualisation', does: 'Maps the signal onto the body, colour-coded by severity.' },
+  { name: 'Clinical report', does: 'An AI summary of pain severity, risks and possible actions.' },
+];
+
 export default function PainSights() {
   return (
     <article className="cs gutter">
@@ -9,9 +21,9 @@ export default function PainSights() {
         slug="painsights"
         lede="A doctor isn't diagnosing pain. They're diagnosing a description of it. And some patients can't give one."
         meta={[
-          { k: 'Context', v: 'FigBuild 2026, Figma’s student design-a-thon' },
-          { k: 'Brief', v: 'Speculative design rooted in human need, built around senses beyond the visible ones' },
-          { k: 'My role', v: <Ph>my role and the team</Ph> },
+          { k: 'Context', v: <>FigBuild 2026, Figma’s student design-a-thon. <a href={DEVPOST} target="_blank" rel="noopener noreferrer">Devpost</a> · <a href={PROTOTYPE} target="_blank" rel="noopener noreferrer">Prototype</a></> },
+          { k: 'Team', v: 'Ian Simmons, Aryan Taywade, Ujjawal Agrawal' },
+          { k: 'My role', v: <Ph>what I owned on the team</Ph> },
         ]}
       />
 
@@ -22,13 +34,19 @@ export default function PainSights() {
       <Block n="01" title="The prompt, reframed">
         <div className="prose">
           <p>
+            FigBuild asked for speculative design rooted in human need, built around senses beyond the visible ones.
             We took <strong>the sense nobody can see</strong>. Pain has no external signal. It's the one thing in
             medicine that's entirely self-reported, which means a doctor isn't diagnosing pain, they're diagnosing a
             description of pain.
           </p>
           <p>
-            That breaks completely when the patient can't communicate. No words, no number out of ten, nothing for
-            the doctor to go on.
+            That breaks completely when the patient can't communicate: unconscious trauma patients, sedated ICU
+            patients, young children, and patients facing language barriers or neurological impairments. Doctors
+            fall back on indirect signals like heart rate, blood pressure or delayed imaging, which makes hidden
+            injuries hard to catch and care hard to prioritise when time matters.
+          </p>
+          <p>
+            <strong>How might we help doctors detect and understand pain in patients who cannot communicate it?</strong>
           </p>
         </div>
       </Block>
@@ -40,31 +58,63 @@ export default function PainSights() {
             changes the problem: <strong>pain stops being a story a patient tells and becomes data a clinician can
             see</strong>, whether or not the patient can tell it.
           </p>
+          <p>
+            To make that tangible in the demo, we 3D printed a mock EEG-style headset: what the patient would wear.
+          </p>
+        </div>
+        <div className="cs-figs">
+          <ImageSlot
+            need="photo of the 3D-printed EEG prop"
+            alt="The 3D-printed mock EEG headset the team built for the PainSights demo"
+            caption="The mock neural interface, modelled in Onshape and Blender, then 3D printed."
+          />
         </div>
       </Block>
 
       <Block n="03" title="The design">
         <div className="prose">
           <p>
-            PainSights renders that data on a 3D body model, so a doctor can see exactly where a patient hurts and
-            how much, instead of parsing "sharp", "dull" or a number out of ten.
+            PainSights renders that signal on a body model, so a doctor can see exactly where a patient hurts and
+            how much, instead of parsing "sharp", "dull" or a number out of ten. We explored several approaches
+            before landing on colour-coded severity levels, because in triage the reading has to land at a glance.
           </p>
           <p>
-            Across a caseload, it surfaces every patient's pain points at once and turns that into prioritisation:
+            Across a caseload, it surfaces every patient's pain at once and turns that into prioritisation:
             <strong> who is suffering most, right now</strong>.
           </p>
         </div>
         <Caseload />
+
+        <h3 className="mono-label" style={{ marginTop: '3rem' }}>The prototype, in workflow order</h3>
+        <ol className="steps">
+          {WORKFLOW.map((w, i) => (
+            <li key={w.name}>
+              <span className="n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <span className="name">{w.name}</span>
+              <span className="does">{w.does}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="prose" style={{ marginTop: '1.5rem' }}>
+          <span style={{ color: 'var(--muted-fg)', lineHeight: 1.75 }}>
+            Built as an interactive prototype in Figma and Figma Make, simulating a real hospital workflow from
+            intake to report. PainSights supports clinical judgement rather than replacing it.
+          </span>
+        </p>
+        <a className="ctl" href={PROTOTYPE} target="_blank" rel="noopener noreferrer" style={{ marginTop: '1.5rem' }}>
+          Open the Figma prototype <span aria-hidden="true">&nearr;</span>
+        </a>
+
         <div className="cs-figs two">
           <ImageSlot
-            need="3D body model screen"
-            alt="PainSights 3D body model with pain regions highlighted by intensity"
-            caption="The body model a clinician reads."
+            need="pain visualisation screen (body map)"
+            alt="PainSights body visualisation with pain regions highlighted by colour-coded severity"
+            caption="The pain visualisation a clinician reads."
           />
           <ImageSlot
-            need="patient prioritisation dashboard"
-            alt="PainSights dashboard listing patients ordered by current pain level"
-            caption="The caseload, sorted by who needs attention first."
+            need="patient queue dashboard"
+            alt="PainSights patient queue dashboard ordering patients by urgency"
+            caption="The patient queue, sorted by who needs attention first."
           />
         </div>
       </Block>
@@ -90,13 +140,17 @@ export default function PainSights() {
         </div>
       </Block>
 
-      <Block n="05" title="Team and result">
+      <Block n="05" title="Team and tools">
         <div className="prose">
-          <p><Ph>team members and what I owned</Ph></p>
-          <p><Ph>FigBuild result, if any</Ph></p>
+          <p>
+            Built at FigBuild 2026 by Ian Simmons, Aryan Taywade and me. Designed in Figma and Figma Make; the
+            headset prop was modelled in Onshape and Blender. The full submission is on{' '}
+            <a href={DEVPOST} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>Devpost</a>.
+          </p>
+          <p><Ph>what I owned on the team</Ph></p>
         </div>
         <div className="cs-figs">
-          <ImageSlot need="team photo or my-role breakdown" alt="The PainSights team at FigBuild 2026" ratio="16 / 7" />
+          <ImageSlot need="team photo at FigBuild" alt="Ian Simmons, Aryan Taywade and Ujjawal Agrawal at FigBuild 2026" ratio="16 / 7" />
         </div>
       </Block>
 
