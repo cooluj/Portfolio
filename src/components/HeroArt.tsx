@@ -46,6 +46,28 @@ export function Particles() {
   return <canvas id="particles" ref={ref} aria-hidden="true" />;
 }
 
+/** Two columns of photos drifting in opposite directions in the hero corner. */
+export function PhotoColumns({ a, b }: { a: string[]; b: string[] }) {
+  const track = (srcs: string[]) => (
+    <div className="drift-track">
+      {[...srcs, ...srcs].map((src, i) => (
+        <div className="tile photo" key={i}>
+          <img src={src} alt="" loading={i < 2 ? 'eager' : 'lazy'} />
+        </div>
+      ))}
+    </div>
+  );
+  return (
+    <div className="drift-wrap" aria-hidden="true">
+      <div className="drift-cols">
+        <div className="drift-col">{track(a)}</div>
+        <div className="drift-col offset">{track(b)}</div>
+      </div>
+      <div className="drift-fade" />
+    </div>
+  );
+}
+
 export function Marquee({ words }: { words: string[] }) {
   const row = words.join('  •  ') + '  •  ';
   return (

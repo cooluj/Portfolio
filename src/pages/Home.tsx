@@ -1,19 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Glyph } from '../components/Layout';
-import { Marquee, Particles } from '../components/HeroArt';
+import { Marquee, Particles, PhotoColumns } from '../components/HeroArt';
 import { ImageSlot, Ph } from '../components/Placeholder';
 import { prefersReducedMotion, useReveal } from '../components/useReveal';
 import { caseStudies, journey, marqueeWords, otherWork, toolkit } from '../data/work';
 import { EventullyThumb, PainThumb, SuperpowrThumb } from '../visuals/Thumbs';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
-
-const offClock = [
-  { src: 'skyline-night.webp', caption: 'Seattle, after dark', alt: 'Ujjawal at night in front of the Seattle skyline reflected in the water' },
-  { src: 'rainier-vista.webp', caption: 'Rainier Vista, UW', alt: 'Mount Rainier above the trees, seen past Drumheller Fountain on the UW campus' },
-  { src: 'st-peters.webp', caption: 'St. Peter’s Basilica, Rome', alt: 'Ujjawal leaning on a railing inside the dome of St. Peter’s Basilica, looking down' },
-];
 
 const thumbs = { eventully: EventullyThumb, superpowr: SuperpowrThumb, painsights: PainThumb };
 
@@ -77,9 +71,10 @@ export default function Home() {
     <>
       <section id="home" aria-label="Introduction">
         <Particles />
-        <div className="hero-photo" aria-hidden="true">
-          <img src={img('hero-skyline-night.webp')} alt="" />
-        </div>
+        <PhotoColumns
+          a={['portrait-kerry-park.webp', 'rainier-vista.webp', 'st-peters.webp'].map(img)}
+          b={['hero-skyline-night.webp', 'skyline-night.webp', 'portrait-kerry-park.webp'].map(img)}
+        />
         <div className="gutter glyph" style={{ color: 'rgba(250,250,250,0.3)' }}>
           <Glyph />
         </div>
@@ -183,16 +178,6 @@ export default function Home() {
                 <div><dt>Based in</dt><dd>Seattle, WA</dd></div>
                 <div><dt>Resume</dt><dd><Ph>resume PDF link</Ph></dd></div>
               </dl>
-              <ul className="off-clock rv" aria-label="Photos">
-                {offClock.map((p) => (
-                  <li key={p.src}>
-                    <figure>
-                      <img src={img(p.src)} alt={p.alt} loading="lazy" />
-                      <figcaption>{p.caption}</figcaption>
-                    </figure>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </section>
