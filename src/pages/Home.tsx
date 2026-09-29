@@ -87,7 +87,7 @@ export default function Home() {
             <span className="mask-line"><span>Agrawal</span></span>
           </h1>
           <p className="hero-intro">
-            I design products and <span className="em">ship</span> them.{' '}
+            I design products and ship them.{' '}
             <span className="strong">HCDE</span> at UW, Seattle.
           </p>
           <div className="hero-ctas">
@@ -117,7 +117,7 @@ export default function Home() {
             <h2 id="work-h" className="display-section rv d1">Work</h2>
             <p className="subline rv d2">
               Three case studies. One I founded, one I shipped on a team, one that asked what{' '}
-              <span className="em">medicine</span> could look like if pain were visible.
+              medicine could look like if pain were visible.
             </p>
           </div>
 
@@ -183,7 +183,7 @@ export default function Home() {
             </div>
             <div>
               <p className="statement rv" style={{ marginTop: 0 }}>
-                Designer who <span className="em">builds</span>. I design products and{' '}
+                Designer who builds. I design products and{' '}
                 <span className="strong">ship them</span>, working directly with engineering.
               </p>
               <dl className="about-facts rv">
@@ -223,7 +223,7 @@ export default function Home() {
             <h2 id="journey-h" className="display-section rv d1">Journey</h2>
             <p className="subline rv d2">
               Most recent first. The years things started <span className="strong">shipping</span>, back to
-              the <span className="em">foundations</span>.
+              the foundations.
             </p>
           </div>
           <Journey />
@@ -235,7 +235,7 @@ export default function Home() {
             index="005"
             title="Contact"
             center
-            sub={<>Hiring for product design, or building something that needs a designer who can <span className="em">ship</span>? Email is fastest.</>}
+            sub={<>Hiring for product design, or building something that needs a designer who can ship? Email is fastest.</>}
           />
           <div className="contact-rows">
             <a className="c-row rv" href="mailto:ujjawal.agrawal@outlook.com">

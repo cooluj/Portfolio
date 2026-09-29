@@ -154,7 +154,7 @@ export default function Eventully() {
       </Block>
 
       <Reflection>
-        The AI-only version was the more impressive demo and the <span className="em">worse product</span>. The
+        The AI-only version was the more impressive demo and the worse product. The
         right call was recognising two user segments and refusing to sacrifice either one.
       </Reflection>
 

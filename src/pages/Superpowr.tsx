@@ -150,7 +150,7 @@ export default function Superpowr() {
 
       <Reflection>
         The temptation with a redesign is to make it look different. The work that mattered was making it{' '}
-        <span className="em">make sense</span>, and most of that lived in flows, not pixels.
+        make sense, and most of that lived in flows, not pixels.
       </Reflection>
 
       <NextCase slug="superpowr" />

@@ -145,7 +145,6 @@ html { transition: background 0.4s; }
   margin-top: 1.5rem; max-width: 26ch;
   font-size: clamp(1.75rem, 4.2vw, 3.5rem); line-height: 1.12; letter-spacing: -0.02em;
 }
-.cs-reflect .em { color: var(--fg); }
 
 .cs-next {
   display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem;

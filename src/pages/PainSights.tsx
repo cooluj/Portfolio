@@ -167,7 +167,7 @@ export default function PainSights() {
 
       <Reflection>
         Speculative tech is easy to make magical for the person wearing it. The unmet need was on the{' '}
-        <span className="em">other side of the room</span>.
+        other side of the room.
       </Reflection>
 
       <NextCase slug="painsights" />
