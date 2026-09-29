@@ -87,8 +87,8 @@ export default function Home() {
             <span className="mask-line"><span>Agrawal</span></span>
           </h1>
           <p className="hero-intro">
-            Designer who builds. I design products and <span className="em">ship</span> them, working directly
-            with engineering. <span className="strong">HCDE</span> at the University of Washington, based in Seattle.
+            I design products and <span className="em">ship</span> them.{' '}
+            <span className="strong">HCDE</span> at UW, Seattle.
           </p>
           <div className="hero-ctas">
             <Link className="cta-pill" to={{ pathname: '/', hash: '#work' }}>
