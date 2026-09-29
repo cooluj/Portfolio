@@ -3,6 +3,8 @@ import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell
 import { ImageSlot, Ph } from '../components/Placeholder';
 import BeforeAfter from '../visuals/BeforeAfter';
 
+const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
+
 type Theme = 'dark' | 'light';
 const KEY = 'ua-superpowr-theme';
 
@@ -88,6 +90,14 @@ export default function Superpowr() {
             stuck</strong>. I redesigned the testing flow so users could get through it without hitting a wall, and
             rebuilt the landing page so the product's value was clear before anyone signed up.
           </p>
+        </div>
+        <div className="cs-figs">
+          <ImageSlot
+            need="research plan"
+            src={img('superpowr-research-plan.webp')}
+            alt="Superpowr research plan titled Why candidates stop mid-battery, with background, objectives, four research questions, a methods table, a six-week timeline and planned outputs"
+            caption="The research plan behind the testing-flow work: why candidates stop mid-assessment. Figures in the plan are illustrative."
+          />
         </div>
         <BeforeAfter
           label="Compare testing flow"

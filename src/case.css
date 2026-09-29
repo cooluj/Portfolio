@@ -313,3 +313,5 @@ html { transition: background 0.4s; }
 .steps .name { font-weight: 700; }
 .steps .does { color: var(--muted-fg); line-height: 1.6; }
 @media (max-width: 600px) { .steps li { grid-template-columns: 2rem minmax(0, 1fr); } .steps .does { grid-column: 2; } }
+.other-link { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.other-link:hover { color: var(--muted-fg); }

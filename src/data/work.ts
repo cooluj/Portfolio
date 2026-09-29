@@ -30,8 +30,8 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
-export const otherWork = [
-  { name: 'ArtisanCrafts', cat: 'IBM UX Capstone', desc: 'A trust-first marketplace for handmade goods. Research, personas, usability testing and a full design system.' },
+export const otherWork: { name: string; cat: string; desc: string; link?: string }[] = [
+  { name: 'ArtisanCrafts', cat: 'IBM UX Capstone', desc: 'A trust-first marketplace for handmade goods. Research, personas, usability testing and a full design system.', link: 'https://www.figma.com/proto/sHDOwDL5KibuqUGIvdLora/Prototyping-ArtisansCrafts?node-id=47-7&starting-point-node-id=47%3A7' },
   { name: 'Seattle Center', cat: 'Identity redesign', desc: 'An identity redesign for the Seattle Center campus.' },
   { name: 'Pathfinder', cat: 'AI · Python', desc: 'Graph-traversal pathfinding in a maze. BFS at the core, with greedy, A* and uniform-cost search compared against it.' },
   { name: 'Autonomous RC', cat: 'Hardware · Arduino', desc: 'RC cars and motorboats that drive themselves. Hardware and software integration where failures are loud and lessons are physical.' },

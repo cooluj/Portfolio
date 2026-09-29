@@ -145,7 +145,17 @@ export default function Home() {
                 <li key={w.name}>
                   <span className="name">{w.name}</span>
                   <span className="mono-label">{w.cat}</span>
-                  <span className="desc">{w.desc}</span>
+                  <span className="desc">
+                    {w.desc}
+                    {w.link && (
+                      <>
+                        {' '}
+                        <a href={w.link} target="_blank" rel="noopener noreferrer" className="other-link">
+                          Prototype<span className="sr-only"> for {w.name}</span> <span aria-hidden="true">&nearr;</span>
+                        </a>
+                      </>
+                    )}
+                  </span>
                 </li>
               ))}
             </ul>

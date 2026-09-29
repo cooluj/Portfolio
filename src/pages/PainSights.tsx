@@ -2,6 +2,7 @@ import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell
 import { ImageSlot, Ph } from '../components/Placeholder';
 import BodyMap, { Caseload } from '../visuals/BodyMap';
 
+const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 const DEVPOST = 'https://devpost.com/software/painsights';
 const PROTOTYPE = 'https://www.figma.com/proto/3qsWtlluXq8KKnCkaAjHPk/PainSights?node-id=0-1';
 
@@ -65,6 +66,7 @@ export default function PainSights() {
         <div className="cs-figs">
           <ImageSlot
             need="photo of the 3D-printed EEG prop"
+            src={img('painsights-eeg.webp')}
             alt="The 3D-printed mock EEG headset the team built for the PainSights demo"
             caption="The mock neural interface, modelled in Onshape and Blender, then 3D printed."
           />
@@ -108,13 +110,15 @@ export default function PainSights() {
         <div className="cs-figs two">
           <ImageSlot
             need="pain visualisation screen (body map)"
-            alt="PainSights body visualisation with pain regions highlighted by colour-coded severity"
-            caption="The pain visualisation a clinician reads."
+            src={img('painsights-scan.webp')}
+            alt="PainSights patient profile after a scan: a body model with pain glowing at the head, right shoulder and upper chest, and a list of detected pain points rated critical and moderate"
+            caption="After a scan: detected pain points on the body, ranked by severity."
           />
           <ImageSlot
             need="patient queue dashboard"
-            alt="PainSights patient queue dashboard ordering patients by urgency"
-            caption="The patient queue, sorted by who needs attention first."
+            src={img('painsights-queue.webp')}
+            alt="PainSights patient queue: patient cards tagged comatose, sedated, intubated and pediatric, each with detected pain or a scan-required warning, filterable by urgency"
+            caption="The patient queue. Patients who can't communicate are flagged for a scan."
           />
         </div>
       </Block>
@@ -150,7 +154,14 @@ export default function PainSights() {
           <p><Ph>what I owned on the team</Ph></p>
         </div>
         <div className="cs-figs">
-          <ImageSlot need="team photo at FigBuild" alt="Ian Simmons, Aryan Taywade and Ujjawal Agrawal at FigBuild 2026" ratio="16 / 7" />
+          <div style={{ maxWidth: '22rem' }}>
+            <ImageSlot
+              need="team photo at FigBuild"
+              src={img('painsights-team.webp')}
+              alt="Ujjawal Agrawal, Aryan Taywade and Ian Simmons holding a Figma pennant in a photo-booth print at FigBuild 2026"
+              caption="Team A.P.E at FigBuild 2026."
+            />
+          </div>
         </div>
       </Block>
 

@@ -7,7 +7,7 @@ Drop the file in `public/images/`, then set `src="/images/<file>"` on the matchi
 (or on the `before` / `after` side of a `BeforeAfter`). The alt text is already written.
 For text placeholders, replace the `<Ph>...</Ph>` with the real text.
 
-## Images (12)
+## Images (8)
 | Where | What | File |
 |---|---|---|
 | Eventully | AI-only search version | `src/pages/Eventully.tsx` |
@@ -19,10 +19,6 @@ For text placeholders, replace the `<Ph>...</Ph>` with the real text.
 | Superpowr | New landing page | `src/pages/Superpowr.tsx` |
 | Superpowr | Brand system | `src/pages/Superpowr.tsx` |
 | Superpowr | Light mode screen + dark mode screen (2) | `src/pages/Superpowr.tsx` |
-| PainSights | Pain visualisation screen (body map) | `src/pages/PainSights.tsx` |
-| PainSights | Patient queue dashboard | `src/pages/PainSights.tsx` |
-| PainSights | Photo of the 3D-printed EEG prop | `src/pages/PainSights.tsx` |
-| PainSights | Team photo at FigBuild | `src/pages/PainSights.tsx` |
 
 Before/after pairs should be the same size and crop so the slider lines up.
 
@@ -35,6 +31,9 @@ Before/after pairs should be the same size and crop so the slider lines up.
 - Resume PDF (put it at `public/resume.pdf` and replace the placeholder in the About section)
 
 ## Already filled in
+- PainSights scan result, patient queue, EEG prop and team photo, from the Figma prototype and FigBuild deck
+- Superpowr research plan (deliverable 01 from the Superpowr Figma file)
+- ArtisanCrafts prototype link
 - Portrait and six hero photos
 - PainSights team, tools, workflow and patient groups, from the Devpost page
 - Eventully landing page and club directory, screenshotted from a local run of `cooluj/Eventully-Project`
