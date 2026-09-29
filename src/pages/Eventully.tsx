@@ -1,6 +1,6 @@
 import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell';
 import CountUp from '../components/CountUp';
-import { ImageSlot, Ph } from '../components/Placeholder';
+import { ImageSlot } from '../components/Placeholder';
 import DiscoveryScatter from '../visuals/DiscoveryScatter';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
@@ -142,7 +142,7 @@ export default function Eventully() {
             need="recommendations screen with the match score visible"
             src={img('eventully-recs.webp')}
             alt="Eventully AI search preview on the live site, showing a 91% match score on a club result"
-            caption="The AI search path, captured from the live site: every result shows why it matched."
+            caption="A 91% match on the live homepage's search preview. The full personalised search needs an account."
           />
           <ImageSlot
             need="A/B test notes or results"
@@ -174,7 +174,9 @@ export default function Eventully() {
             behaviour driven by testing rather than assumption.
           </p>
           <p>
-            <Ph>usage numbers, e.g. students signed up, searches run, clubs joined</Ph>
+            I don't publish usage figures I can't verify, so there are no vanity metrics here. What I
+            stand behind is the product itself: live, indexing all 1,231 organisations end to end, with
+            its search behaviour traceable to testing rather than assumption.
           </p>
         </div>
       </Block>

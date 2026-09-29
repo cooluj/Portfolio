@@ -10,9 +10,11 @@ For text placeholders, replace the `<Ph>...</Ph>` with the real text.
 ## Images (0)
 All image placeholders are now filled. Provenance for each is in "Already filled in" below.
 
-## Numbers and facts (2)
-- Eventully: usage numbers (sign-ups, searches, clubs joined), if you have them
-- Superpowr: any before/after metric (flow completion, sign-up rate)
+## Numbers and facts (0)
+Both metric placeholders were replaced with honest outcome statements on 2026-09-29 (no invented figures):
+- Eventully outcome now states no vanity metrics are published; the evidence is the live product indexing all 1,231 organisations, with search behaviour traceable to testing.
+- Superpowr outcome now states no before/after metrics were publishable from the internship; the evidence is the shipped production site shown in the before/after comparisons.
+- The Eventully match-score caption now reads as a live homepage preview, not proof of a functioning public AI-search flow.
 
 ## Already filled in
 - Eventully landing page and club directory, screenshotted from a local run of `cooluj/Eventully-Project`

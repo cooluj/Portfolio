@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type MouseEvent } from 'react';
 import { flushSync } from 'react-dom';
 import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell';
-import { ImageSlot, Ph } from '../components/Placeholder';
+import { ImageSlot } from '../components/Placeholder';
 import { prefersReducedMotion } from '../components/useReveal';
 import BeforeAfter from '../visuals/BeforeAfter';
 
@@ -184,7 +184,9 @@ export default function Superpowr() {
         <div className="prose">
           <p>The redesign shipped to production. A live product people use, not a Figma file.</p>
           <p>
-            <Ph>before and after metric, e.g. testing flow completion or landing page sign-up rate</Ph>
+            I don't have publishable before/after metrics from the internship, so there are no invented
+            lift percentages here. What shipped is the evidence: the rebuilt testing flow and landing page
+            are the production site today, and the comparisons above show the live product, not mockups.
           </p>
         </div>
       </Block>
