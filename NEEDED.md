@@ -42,6 +42,7 @@ Both metric placeholders were replaced with honest outcome statements on 2026-09
 - The Eventully-Project repo history has no AI-only search version; the match score exists from the first commit.
 
 ## Please double-check
+- Four of the newly added figures are illustrations, not captures, and their captions say so: the Eventully v1 search box, the Superpowr testing flow before and after (the "before" shows a stand-in product name), and the Superpowr brand board (it is dated 2024 in the image; the internship was 2026). If you have the real screens, swap them in; if not, consider removing the brand board.
 - Email: the site uses ujjawal.agrawal@outlook.com (from your brief), but your resume says ujjawal-agrawal@outlook.com. One of them is wrong.
 - The resume PDF on the site includes your phone number.
 - The PainSights body map and caseload on the page use illustrative readings, and they are labelled as illustrative

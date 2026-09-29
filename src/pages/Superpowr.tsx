@@ -184,9 +184,10 @@ export default function Superpowr() {
         <div className="prose">
           <p>The redesign shipped to production. A live product people use, not a Figma file.</p>
           <p>
-            I don't have publishable before/after metrics from the internship, so there are no invented
-            lift percentages here. What shipped is the evidence: the rebuilt testing flow and landing page
-            are the production site today, and the comparisons above show the live product, not mockups.
+            The internship's metrics are not mine to publish, so there are no lift percentages here. What
+            shipped is the evidence: the rebuilt testing flow and landing page are the production site today.
+            The landing page comparison and the light and dark screens above are captured from the live
+            product; the testing flow comparison is a labelled reconstruction.
           </p>
         </div>
       </Block>

@@ -174,9 +174,9 @@ export default function Eventully() {
             behaviour driven by testing rather than assumption.
           </p>
           <p>
-            I don't publish usage figures I can't verify, so there are no vanity metrics here. What I
-            stand behind is the product itself: live, indexing all 1,231 organisations end to end, with
-            its search behaviour traceable to testing rather than assumption.
+            I only publish numbers I can back up, so there are no usage figures here. What I stand behind is
+            the product itself: live, indexing all 1,231 organisations end to end, with its search behaviour
+            traceable to testing rather than assumption.
           </p>
         </div>
       </Block>
