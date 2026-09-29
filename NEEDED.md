@@ -22,12 +22,13 @@ For text placeholders, replace the `<Ph>...</Ph>` with the real text.
 
 Before/after pairs should be the same size and crop so the slider lines up.
 
-## Numbers and facts (3)
+## Numbers and facts (2)
 - Eventully: usage numbers (sign-ups, searches, clubs joined), if you have them
 - Superpowr: any before/after metric (flow completion, sign-up rate)
-- PainSights: what I owned on the team (Devpost lists the team but not who did what)
 
 ## Already filled in
+- PainSights role, from the resume (designed the clinical dashboard, built the hi-fi prototype, presented at FigBuild)
+- Toolkit logos, from the simple-icons package
 - Resume PDF, dates, journey and toolkit, from your resume
 - Earlier Eventully design (July 2026 rebuild, from the Eventully-Project git history)
 - PainSights scan result, patient queue, EEG prop and team photo, from the Figma prototype and FigBuild deck
@@ -36,6 +37,10 @@ Before/after pairs should be the same size and crop so the slider lines up.
 - Portrait and six hero photos
 - PainSights team, tools, workflow and patient groups, from the Devpost page
 - Eventully landing page and club directory, screenshotted from a local run of `cooluj/Eventully-Project`
+
+## Checked and ruled out
+- The Superpowr Figma file (Product Deliverables) holds nine research boards: 01 Research Plan through 09 Sketch Test. The only product UI in it is 08 Dashboard (an employer dashboard with illustrative values), and Figma refuses to render that board. No landing page, testing flow, brand system or light/dark screens are in that file.
+- The Eventully-Project repo history has no AI-only search version; the match score exists from the first commit.
 
 ## Please double-check
 - Email: the site uses ujjawal.agrawal@outlook.com (from your brief), but your resume says ujjawal-agrawal@outlook.com. One of them is wrong.

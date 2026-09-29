@@ -1,0 +1,21 @@
+/* ---------- pointer tilt for work thumbnails ---------- */
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--expo), border-color 0.5s var(--expo);
+}
+.tilt.is-tilting {
+  will-change: transform;
+  transition-duration: 0.15s;
+}
+.cs-row:hover .tilt, .cs-row:focus-visible .tilt {
+  border-color: color-mix(in srgb, var(--fg) 28%, transparent);
+}
+.tilt img { backface-visibility: hidden; }
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .tilt { transform: none; transition: none; will-change: auto; }
+}

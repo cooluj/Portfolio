@@ -4,15 +4,13 @@ import { Glyph } from '../components/Layout';
 import { Marquee, Particles, PhotoColumns } from '../components/HeroArt';
 import { ImageSlot } from '../components/Placeholder';
 import { prefersReducedMotion, useReveal } from '../components/useReveal';
-import { caseStudies, journey, marqueeWords, otherWork, toolkit } from '../data/work';
+import { caseStudies, journey, marqueeWords, otherWork } from '../data/work';
+import Toolkit from '../components/Toolkit';
+import { TiltBox } from '../components/useTilt';
+import CopyEmail from '../components/CopyEmail';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 
-const thumbs: Record<string, { src: string; alt: string; pos?: string }> = {
-  eventully: { src: 'eventully-landing.webp', alt: 'Eventully landing page', pos: '0% 30%' },
-  superpowr: { src: 'superpowr-research-plan.webp', alt: 'Superpowr research plan on candidate drop-off', pos: '0% 0%' },
-  painsights: { src: 'painsights-scan.webp', alt: 'PainSights body map after a scan, with pain regions glowing', pos: '40% 20%' },
-};
 
 function SectionHead({ index, title, sub, center }: { index: string; title: string; sub?: React.ReactNode; center?: boolean }) {
   return (
@@ -123,10 +121,10 @@ export default function Home() {
 
           <ol className="cs-index">
             {caseStudies.map((c, i) => {
-              const t = thumbs[c.slug];
+              const t = c.thumb;
               return (
                 <li key={c.slug} className="rv">
-                  <Link to={`/work/${c.slug}`} className="cs-row" data-cursor>
+                  <Link to={`/work/${c.slug}`} className="cs-row" data-cursor="View">
                     <span className="no" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                     <span>
                       <span className="title">{c.title}</span>
@@ -134,9 +132,9 @@ export default function Home() {
                       <span className="sum" style={{ display: 'block' }}>{c.sum}</span>
                       <span className="read">Read the case study <span aria-hidden="true">&rarr;</span></span>
                     </span>
-                    <span className="thumb">
+                    <TiltBox className="thumb">
                       <img src={img(t.src)} alt={t.alt} loading="lazy" style={{ objectPosition: t.pos }} />
-                    </span>
+                    </TiltBox>
                   </Link>
                 </li>
               );
@@ -204,14 +202,7 @@ export default function Home() {
             <span className="index-label rv">[003]</span>
             <h2 id="kit-h" className="display-section rv d1">Toolkit</h2>
           </div>
-          <div className="kit-grid">
-            {toolkit.map((g) => (
-              <div className="kit-group rv" key={g.n}>
-                <h3 className="head"><span className="num">{g.n}</span><span className="label">{g.label}</span></h3>
-                <ul className="kit-items">{g.items.map((x) => <li key={x}><span>{x}</span></li>)}</ul>
-              </div>
-            ))}
-          </div>
+          <Toolkit />
         </section>
 
         <Marquee words={marqueeWords} />
@@ -238,13 +229,10 @@ export default function Home() {
             sub={<>Hiring for product design, or building something that needs a designer who can ship? Email is fastest.</>}
           />
           <div className="contact-rows">
-            <a className="c-row rv" href="mailto:ujjawal.agrawal@outlook.com">
+            <div className="c-row rv">
               <span className="mono-label">Email</span>
-              <span className="c-value">
-                <span className="text">ujjawal.agrawal@outlook.com</span>
-                <span className="c-circle" aria-hidden="true">↗</span>
-              </span>
-            </a>
+              <CopyEmail email="ujjawal.agrawal@outlook.com" />
+            </div>
             <div className="c-row rv">
               <span className="mono-label">Based in</span>
               <span className="c-value"><span className="text">Seattle, WA</span></span>

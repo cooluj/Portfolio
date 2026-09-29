@@ -1,5 +1,5 @@
 import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell';
-import { ImageSlot, Ph } from '../components/Placeholder';
+import { ImageSlot } from '../components/Placeholder';
 import BodyMap, { Caseload } from '../visuals/BodyMap';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
@@ -24,7 +24,7 @@ export default function PainSights() {
         meta={[
           { k: 'Context', v: <>FigBuild 2026, Figma’s student design-a-thon. <a href={DEVPOST} target="_blank" rel="noopener noreferrer">Devpost</a> · <a href={PROTOTYPE} target="_blank" rel="noopener noreferrer">Prototype</a></> },
           { k: 'Team', v: 'Ian Simmons, Aryan Taywade, Ujjawal Agrawal' },
-          { k: 'My role', v: <Ph>what I owned on the team</Ph> },
+          { k: 'My role', v: 'Designed the clinical dashboard and built the high-fidelity Figma prototype. Presented at FigBuild.' },
         ]}
       />
 
@@ -151,7 +151,10 @@ export default function PainSights() {
             headset prop was modelled in Onshape and Blender. The full submission is on{' '}
             <a href={DEVPOST} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>Devpost</a>.
           </p>
-          <p><Ph>what I owned on the team</Ph></p>
+          <p>
+            I designed the clinical dashboard, the screens a doctor works in, and built the high-fidelity Figma
+            prototype we presented at FigBuild.
+          </p>
         </div>
         <div className="cs-figs">
           <div style={{ maxWidth: '22rem' }}>

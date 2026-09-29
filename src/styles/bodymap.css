@@ -1,0 +1,43 @@
+/* ---------- PainSights: body map scan ---------- */
+.scan-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; margin-bottom: 1.5rem; }
+.scan-ctl[aria-disabled='true'] { opacity: 0.5; cursor: progress; border-color: var(--line); }
+.scan-ctl[aria-disabled='true']:hover { border-color: var(--line); }
+.scan-status { display: inline-flex; align-items: center; gap: 0.6rem; margin: 0; }
+.scan-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--faint); flex: none; }
+.scan-status[data-phase='scanning']::before { background: var(--ember); }
+.scan-status[data-phase='done']::before { background: var(--fg); }
+@media (prefers-reduced-motion: no-preference) {
+  .scan-status[data-phase='scanning']::before { animation: scanBlink 0.8s ease-in-out infinite; }
+}
+@keyframes scanBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+/* the sweep line lives inside the existing svg; the afterglow is a flat rect, not a gradient */
+.scan-line { pointer-events: none; }
+.scan-line .after { fill: var(--ember); opacity: 0.14; }
+.scan-line .edge { stroke: var(--ember); stroke-width: 2; }
+
+/* glows and rows hide while a scan runs, then pop back in as the line passes them */
+.region-btn.scan-hide { opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .region-btn.scan-in .pain-glow.pulse {
+    animation: glowPop 0.3s var(--expo) both, painPulse var(--dur, 2.4s) ease-in-out 0.3s infinite;
+  }
+  .region-btn.scan-in .ring { animation: ringIn 0.3s var(--expo) both; }
+}
+@keyframes glowPop { from { opacity: 0; scale: 0.6; } to { opacity: 1; scale: 1; } }
+@keyframes ringIn { from { opacity: 0; } to { opacity: 1; } }
+
+.region-list button.scan-hide { opacity: 0; pointer-events: none; }
+.region-list .meter i { transform-origin: bottom; }
+@media (prefers-reduced-motion: no-preference) {
+  .region-list button.scan-in { animation: rowIn 0.3s var(--expo) both; }
+  .region-list button.scan-in .meter i.on { animation: meterFill 0.2s var(--expo) both; animation-delay: calc(var(--i) * 60ms); }
+}
+@keyframes rowIn { from { opacity: 0; translate: 0 4px; } to { opacity: 1; translate: 0 0; } }
+@keyframes meterFill { from { opacity: 0; scale: 1 0.2; } to { opacity: 1; scale: 1 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .region-btn.scan-in .pain-glow, .region-btn.scan-in .ring,
+  .region-list button.scan-in, .region-list button.scan-in .meter i.on { animation: none; opacity: 1; scale: 1; translate: none; }
+  .scan-status::before { animation: none; }
+}

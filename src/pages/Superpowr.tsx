@@ -1,12 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, type MouseEvent } from 'react';
+import { flushSync } from 'react-dom';
 import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell';
 import { ImageSlot, Ph } from '../components/Placeholder';
+import { prefersReducedMotion } from '../components/useReveal';
 import BeforeAfter from '../visuals/BeforeAfter';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 
 type Theme = 'dark' | 'light';
 const KEY = 'ua-superpowr-theme';
+
+const applyMode = (t: Theme) => {
+  const root = document.documentElement;
+  if (t === 'light') root.dataset.mode = 'light';
+  else delete root.dataset.mode;
+};
 
 /** Light and dark were shipped modes on Superpowr, so this page lets you switch it too. */
 function useCaseTheme() {
@@ -18,9 +26,7 @@ function useCaseTheme() {
     }
   });
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'light') root.dataset.mode = 'light';
-    else delete root.dataset.mode;
+    applyMode(theme);
     try {
       localStorage.setItem(KEY, theme);
     } catch {
@@ -29,26 +35,56 @@ function useCaseTheme() {
   }, [theme]);
   // Leaving the case study returns the rest of the site to its dark reskin.
   useEffect(() => () => void delete document.documentElement.dataset.mode, []);
-  return [theme, setTheme] as const;
+
+  // Circular wipe from the clicked button via the View Transitions API; instant when unsupported or reduced motion.
+  const switchTheme = useCallback(
+    (t: Theme, x: number, y: number) => {
+      if (t === theme) return;
+      if (typeof document.startViewTransition !== 'function' || prefersReducedMotion()) {
+        setTheme(t);
+        return;
+      }
+      const root = document.documentElement;
+      root.style.setProperty('--vt-x', `${Math.round(x)}px`);
+      root.style.setProperty('--vt-y', `${Math.round(y)}px`);
+      root.dataset.wipe = '';
+      const done = () => {
+        delete root.dataset.wipe;
+        root.style.removeProperty('--vt-x');
+        root.style.removeProperty('--vt-y');
+      };
+      const vt = document.startViewTransition(() => {
+        applyMode(t);
+        flushSync(() => setTheme(t));
+      });
+      vt.finished.then(done, done);
+    },
+    [theme],
+  );
+  return [theme, switchTheme] as const;
 }
 
-function ThemeSwitch({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme) => void }) {
+function ThemeSwitch({ theme, switchTheme }: { theme: Theme; switchTheme: (t: Theme, x: number, y: number) => void }) {
+  const pick = (t: Theme) => (e: MouseEvent<HTMLButtonElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    switchTheme(t, r.left + r.width / 2, r.top + r.height / 2);
+  };
   return (
     <div className="theme-dock rv" role="group" aria-label="Page colour mode">
       <p>
-        I shipped light and dark modes for Superpowr. This page has both too. Switch it and read the rest in
-        either.
+        This page has both modes too. Switch it and read the rest in either.
       </p>
       <div style={{ display: 'flex', gap: '0.5rem' }}>
-        <button type="button" className="ctl" aria-pressed={theme === 'dark'} onClick={() => setTheme('dark')}>Dark</button>
-        <button type="button" className="ctl" aria-pressed={theme === 'light'} onClick={() => setTheme('light')}>Light</button>
+        <button type="button" className="ctl" aria-pressed={theme === 'dark'} onClick={pick('dark')}>Dark</button>
+        <button type="button" className="ctl" aria-pressed={theme === 'light'} onClick={pick('light')}>Light</button>
       </div>
+      <span className="mono-label theme-note">Both modes shipped to production at Superpowr.</span>
     </div>
   );
 }
 
 export default function Superpowr() {
-  const [theme, setTheme] = useCaseTheme();
+  const [theme, switchTheme] = useCaseTheme();
   return (
     <article className="cs gutter">
       <CaseHeader
@@ -61,7 +97,7 @@ export default function Superpowr() {
         ]}
       />
 
-      <ThemeSwitch theme={theme} setTheme={setTheme} />
+      <ThemeSwitch theme={theme} switchTheme={switchTheme} />
 
       <Block n="01" title="The problem">
         <div className="prose">
@@ -89,6 +125,11 @@ export default function Superpowr() {
             Rather than a visual refresh, I rebuilt the experience around <strong>where people were actually getting
             stuck</strong>. I redesigned the testing flow so users could get through it without hitting a wall, and
             rebuilt the landing page so the product's value was clear before anyone signed up.
+          </p>
+          <p>
+            I owned the information architecture, user flows, wireframes and high-fidelity interfaces, plus the
+            motion concepts for a scroll-driven product experience. The research started from one question: at
+            which step does the ten-minute assessment promise stop being believed?
           </p>
         </div>
         <div className="cs-figs">

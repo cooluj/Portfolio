@@ -1,0 +1,50 @@
+/* ---------- Eventully: interactive discovery scatter ---------- */
+.scatter-modes {
+  display: flex; flex-direction: column; gap: 0.875rem;
+  padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); background: var(--bg);
+}
+.scatter-mode-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.scatter-mode-row .mono-label { margin-right: 0.5rem; }
+.scatter-panel { display: flex; align-items: center; min-height: 2.5rem; }
+.scatter-panel > * { animation: scatterPanelIn 0.5s var(--expo) both; }
+@keyframes scatterPanelIn {
+  from { opacity: 0; translate: 0 0.4rem; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+.scatter-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.scatter .ctl.chip { padding: 0.45rem 0.85rem; gap: 0.5rem; }
+.scatter .ctl.chip .n { color: var(--faint); font-variant-numeric: tabular-nums; letter-spacing: 0; }
+.scatter .ctl.chip[aria-pressed='true'] .n { color: inherit; opacity: 0.6; }
+
+.scatter-ask { display: flex; align-items: center; gap: 0.75rem; width: 100%; max-width: 36rem; }
+.scatter-ask .mono-label { flex: none; }
+.scatter-ask input {
+  flex: 1; min-width: 0;
+  background: none; border: 0; border-bottom: 1px solid var(--line); border-radius: 0;
+  padding: 0.5rem 0;
+  font-family: var(--mono); font-size: 0.9375rem; color: var(--fg);
+  transition: border-color 0.3s;
+}
+.scatter-ask input::placeholder { color: var(--faint); }
+.scatter-ask input:hover { border-bottom-color: var(--muted-fg); }
+.scatter-ask input:focus-visible { box-shadow: none; border-bottom-color: var(--ember); }
+
+.scatter-field { position: relative; }
+.scatter canvas { display: block; width: 100%; aspect-ratio: 1200 / 560; touch-action: pan-y; }
+.scatter-field .match-card { z-index: 1; }
+.scatter-field .match-title { margin-top: 0.5rem; font-size: 1.125rem; font-weight: 700; line-height: 1.25; }
+.scatter-field .match-cat {
+  display: block; margin-top: 0.35rem;
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: #666;
+}
+
+@media (max-width: 700px) {
+  .scatter canvas { aspect-ratio: 5 / 4; }
+  .scatter-field .match-card { margin-top: 1rem; }
+  .scatter-ask { flex-direction: column; align-items: stretch; gap: 0.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scatter-panel > * { animation: none; }
+}

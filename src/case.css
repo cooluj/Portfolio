@@ -147,7 +147,6 @@ html { transition: background 0.4s; }
 }
 
 .cs-next {
-  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem;
   border-top: 1px solid var(--line); padding-block: 3rem 4rem;
 }
 .cs-next .t { display: block; margin-top: 0.75rem; font-size: clamp(2rem, 6vw, 4rem); font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; }

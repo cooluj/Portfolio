@@ -1,0 +1,41 @@
+/* ============ Superpowr: theme wipe + before/after hint ============ */
+
+/* ---------- theme switch wipe (View Transitions API) ---------- */
+/* The page sets html[data-wipe] plus --vt-x / --vt-y (click centre) for the duration of a theme switch. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html[data-wipe] { transition: none; }
+html[data-wipe]::view-transition-new(root) {
+  clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%));
+  animation: vt-wipe 0.6s var(--expo) forwards;
+}
+@keyframes vt-wipe {
+  from { clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%)); }
+  to { clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 50%)); }
+}
+
+.theme-note { flex-basis: 100%; letter-spacing: 0.12em; }
+
+/* ---------- before / after: draggable frame and knob glyphs ---------- */
+.ba-frame { touch-action: pan-y; user-select: none; }
+.ba-knob {
+  position: absolute; top: 50%; left: 50%; translate: -50% -50%; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  width: 2.25rem; height: 2.25rem; padding-left: 0.1em;
+  font-family: var(--mono); font-size: 1rem; font-weight: 700; line-height: 1; letter-spacing: 0.15em;
+  color: #fff; pointer-events: none;
+}
+.ba-line::after { transition: scale 0.3s var(--expo); }
+@media (pointer: fine) {
+  .ba-frame { cursor: ew-resize; }
+  .ba-frame:hover .ba-line::after, .ba-frame:active .ba-line::after { scale: 1.1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  .ba-line::after { transition: none; }
+  .ba-frame:hover .ba-line::after, .ba-frame:active .ba-line::after { scale: 1; }
+}

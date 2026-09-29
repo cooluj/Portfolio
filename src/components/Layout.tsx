@@ -88,6 +88,7 @@ export function Glyph({ width = 56, height = 44, stroke = 'currentColor', stroke
 function Cursor() {
   const ring = useRef<HTMLDivElement>(null);
   const dot = useRef<HTMLDivElement>(null);
+  const label = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     if (!matchMedia('(pointer: fine)').matches || prefersReducedMotion()) return;
     document.body.classList.add('cursor-on');
@@ -100,7 +101,12 @@ function Cursor() {
         dot.current.style.top = my + 'px';
       }
       const t = e.target instanceof Element ? e.target : null;
-      ring.current?.classList.toggle('hover', Boolean(t && t.closest('a, button, input, [data-cursor]')));
+      const word = (t?.closest('[data-cursor]') as HTMLElement | null)?.dataset.cursor?.trim() ?? '';
+      if (ring.current) {
+        ring.current.classList.toggle('hover', Boolean(t && t.closest('a, button, input, [data-cursor]')));
+        ring.current.classList.toggle('label', word !== '');
+      }
+      if (label.current && word) label.current.textContent = word;
     };
     const lerp = () => {
       rx += (mx - rx) * 0.16;
@@ -121,10 +127,85 @@ function Cursor() {
   }, []);
   return (
     <>
-      <div id="cur-ring" ref={ring} aria-hidden="true" />
+      <div id="cur-ring" ref={ring} aria-hidden="true">
+        <span className="cur-label" ref={label} />
+      </div>
       <div id="cur-dot" ref={dot} aria-hidden="true" />
     </>
   );
+}
+
+const MAG_REACH = 48;
+const MAG_PULL = 6;
+
+/** Pulls .cta-pill and .ctl toward a fine pointer within reach, easing back when it leaves. */
+function useMagnetic() {
+  useEffect(() => {
+    if (!matchMedia('(pointer: fine)').matches || prefersReducedMotion()) return;
+    const cur = new Map<HTMLElement, { x: number; y: number }>();
+    let px = -1e4, py = -1e4, raf = 0, queued = false;
+    const clamp = (v: number) => Math.max(-1, Math.min(1, v));
+    const frame = () => {
+      raf = 0;
+      queued = false;
+      let live = false;
+      const els = document.querySelectorAll<HTMLElement>('.cta-pill, .ctl');
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        const near = px > r.left - MAG_REACH && px < r.right + MAG_REACH && py > r.top - MAG_REACH && py < r.bottom + MAG_REACH;
+        const tx = near ? clamp((px - (r.left + r.width / 2)) / (r.width / 2 + MAG_REACH)) * MAG_PULL : 0;
+        const ty = near ? clamp((py - (r.top + r.height / 2)) / (r.height / 2 + MAG_REACH)) * MAG_PULL : 0;
+        const c = cur.get(el) ?? { x: 0, y: 0 };
+        if (!near && !cur.has(el)) return;
+        c.x += (tx - c.x) * 0.2;
+        c.y += (ty - c.y) * 0.2;
+        const settled = Math.abs(tx - c.x) < 0.05 && Math.abs(ty - c.y) < 0.05;
+        if (settled) {
+          c.x = tx;
+          c.y = ty;
+        } else {
+          live = true;
+        }
+        if (!near && settled) {
+          el.style.removeProperty('--mx');
+          el.style.removeProperty('--my');
+          cur.delete(el);
+          return;
+        }
+        cur.set(el, c);
+        el.style.setProperty('--mx', c.x.toFixed(2) + 'px');
+        el.style.setProperty('--my', c.y.toFixed(2) + 'px');
+      });
+      cur.forEach((_, el) => {
+        if (!el.isConnected) cur.delete(el);
+      });
+      if (live || queued) raf = requestAnimationFrame(frame);
+    };
+    const move = (e: PointerEvent) => {
+      px = e.clientX;
+      py = e.clientY;
+      queued = true;
+      if (!raf) raf = requestAnimationFrame(frame);
+    };
+    const leave = () => {
+      px = -1e4;
+      py = -1e4;
+      queued = true;
+      if (!raf) raf = requestAnimationFrame(frame);
+    };
+    document.addEventListener('pointermove', move, { passive: true });
+    document.addEventListener('pointerleave', leave);
+    return () => {
+      document.removeEventListener('pointermove', move);
+      document.removeEventListener('pointerleave', leave);
+      cancelAnimationFrame(raf);
+      cur.forEach((_, el) => {
+        el.style.removeProperty('--mx');
+        el.style.removeProperty('--my');
+      });
+      cur.clear();
+    };
+  }, []);
 }
 
 /** Scroll to the hash target (for /#about style links) or to the top on route change. */
@@ -151,6 +232,7 @@ export default function Layout() {
   const burger = useRef<HTMLButtonElement>(null);
   const clock = useSeattleClock();
   const { pathname } = useLocation();
+  useMagnetic();
 
   useEffect(() => {
     const onScroll = () => {
@@ -236,7 +318,9 @@ export default function Layout() {
       </div>
 
       <main id="main" tabIndex={-1}>
-        <Outlet />
+        <div className="page" key={pathname}>
+          <Outlet />
+        </div>
       </main>
 
       <footer className="gutter" style={{ position: 'relative', zIndex: 10, background: 'var(--bg)' }}>

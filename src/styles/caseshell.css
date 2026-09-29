@@ -1,0 +1,80 @@
+/* ============ Case study shell: header entrance, rolling counter, next-case footer ============ */
+
+/* ---------- counter: digits roll up once ---------- */
+.cs-count { line-height: 1.25; }
+.cs-dig { display: inline-block; height: 1.25em; overflow: hidden; vertical-align: top; }
+.cs-dig-roll {
+  display: block;
+  transform: translateY(calc(var(--n, 0) * -1.25em));
+  animation: csDigRoll 0.7s var(--expo) 0.15s both;
+}
+.cs-dig-roll > span { display: block; height: 1.25em; line-height: 1.25em; }
+@keyframes csDigRoll { from { transform: translateY(0); } }
+
+/* ---------- title: letters rise inside per-word masks ---------- */
+.cs-title .cs-w {
+  display: inline-block; overflow: hidden; vertical-align: top;
+  padding-block: 0.12em; margin-block: -0.12em;
+}
+.cs-title .cs-sp { white-space: pre; }
+.cs-title .cs-l {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: csRise 0.7s var(--expo) both;
+  animation-delay: calc(var(--i, 0) * 30ms);
+}
+@keyframes csRise { to { transform: none; } }
+
+/* ---------- lede and meta fade up after the last letter ---------- */
+.cs-head .cs-lede,
+.cs-head .cs-meta {
+  opacity: 0;
+  animation: csFadeUp 0.7s var(--expo) both;
+  animation-delay: var(--lede-delay, 0ms);
+}
+.cs-head .cs-meta { animation-delay: calc(var(--lede-delay, 0ms) + 120ms); }
+@keyframes csFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* ---------- reduced motion: final state, no movement ---------- */
+.cs-head.is-still .cs-l,
+.cs-head.is-still .cs-dig-roll,
+.cs-head.is-still .cs-lede,
+.cs-head.is-still .cs-meta { animation: none; }
+.cs-head.is-still .cs-l,
+.cs-head.is-still .cs-lede,
+.cs-head.is-still .cs-meta { transform: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .cs-l, .cs-dig-roll, .cs-head .cs-lede, .cs-head .cs-meta { animation: none; }
+  .cs-l, .cs-head .cs-lede, .cs-head .cs-meta { transform: none; opacity: 1; }
+}
+
+/* ---------- next case study ---------- */
+.cs-next { display: grid; gap: 2.5rem; align-items: start; }
+.cs-next .cs-next-link { display: grid; gap: 1.5rem; min-width: 0; }
+.cs-next .cs-next-body { display: block; min-width: 0; }
+.cs-next .cs-next-body .t { transition: translate 0.5s var(--expo), color 0.3s; }
+.cs-next .cs-next-thumb {
+  display: block; width: 100%; max-width: 22rem; aspect-ratio: 16 / 10;
+  overflow: hidden; border-radius: 0.5rem; border: 1px solid var(--line);
+  background: var(--card);
+  order: -1;
+}
+.cs-next .cs-next-thumb img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1); opacity: 0.85;
+  transition: filter 0.6s var(--expo), opacity 0.6s var(--expo);
+}
+@media (min-width: 900px) {
+  .cs-next .cs-next-link { grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); align-items: end; gap: 3rem; }
+  .cs-next .cs-next-thumb { order: 0; justify-self: end; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .cs-next .cs-next-link:hover .cs-next-thumb img { filter: grayscale(0); opacity: 1; }
+  .cs-next .cs-next-link:hover .t { translate: 0.5rem 0; }
+}
+.cs-next .cs-next-link:focus-visible .cs-next-thumb img { filter: grayscale(0); opacity: 1; }
+.cs-next .cs-next-link:focus-visible .t { translate: 0.5rem 0; }
+@media (prefers-reduced-motion: reduce) {
+  .cs-next .cs-next-body .t { transition: none; translate: none !important; }
+  .cs-next .cs-next-thumb img { transition: none; }
+}

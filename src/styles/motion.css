@@ -1,0 +1,50 @@
+/* ============ Motion: route transitions, cursor label, magnetic buttons, copy button ============ */
+
+/* ---------- route transitions ---------- */
+.page { animation: pageIn 0.45s var(--expo) both; }
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- cursor label ---------- */
+#cur-ring.hover.label { width: 88px; height: 88px; }
+.cur-label {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  padding-left: 0.2em; white-space: nowrap;
+  /* Stays dark in light mode too: the ring is difference-blended, so dark text reads on it either way. */
+  color: #0a0a0a;
+  opacity: 0; transition: opacity 0.2s;
+}
+#cur-ring.label .cur-label { opacity: 1; }
+
+/* ---------- magnetic buttons ---------- */
+.cta-pill, .ctl { translate: var(--mx, 0px) var(--my, 0px); }
+
+/* ---------- marquee ---------- */
+.marquee:hover .marquee-inner { animation-play-state: paused; }
+
+/* ---------- copy email ---------- */
+.copy-email { flex-wrap: wrap; justify-content: flex-end; }
+.copy-email .text { color: var(--fg); transition: color 0.3s; }
+.copy-email .text:hover { color: var(--muted-fg); }
+.copy-email-btn { position: relative; min-width: 6.5rem; justify-content: center; overflow: hidden; }
+.copy-email-btn.is-copied { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.copy-email-label { display: block; animation: labelIn 0.35s var(--expo) both; }
+@keyframes labelIn {
+  from { opacity: 0; transform: translateY(0.6em); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- 404 ---------- */
+.nf-path { margin-top: 1.25rem; }
+.nf-path code { font: inherit; text-transform: none; letter-spacing: 0.05em; color: var(--fg); }
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .page { animation: none; opacity: 1; transform: none; }
+  .cta-pill, .ctl { translate: none; }
+  .copy-email-label { animation: none; opacity: 1; transform: none; }
+  .cur-label { transition: none; }
+}

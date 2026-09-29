@@ -1,8 +1,16 @@
 import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell';
+import CountUp from '../components/CountUp';
 import { ImageSlot, Ph } from '../components/Placeholder';
 import DiscoveryScatter from '../visuals/DiscoveryScatter';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
+
+const STATS: { n: number; label: string }[] = [
+  { n: 1231, label: 'registered organisations' },
+  { n: 18, label: 'categories' },
+  { n: 2, label: 'kinds of user, not one' },
+  { n: 1, label: 'match score on every result' },
+];
 
 export default function Eventully() {
   return (
@@ -19,6 +27,21 @@ export default function Eventully() {
 
       <div className="rv">
         <DiscoveryScatter />
+      </div>
+
+      <div className="stats rv">
+        <ul className="stats-grid" aria-label="Eventully by the numbers">
+          {STATS.map((s) => (
+            <li className="stat" key={s.label}>
+              <span className="stat-tick" aria-hidden="true" />
+              <span className="stat-n">
+                <CountUp value={s.n} duration={1200} />
+              </span>
+              <span className="stat-l mono-label">{s.label}</span>
+            </li>
+          ))}
+        </ul>
+        <span className="stats-src mono-label">1,231 and 18 are from the UW organisation directory Eventully indexes. The other two are design decisions.</span>
       </div>
 
       <div style={{ marginTop: '3rem' }} className="rv">

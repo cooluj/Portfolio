@@ -4,6 +4,7 @@ export type CaseStudy = {
   cat: string;
   year: string;
   sum: string;
+  thumb: { src: string; alt: string; pos?: string };
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -13,6 +14,7 @@ export const caseStudies: CaseStudy[] = [
     cat: 'Founder · Product design and build',
     year: 'Since 2024',
     sum: 'UW has over 1,200 student organisations and students still said there was nothing to do. I built the platform that fixes discovery, and testing told me it had two kinds of user, not one.',
+    thumb: { src: 'eventully-landing.webp', alt: 'Eventully landing page', pos: '0% 30%' },
   },
   {
     slug: 'superpowr',
@@ -20,6 +22,7 @@ export const caseStudies: CaseStudy[] = [
     cat: 'Product Design & Development Intern',
     year: 'Summer 2026',
     sum: 'People stalled at the front door and in the main room. I rebuilt the testing flow and landing page around where they got stuck, then shipped it with engineering.',
+    thumb: { src: 'superpowr-research-plan.webp', alt: 'Superpowr research plan on candidate drop-off', pos: '0% 0%' },
   },
   {
     slug: 'painsights',
@@ -27,6 +30,7 @@ export const caseStudies: CaseStudy[] = [
     cat: 'FigBuild · Speculative design',
     year: 'Mar 2026',
     sum: 'Pain is the one thing in medicine that is only self-reported. A clinician platform that reads it directly, so a doctor can see where it hurts and how much, even when the patient cannot say.',
+    thumb: { src: 'painsights-scan.webp', alt: 'PainSights body map after a scan, with pain regions glowing', pos: '40% 20%' },
   },
 ];
 
@@ -37,12 +41,6 @@ export const otherWork: { name: string; cat: string; desc: string; link?: string
   { name: 'Autonomous RC', cat: 'Hardware · Arduino', desc: 'RC cars and motorboats that drive themselves. Hardware and software integration where failures are loud and lessons are physical.' },
 ];
 
-export const toolkit = [
-  { n: '01', label: 'Design', items: ['Figma', 'Figma Make', 'Adobe Creative Suite', 'Prototyping', 'Design Systems', 'Information Architecture', 'Interaction Design'] },
-  { n: '02', label: 'Engineering', items: ['React', 'TypeScript', 'JavaScript', 'HTML/CSS', 'Tailwind CSS', 'Flask', 'Python', 'SQL'] },
-  { n: '03', label: 'Research & Method', items: ['User Interviews', 'Usability Testing', 'A/B Testing', 'Synthesis', 'Journey Mapping', 'Accessibility (WCAG)'] },
-  { n: '04', label: 'Tools', items: ['Git', 'Claude Code', 'Cursor', 'v0', 'Arduino / Raspberry Pi'] },
-];
 
 // Most recent first, so the strongest work is what people see before they stop scrolling.
 export const journey = [

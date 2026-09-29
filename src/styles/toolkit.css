@@ -1,0 +1,75 @@
+/* ============ Toolkit: brand-logo tiles and method chips ============ */
+.kit { margin-top: 4rem; min-width: 0; }
+.kit-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.kit-head .mono-label, .kit-sub { display: block; }
+.kit-count { color: var(--faint); letter-spacing: 0.05em; margin-left: 0.5rem; }
+.kit-toggle { padding: 0.45rem 0.9rem; }
+.kit-swatch {
+  width: 0.5rem; height: 0.5rem; border-radius: 9999px;
+  background: var(--faint); transition: background 0.3s var(--expo), transform 0.3s var(--expo);
+}
+.kit-toggle[aria-pressed='true'] .kit-swatch { background: var(--ember); transform: scale(1.3); }
+.kit-hint { margin-top: 0.75rem; min-height: 1.5em; font-size: 0.875rem; color: var(--faint); }
+
+/* ---------- tiles ---------- */
+.kit-tiles {
+  list-style: none; padding: 0; margin: 1.5rem 0 0;
+  display: grid; gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(5.75rem, 1fr));
+}
+@media (min-width: 640px) { .kit-tiles { gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); } }
+.kit-tile { min-width: 0; }
+.kit-tile-in {
+  --hover: var(--brand);
+  height: 100%; aspect-ratio: 1; min-height: 6rem; padding: 0.75rem 0.5rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;
+  border: 1px solid var(--line); border-radius: 0.5rem; background: var(--card);
+  transition: transform 0.3s var(--expo), border-color 0.3s var(--expo);
+}
+html[data-mode='light'] .kit-tile-in { --hover: var(--brand-light); }
+.kit-logo {
+  width: 1.75rem; height: 1.75rem; flex: none; fill: currentColor; color: var(--muted-fg);
+  transition: color 0.3s var(--expo), transform 0.3s var(--expo);
+}
+.kit-mono {
+  width: 1.75rem; height: 1.75rem; flex: none; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 0.25rem;
+  font-family: var(--mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em; color: var(--muted-fg);
+  transition: color 0.3s var(--expo), border-color 0.3s var(--expo), transform 0.3s var(--expo);
+}
+.kit-name {
+  font-family: var(--mono); font-size: 0.625rem; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.08em;
+  text-align: center; color: var(--muted-fg); overflow-wrap: anywhere; transition: color 0.3s var(--expo);
+}
+
+/* the "on" state: every logo in colour, no pointer needed */
+.kit[data-colour='true'] .kit-logo, .kit[data-colour='true'] .kit-mono { color: var(--hover); }
+.kit[data-colour='true'] .kit-mono { border-color: var(--hover); }
+.kit[data-colour='true'] .kit-name { color: var(--fg); }
+
+/* pointer hover: brand colour, brighter border, a 2px lift */
+@media (hover: hover) and (pointer: fine) {
+  .kit-tile-in:hover, .kit-tile-in:focus-within { transform: translateY(-2px); border-color: var(--faint); }
+  .kit-tile-in:hover .kit-logo, .kit-tile-in:focus-within .kit-logo,
+  .kit-tile-in:hover .kit-mono, .kit-tile-in:focus-within .kit-mono { color: var(--hover); transform: scale(1.1); }
+  .kit-tile-in:hover .kit-mono, .kit-tile-in:focus-within .kit-mono { border-color: var(--hover); }
+  .kit-tile-in:hover .kit-name, .kit-tile-in:focus-within .kit-name { color: var(--fg); }
+  .kit-chip:hover { border-color: var(--faint); color: var(--fg); }
+}
+
+/* ---------- methods ---------- */
+.kit-sub { margin-top: 3rem; }
+.kit-methods { list-style: none; padding: 0; margin: 1.25rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.kit-methods li { min-width: 0; }
+.kit-chip {
+  display: inline-block; border: 1px solid var(--line); border-radius: 9999px; padding: 0.45rem 0.9rem;
+  font-size: 0.875rem; line-height: 1.2; color: var(--muted-fg);
+  transition: color 0.3s var(--expo), border-color 0.3s var(--expo);
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .kit-tile-in, .kit-logo, .kit-mono, .kit-name, .kit-swatch, .kit-chip { transition: none; }
+  .kit-tile-in:hover, .kit-tile-in:focus-within, .kit-tile-in:hover .kit-logo, .kit-tile-in:hover .kit-mono,
+  .kit-toggle[aria-pressed='true'] .kit-swatch { transform: none; }
+}
