@@ -1,16 +1,14 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLab } from '../lab/LabContext';
 import { DEFAULTS, DIMENSIONS, NUMBERED, differs } from '../lab/registry';
 import { useReveal } from '../components/useReveal';
+import { useHead } from '../components/useHead';
 
 /** The numbered list of every exploration, each with a one-click Try. */
 export default function Lab() {
   const lab = useLab();
   useReveal();
-  useEffect(() => {
-    document.title = 'Design lab · Ujjawal Agrawal';
-  }, []);
+  useHead('Design lab · Ujjawal Agrawal', 'Explorations of this site: typefaces, palettes, heroes, layouts, motion, cursors and extras, switchable one at a time.');
   const changed = DIMENSIONS.filter((d) => differs(d.id, lab.sel[d.id])).length;
   let n = 0;
   return (
@@ -20,7 +18,7 @@ export default function Lab() {
       <p className="cs-lede">
         {NUMBERED.length} explorations of this site: typefaces, palettes, heroes, layouts, motion, cursors, extras.
         Press Try on any of them and the whole site changes. The default is the combination I chose; Shuffle picks one
-        at random.
+        at random. Shift+L opens the same panel on any page.
       </p>
       <div className="lab-page-actions">
         <button type="button" className="ctl" onClick={lab.shuffle}>Shuffle everything</button>

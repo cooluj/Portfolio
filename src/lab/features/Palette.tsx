@@ -2,14 +2,14 @@ import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent a
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useLab } from '../LabContext';
 import { prefersReducedMotion } from '../../components/useReveal';
-import { EMAIL, RESUME, copyText, isTyping, trapFocus } from './util';
+import { EMAIL, RESUME, copyText, trapFocus } from './util';
 
 type Action = { id: string; group: 'Go' | 'Open' | 'Do'; name: string; hint: string; keys: string; run: () => void | Promise<string | void> };
 
 const HOME_SECTIONS: [string, string][] = [['Work', '#work'], ['About', '#about'], ['Timeline', '#journey'], ['Contact', '#contact']];
 const CASES: [string, string][] = [['Eventully', 'eventully'], ['Superpowr.ai', 'superpowr'], ['PainSights', 'painsights']];
 
-/** Cmd/Ctrl+K or / opens a dialog that jumps anywhere on the site, copies the email or grabs the resume. */
+/** Cmd/Ctrl+K opens a dialog that jumps anywhere on the site, copies the email or grabs the resume. */
 export default function Palette() {
   const lab = useLab();
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function Palette() {
       ...CASES.map<Action>(([name, slug]) => ({ id: slug, group: 'Open', name: `Open ${name}`, hint: `/work/${slug}`, keys: `${name} case study project work`, run: () => navigate(`/work/${slug}`) })),
       { id: 'copy', group: 'Do', name: 'Copy email', hint: EMAIL, keys: 'mail contact address clipboard', run: async () => ((await copyText(EMAIL)) ? 'Email copied' : 'Copy failed') },
       { id: 'resume', group: 'Do', name: 'Download resume', hint: 'PDF', keys: 'cv pdf', run: () => { window.open(RESUME, '_blank', 'noopener'); } },
-      { id: 'lab', group: 'Do', name: 'Open the lab', hint: 'L', keys: 'design lab panel explore', run: () => lab.setOpen(true) },
+      { id: 'lab', group: 'Do', name: 'Open the lab', hint: 'Shift+L', keys: 'design lab panel explore', run: () => lab.setOpen(true) },
       { id: 'shuffle', group: 'Do', name: 'Shuffle the lab', hint: 'random', keys: 'random surprise', run: () => { lab.shuffle(); return 'Shuffled'; } },
       { id: 'reset', group: 'Do', name: 'Reset the lab', hint: 'defaults', keys: 'default clear', run: () => { lab.reset(); return 'Back to the defaults'; } },
     ],
@@ -78,12 +78,11 @@ export default function Palette() {
     [close],
   );
 
-  // Global opener: Cmd/Ctrl+K anywhere, / when not typing.
+  // Global opener: Cmd/Ctrl+K anywhere. No bare key, so typing a slash never opens it (WCAG 2.1.4).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const cmdK = (e.metaKey || e.ctrlKey) && !e.altKey && e.key.toLowerCase() === 'k';
-      const slash = e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey && !isTyping(e);
-      if (!cmdK && !slash) return;
+      if (!cmdK) return;
       e.preventDefault();
       setOpen((o) => {
         if (!o) returnTo.current = document.activeElement as HTMLElement | null;

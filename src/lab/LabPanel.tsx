@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLab } from './LabContext';
 import { DIMENSIONS, NUMBERED, differs } from './registry';
 
-/** Floating panel: every dimension as a radio group, features as checkboxes. Toggle with the button or the L key. */
+/** Floating panel: every dimension as a radio group, features as checkboxes. Toggle with the button or Shift+L. */
 export default function LabPanel() {
   const lab = useLab();
   const [copied, setCopied] = useState(false);
@@ -15,7 +15,8 @@ export default function LabPanel() {
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement | null;
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-      if (e.key === 'l' && !e.metaKey && !e.ctrlKey && !e.altKey) lab.setOpen(!lab.open);
+      // Shift+L, not a bare letter, so a single key press never changes the page (WCAG 2.1.4).
+      if (e.key === 'L' && e.shiftKey && !e.metaKey && !e.ctrlKey && !e.altKey) lab.setOpen(!lab.open);
       if (e.key === 'Escape' && lab.open) lab.setOpen(false);
     };
     addEventListener('keydown', onKey);
@@ -45,14 +46,21 @@ export default function LabPanel() {
 
   return (
     <>
-      <button type="button" ref={fab} className="lab-fab" aria-expanded={lab.open} aria-controls="lab-panel" onClick={() => lab.setOpen(!lab.open)}>
-        Lab{changed ? <span className="lab-fab-n">{changed}</span> : null}
-      </button>
+      <div className="lab-dock">
+        {changed > 0 && (
+          <button type="button" className="lab-fab-reset" onClick={lab.reset}>
+            Reset to my pick
+          </button>
+        )}
+        <button type="button" ref={fab} className="lab-fab" aria-expanded={lab.open} aria-controls="lab-panel" onClick={() => lab.setOpen(!lab.open)}>
+          Lab{changed ? <span className="lab-fab-n">{changed}<span className="sr-only"> changed</span></span> : null}
+        </button>
+      </div>
       <div id="lab-panel" ref={panel} className={`lab-panel${lab.open ? ' open' : ''}`} role="dialog" aria-label="Design lab" aria-hidden={!lab.open}>
         <div className="lab-head">
           <div>
             <strong>Design lab</strong>
-            <span className="lab-sub">{NUMBERED.length} things to try. Press L to toggle.</span>
+            <span className="lab-sub">{NUMBERED.length} things to try. Press Shift+L to toggle.</span>
           </div>
           <div className="lab-actions">
             <button type="button" className="ctl" onClick={lab.shuffle}>Shuffle</button>

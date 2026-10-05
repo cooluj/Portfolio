@@ -1,18 +1,20 @@
 import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell';
+import { useHead } from '../components/useHead';
 import CountUp from '../components/CountUp';
-import { ImageSlot } from '../components/Placeholder';
+import Figure from '../components/Figure';
 import DiscoveryScatter from '../visuals/DiscoveryScatter';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 
 const STATS: { n: number; label: string }[] = [
-  { n: 1231, label: 'registered organisations' },
+  { n: 1231, label: 'registered organizations' },
   { n: 18, label: 'categories' },
   { n: 2, label: 'kinds of user, not one' },
   { n: 1, label: 'match score on every result' },
 ];
 
 export default function Eventully() {
+  useHead('Eventully · Ujjawal Agrawal', 'A live campus platform indexing 1,231 UW student organizations in 18 categories, with AI search, filters and a match score on every result. Founded June 2024, built with Flask and Tailwind.');
   return (
     <article className="cs gutter">
       <CaseHeader
@@ -41,12 +43,11 @@ export default function Eventully() {
             </li>
           ))}
         </ul>
-        <span className="stats-src mono-label">1,231 and 18 are from the UW organisation directory Eventully indexes. The other two are design decisions.</span>
+        <span className="stats-src mono-label">1,231 and 18 are from the UW organization directory Eventully indexes. The other two are design decisions.</span>
       </div>
 
       <div style={{ marginTop: '3rem' }} className="rv">
-        <ImageSlot
-          need="hero screenshot of Eventully"
+        <Figure
           src={img('eventully-landing.webp')}
           alt="Eventully landing page: the headline Find Your People, Run Your Club, beside a preview of an AI search result and a club with a match score"
           caption="The Eventully landing page."
@@ -56,7 +57,7 @@ export default function Eventully() {
       <Block n="01" title="The problem">
         <div className="prose">
           <p>
-            The University of Washington has <strong>over 1,200 registered student organisations</strong>, and
+            The University of Washington has <strong>1,231 registered student organizations</strong>, and
             students still said there was nothing to do.
           </p>
           <p>
@@ -78,20 +79,21 @@ export default function Eventully() {
           </p>
         </div>
         <div className="cs-figs">
-          <ImageSlot
-            need="screenshot of the AI-only search version"
-            src={img('eventully-ai-v1.webp')}
-            alt="Early Eventully with a single empty AI search box and no other way in"
-            caption="Version one. One box, and nothing to react to. Illustrated reconstruction; the v1 was never archived."
-          />
+          <figure className="cs-fig">
+            <div className="v1-mock" role="img" aria-label="A single empty search box reading Ask for a club, and nothing else on the page">
+              <div className="v1-mock-input">Ask for a club...</div>
+            </div>
+            <figcaption>Version one: one box, nothing to react to. Mock of the first prototype, which was never deployed.</figcaption>
+          </figure>
         </div>
       </Block>
 
       <Block n="03" title="Two users, not one">
         <div className="prose">
           <p>
-            So I ran an A/B test, and it showed I had two different users, not one. People who arrive knowing what
-            they want, and people who only know the feeling they're after.
+            So I ran an A/B test: the AI-only search against a version with filters plus AI. It showed I had two
+            different users, not one. People who arrive knowing what they want, and people who only know the
+            feeling they're after. No figures from the test are published here.
           </p>
           <p>
             Rather than picking a winner, I served both: filters for the first group, AI search for the second, and a{' '}
@@ -130,39 +132,22 @@ export default function Eventully() {
         </div>
 
         <div className="cs-figs">
-          <ImageSlot
-            need="club directory with filters"
+          <Figure
             src={img('eventully-directory.webp')}
             alt="Eventully club directory listing 1,231 clubs, with category, status and sort filters above the results"
             caption="The filter path: every club, narrowed by category, status and sort."
-          />
-        </div>
-        <div className="cs-figs two">
-          <ImageSlot
-            need="recommendations screen with the match score visible"
-            src={img('eventully-recs.webp')}
-            alt="Eventully AI search preview on the live site, showing a 91% match score on a club result"
-            caption="A 91% match on the live homepage's search preview. The full personalised search needs an account."
-          />
-          <ImageSlot
-            need="A/B test notes or results"
-            src={img('eventully-ab-test.webp')}
-            alt="Diagram of the A/B test: AI-only search versus a hybrid of filters plus AI, and the three things measured"
-            caption="The test that split one user into two. Diagram only; no measured figures are shown."
           />
         </div>
       </Block>
 
       <Block n="04" title="The outcome">
         <div className="cs-figs two" style={{ marginTop: 0, marginBottom: '2.5rem' }}>
-          <ImageSlot
-            need="earlier Eventully design"
+          <Figure
             src={img('eventully-earlier.webp')}
             alt="An earlier Eventully landing page in cream and gold: UW has 1231 clubs, Eventully finds yours, with a three-step sample route explaining how clubs are scored"
             caption="Earlier: the first full rebuild, July 2026."
           />
-          <ImageSlot
-            need="current Eventully design"
+          <Figure
             src={img('eventully-landing.webp')}
             alt="The current Eventully landing page: Find Your People, Run Your Club, with an AI search preview and a club match score"
             caption="Now: the design live at eventully.org."
@@ -170,20 +155,16 @@ export default function Eventully() {
         </div>
         <div className="prose">
           <p>
-            A deployed product covering the full body of campus organisations, used by real students, with search
-            behaviour driven by testing rather than assumption.
-          </p>
-          <p>
-            I only publish numbers I can back up, so there are no usage figures here. What I stand behind is
-            the product itself: live, indexing all 1,231 organisations end to end, with its search behaviour
-            traceable to testing rather than assumption.
+            A deployed product covering every campus organization, with search behavior shaped by testing rather
+            than assumption. I only publish numbers I can back up, so there are no usage figures here. What I
+            stand behind is the product itself: live at eventully.org, indexing all 1,231 organizations end to end.
           </p>
         </div>
       </Block>
 
       <Reflection>
         The AI-only version was the more impressive demo and the worse product. The
-        right call was recognising two user segments and refusing to sacrifice either one.
+        right call was recognizing two user segments and refusing to sacrifice either one.
       </Reflection>
 
       <NextCase slug="eventully" />

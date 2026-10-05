@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import CopyEmail from '../components/CopyEmail';
+import { useHead } from '../components/useHead';
 import Toolkit from '../components/Toolkit';
 import { useReveal } from '../components/useReveal';
 import { otherWork } from '../data/work';
@@ -11,9 +11,7 @@ const RESUME = `${import.meta.env.BASE_URL}Ujjawal-Agrawal-Resume.pdf`;
 
 export default function Home() {
   useReveal();
-  useEffect(() => {
-    document.title = 'Ujjawal Agrawal · Designer who builds';
-  }, []);
+  useHead('Ujjawal Agrawal · Designer who builds', 'Product designer in Seattle who writes the front-end. Eventully, Superpowr.ai and PainSights case studies.');
 
   return (
     <>
@@ -65,8 +63,9 @@ export default function Home() {
             </p>
             <p>
               I study Human Centered Design & Engineering at the University of Washington, with a minor in Business
-              Management, on the Dean’s List, graduating June 2027. Before Superpowr and Eventully: UX research at UW
-              on a peer-reviewed publication, and data and UX research at Pathways Bloodworks.
+              Management, on the Dean’s List, graduating June 2027. Alongside Eventully: data and UX research at
+              Pathways Bloodworks in 2024, then UX research at UW on a peer-reviewed publication in 2025, and the
+              Superpowr.ai redesign in 2026.
             </p>
             <dl className="hm-facts">
               <div><dt>Based in</dt><dd>Seattle, WA</dd></div>
@@ -76,7 +75,13 @@ export default function Home() {
             </dl>
           </div>
           <div className="hm-portrait rv">
-            <img src={img('portrait-kerry-park.webp')} alt="Ujjawal Agrawal in a dark blazer at sunset, with the Seattle skyline behind him" loading="lazy" />
+            <img
+              src={img('portrait-kerry-park.webp')}
+              srcSet={`${img('portrait-kerry-park-320.webp')} 320w, ${img('portrait-kerry-park-640.webp')} 640w, ${img('portrait-kerry-park.webp')} 1320w`}
+              sizes="(min-width: 900px) 22rem, 100vw"
+              alt="Ujjawal Agrawal in a dark blazer at sunset, with the Seattle skyline behind him"
+              loading="lazy"
+            />
           </div>
         </div>
         <ul className="hm-photos rv" aria-label="Photos">

@@ -28,4 +28,19 @@ To make an option the default, change `DEFAULTS` in `src/lab/registry.ts`.
 Hosted free on GitHub Pages from the `docs/` folder, at https://cooluj.github.io/Portfolio/.
 After changing anything, run `npm run build && npm run build:pages` and commit `docs/`.
 `vercel.json` covers Vercel too.
-Missing assets are listed in [NEEDED.md](NEEDED.md).
+
+## Provenance
+
+What each figure on the site is. Captures are screenshots of the real thing; mocks are built in JSX and CSS and say so in their caption.
+
+- Eventully landing page and club directory (`eventully-landing.webp`, `eventully-directory.webp`): captures from a local run of the Eventully codebase.
+- Eventully earlier design (`eventully-earlier.webp`): capture of the July 2026 rebuild, from the project's git history.
+- Eventully version one search box: mock, built in JSX and CSS on the case page. The first prototype was never deployed.
+- Eventully "two paths" diagram and discovery scatter: in-page components, not captures.
+- Superpowr landing page before (`superpowr-landing-before.webp`): capture from the Wayback Machine archive of superpowr.ai, April 2026.
+- Superpowr landing page after and dark mode (`superpowr-landing-after.webp`, `superpowr-dark.webp`): captures of the live superpowr.ai.
+- Superpowr research plan (`superpowr-research-plan.webp`): export of deliverable 01 from the Superpowr Figma file. Participant counts in it are placeholders.
+- PainSights scan result and patient queue (`painsights-scan.webp`, `painsights-queue.webp`): captures from the Figma prototype.
+- PainSights EEG prop and team photo (`painsights-eeg.webp`, `painsights-team.webp`): photos from FigBuild 2026.
+- PainSights body map and caseload: in-page mocks with illustrative readings, labeled as such.
+- Portrait and photos on the home page: photos of Ujjawal.

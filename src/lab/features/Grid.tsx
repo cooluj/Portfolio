@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { isPlain } from './util';
+import { dialogOpen, singleKeysOn } from './Shortcuts';
 
 const DOUBLE_MS = 600;
 const COLS = Array.from({ length: 12 }, (_, i) => i + 1);
@@ -22,6 +23,7 @@ export default function Grid() {
   useEffect(() => {
     let last = 0;
     const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape' && (!singleKeysOn() || dialogOpen())) return;
       if (e.key === 'Escape') setOn(false);
       if (e.key !== 'g' || !isPlain(e)) return;
       const now = performance.now();

@@ -7,17 +7,41 @@ import { isPlain, trapFocus } from './util';
 const CHORD_MS = 1200;
 const JUMPS: Record<string, [string, string]> = { w: ['Work', '#work'], a: ['About', '#about'], t: ['Timeline', '#journey'], c: ['Contact', '#contact'] };
 
-/** g then w, a, t, c jumps to a home section; g then l opens the lab page; ? lists everything. */
+/** The persisted off switch for single-key shortcuts (WCAG 2.1.4). On unless the visitor turned it off. */
+export const KEYS_KEY = 'ua-keys';
+export function singleKeysOn(): boolean {
+  try {
+    return localStorage.getItem(KEYS_KEY) !== 'off';
+  } catch {
+    return true;
+  }
+}
+function storeKeys(on: boolean) {
+  try {
+    if (on) localStorage.removeItem(KEYS_KEY);
+    else localStorage.setItem(KEYS_KEY, 'off');
+  } catch {
+    /* storage blocked */
+  }
+}
+
+/** True while something modal is up: the menu, the lab panel or the command palette. Single keys stay quiet then. */
+export const dialogOpen = () => !!document.querySelector('#menu.open, .lab-panel.open, .ft-pal-scrim');
+
+/** g then w, a, t, c jumps to a home section; g then l opens the lab page; ? lists everything and holds the off switch. */
 export default function Shortcuts() {
   const lab = useLab();
   const navigate = useNavigate();
   const { pathname, hash } = useLocation();
   const [pending, setPending] = useState(false);
   const [help, setHelp] = useState(false);
+  const [keys, setKeys] = useState(singleKeysOn);
   const dialog = useRef<HTMLDivElement>(null);
   const returnTo = useRef<HTMLElement | null>(null);
   const loc = useRef({ pathname, hash });
   loc.current = { pathname, hash };
+  const live = useRef({ help, keys });
+  live.current = { help, keys };
 
   useEffect(() => {
     let timer = 0;
@@ -27,18 +51,25 @@ export default function Shortcuts() {
       clearTimeout(timer);
       setPending(false);
     };
-    // Capture phase so the g-l chord can stop the lab panel's own L toggle from also firing.
+    // Capture phase so the g-l chord can stop the lab panel's own Shift+L toggle from also firing.
     const onKey = (e: KeyboardEvent) => {
       if (!isPlain(e)) return;
+      if (e.key === 'Escape') {
+        disarm();
+        return;
+      }
+      // ? needs Shift, so it stays on even when single keys are off; it is the way back to the switch.
       if (e.key === '?') {
+        if (dialogOpen()) return;
         e.preventDefault();
-        returnTo.current = document.activeElement as HTMLElement | null;
+        if (!live.current.help) returnTo.current = document.activeElement as HTMLElement | null;
         setHelp((h) => !h);
         disarm();
         return;
       }
-      if (e.key === 'Escape') {
-        disarm();
+      // Single keys do nothing while switched off or while any dialog (menu, lab panel, palette, this sheet) is open.
+      if (!live.current.keys || live.current.help || dialogOpen()) {
+        if (armed) disarm();
         return;
       }
       if (!armed) {
@@ -97,15 +128,20 @@ export default function Shortcuts() {
     };
   }, [help]);
 
+  const setSingleKeys = (on: boolean) => {
+    setKeys(on);
+    storeKeys(on);
+  };
+
   const rows: [string[], string][] = [
     [['g', 'w'], 'Work'],
     [['g', 'a'], 'About'],
     [['g', 't'], 'Timeline'],
     [['g', 'c'], 'Contact'],
     [['g', 'l'], 'The lab page'],
-    [['L'], 'Lab panel'],
+    [['Shift', 'L'], 'Lab panel'],
   ];
-  if (lab.has('palette')) rows.push([['Cmd', 'K'], 'Command palette'], [['/'], 'Command palette']);
+  if (lab.has('palette')) rows.push([['Cmd', 'K'], 'Command palette']);
   if (lab.has('inspect')) rows.push([['i'], 'Inspect mode']);
   if (lab.has('grid')) rows.push([['g', 'g'], 'Layout grid']);
   rows.push([['?'], 'This list'], [['esc'], 'Close anything']);
@@ -130,7 +166,13 @@ export default function Shortcuts() {
                 </div>
               ))}
             </dl>
-            <p className="ft-help-note">Chords are typed one key after the other, the way Gmail and GitHub do it.</p>
+            <label className="ft-help-switch">
+              <input type="checkbox" checked={keys} onChange={(e) => setSingleKeys(e.target.checked)} />
+              Single-key shortcuts
+            </label>
+            <p className="ft-help-note">
+              Chords are typed one key after the other, the way Gmail and GitHub do it. Switched off, the g chords stay quiet; ? and Shift+L keep working, and the choice is remembered on this device.
+            </p>
           </div>
         </div>
       )}

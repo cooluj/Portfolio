@@ -12,7 +12,7 @@ const site = 'https://cooluj.github.io/Portfolio/';
 const lines = [];
 lines.push('# Design lab: every exploration, numbered');
 lines.push('');
-lines.push(`${NUMBERED.length} things to try on the live site. Open ${site}lab, or press **L** anywhere on the site, or append \`?lab=dim:id\` to any URL (several: \`?lab=type:fraunces,theme:paper,hero:kinetic\`). The default of each dimension is my current pick; everything else is one click away. Features stack: turn on as many as you like.`);
+lines.push(`${NUMBERED.length} things to try on the live site. Open ${site}lab, or press **Shift+L** anywhere on the site, or append \`?lab=dim:id\` to any URL (several: \`?lab=type:fraunces,theme:paper,hero:kinetic\`). The default of each dimension is my current pick; everything else is one click away. Features stack: turn on as many as you like.`);
 lines.push('');
 let n = 0;
 for (const d of DIMENSIONS) {

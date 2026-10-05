@@ -174,8 +174,8 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'features', name: 'Extras', desc: 'Toggle any number of these on.', multi: true,
     options: [
-      { id: 'palette', name: 'Command palette', desc: 'Press Cmd/Ctrl+K or / to jump anywhere, copy the email or grab the resume.' },
-      { id: 'shortcuts', name: 'Keyboard shortcuts', desc: 'g then w, a, t, c to jump; ? shows the list.' },
+      { id: 'palette', name: 'Command palette', desc: 'Press Cmd/Ctrl+K to jump anywhere, copy the email or grab the resume.' },
+      { id: 'shortcuts', name: 'Keyboard shortcuts', desc: 'g then w, a, t, c to jump. ? opens the list, with a switch that turns single keys off.' },
       { id: 'inspect', name: 'Inspect mode', desc: 'Press i: outlines every section with its name and shows the grid, the way a builder sees it.' },
       { id: 'konami', name: 'Konami code', desc: 'Up up down down left right left right b a. Something happens.' },
       { id: 'tabtitle', name: 'Tab title', desc: 'When you leave the tab, the title asks you back.' },
@@ -193,7 +193,7 @@ export const DIMENSIONS: Dimension[] = [
 export const DEFAULTS: Record<string, string> = {
   type: 'schibsted', theme: 'void', texture: 'grain', hero: 'columns', work: 'stack', transition: 'fade',
   reveal: 'mask', images: 'plain', cursor: 'trail', layout: 'wide', copy: 'current', case: 'default',
-  features: 'palette shortcuts progress tabtitle print clock konami',
+  features: 'palette progress tabtitle print clock konami',
 };
 
 /** True when a selection is not the default; feature sets compare as sets, whatever their order. */

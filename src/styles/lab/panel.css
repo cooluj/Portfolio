@@ -7,6 +7,17 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 .lab-fab:hover { border-color: var(--fg); }
+/* an outline, not a shadow, so the component shadow and the theme override cannot hide the focus ring */
+.lab-fab:focus-visible, .lab-fab-reset:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35); }
+.lab-dock { position: fixed; right: 1rem; bottom: 1rem; z-index: 400; display: flex; align-items: center; gap: 0.5rem; }
+.lab-dock .lab-fab { position: static; }
+.lab-fab-reset {
+  display: inline-flex; align-items: center; min-height: 2.5rem;
+  border: 1px solid var(--line); border-radius: 9999px; background: var(--bg); color: var(--muted-fg);
+  padding: 0.6rem 0.9rem; font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+.lab-fab-reset:hover { color: var(--fg); border-color: var(--fg); }
 .lab-fab-n { display: inline-grid; place-items: center; min-width: 1.25rem; height: 1.25rem; border-radius: 9999px; background: var(--ember); color: #0a0a0a; font-size: 0.6875rem; padding-inline: 0.3rem; }
 
 .lab-panel {
@@ -61,8 +72,8 @@
 .lab-try[aria-pressed='true'] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 
 @media (prefers-reduced-motion: reduce) { .lab-panel { transition: none; } }
-#menu.open ~ .lab-fab, #menu.open ~ .lab-panel { visibility: hidden; }
-@media print { .lab-fab, .lab-panel { display: none; } }
+#menu.open ~ .lab-dock, #menu.open ~ .lab-panel { visibility: hidden; }
+@media print { .lab-dock, .lab-fab, .lab-panel { display: none; } }
 
 /* /lab page: jump links and the applied-changes bar */
 .lab-jump { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; margin-top: 1.5rem; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }

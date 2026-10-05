@@ -1,4 +1,4 @@
-/* ============ Content pass: placeholders, work index, case studies ============ */
+/* ============ Content pass: work index, case studies ============ */
 
 /* ---------- light mode (used by the Superpowr case study toggle) ---------- */
 html[data-mode='light'] {
@@ -16,34 +16,6 @@ html[data-mode='light'] {
 html[data-mode='light'] #header.scrolled:not(.menu-open) { background: rgba(244, 243, 239, 0.85); }
 html[data-mode='light'] ::selection { background: #111; color: #f4f3ef; }
 html { transition: background 0.4s; }
-
-/* ---------- placeholders: loud on purpose so they never ship by accident ---------- */
-.ph {
-  display: inline-block;
-  background: #ffe600;
-  color: #000;
-  border: 2px dashed #000;
-  outline: 2px solid #ffe600;
-  padding: 0.15rem 0.5rem;
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  font-style: normal;
-}
-.ph-block {
-  display: flex; align-items: center; justify-content: center;
-  width: 100%;
-  background: repeating-linear-gradient(-45deg, #ffe600 0 14px, #f5d800 14px 28px);
-  color: #000;
-  border: 3px dashed #000;
-  padding: 1.5rem;
-  text-align: center;
-  font-family: var(--mono); font-size: 0.875rem; font-weight: 700; line-height: 1.6;
-}
-.ph-block span { background: #ffe600; padding: 0.25rem 0.5rem; max-width: 40ch; }
 
 /* ---------- home: work index ---------- */
 .cs-index { margin-top: 4rem; display: flex; flex-direction: column; }
@@ -138,6 +110,19 @@ html { transition: background 0.4s; }
 .cs-fig figcaption { margin-top: 0.75rem; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--muted-fg); line-height: 1.6; }
 .cs-fig img { display: block; width: 100%; border-radius: 0.5rem; border: 1px solid var(--line); }
 
+/* ---------- Eventully: version-one mock (JSX and CSS, not a capture) ---------- */
+.v1-mock {
+  display: grid; place-items: center;
+  min-height: 15rem; max-height: 420px; padding: 2rem 1.25rem;
+  background: var(--card); border: 1px solid var(--line); border-radius: 0.5rem;
+}
+.v1-mock-input {
+  width: min(100%, 28rem);
+  padding: 0.8rem 1rem;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 0.375rem;
+  font-family: var(--mono); font-size: 0.875rem; letter-spacing: 0.02em; color: var(--faint);
+}
+
 .cs-reflect {
   padding-block: 5rem; border-top: 1px solid var(--line);
 }
@@ -194,9 +179,7 @@ html { transition: background 0.4s; }
 .ba { margin-top: 2.5rem; }
 .ba-frame { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 0.625rem; border: 1px solid var(--line); }
 .ba-layer { position: absolute; inset: 0; }
-.ba-layer .ph-block { height: 100%; }
 .ba-after { clip-path: inset(0 0 0 var(--pos)); }
-.ba-after .ph-block { background: repeating-linear-gradient(45deg, #ffe600 0 14px, #ffd400 14px 28px); }
 .ba-line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 3px; translate: -50% 0; background: #000; pointer-events: none; }
 .ba-line::after {
   content: ''; position: absolute; top: 50%; left: 50%; translate: -50% -50%;
@@ -294,10 +277,6 @@ html { transition: background 0.4s; }
   .match-card { position: static; translate: none; width: auto; margin: 0 1rem 1rem; }
   .match-card:not(.on) { display: none; }
 }
-.ba-before .ph-block { justify-content: flex-start; align-items: flex-end; }
-.ba-after .ph-block { justify-content: flex-end; align-items: flex-end; }
-.ba-layer .ph-block span { max-width: 42%; }
-@media (max-width: 600px) { .ba-layer .ph-block { font-size: 0.6875rem; padding: 0.75rem; } }
 
 /* ---------- photos ---------- */
 .tile.photo { opacity: 0.8; background: var(--card); border: 1px solid var(--line-50); }

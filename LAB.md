@@ -1,6 +1,6 @@
 # Design lab: every exploration, numbered
 
-115 things to try on the live site. Open https://cooluj.github.io/Portfolio/lab, or press **L** anywhere on the site, or append `?lab=dim:id` to any URL (several: `?lab=type:fraunces,theme:paper,hero:kinetic`). The default of each dimension is my current pick; everything else is one click away. Features stack: turn on as many as you like.
+115 things to try on the live site. Open https://cooluj.github.io/Portfolio/lab, or press **Shift+L** anywhere on the site, or append `?lab=dim:id` to any URL (several: `?lab=type:fraunces,theme:paper,hero:kinetic`). The default of each dimension is my current pick; everything else is one click away. Features stack: turn on as many as you like.
 
 ## Typography
 
@@ -169,8 +169,8 @@ The layout of the three case studies.
 
 Toggle any number of these on. Multi-select.
 
-104. **Command palette** **(on by default)**: Press Cmd/Ctrl+K or / to jump anywhere, copy the email or grab the resume. [Try](https://cooluj.github.io/Portfolio/?lab=features:palette)
-105. **Keyboard shortcuts** **(on by default)**: g then w, a, t, c to jump; ? shows the list. [Try](https://cooluj.github.io/Portfolio/?lab=features:shortcuts)
+104. **Command palette** **(on by default)**: Press Cmd/Ctrl+K to jump anywhere, copy the email or grab the resume. [Try](https://cooluj.github.io/Portfolio/?lab=features:palette)
+105. **Keyboard shortcuts**: g then w, a, t, c to jump. ? opens the list, with a switch that turns single keys off. [Try](https://cooluj.github.io/Portfolio/?lab=features:shortcuts)
 106. **Inspect mode**: Press i: outlines every section with its name and shows the grid, the way a builder sees it. [Try](https://cooluj.github.io/Portfolio/?lab=features:inspect)
 107. **Konami code** **(on by default)**: Up up down down left right left right b a. Something happens. [Try](https://cooluj.github.io/Portfolio/?lab=features:konami)
 108. **Tab title** **(on by default)**: When you leave the tab, the title asks you back. [Try](https://cooluj.github.io/Portfolio/?lab=features:tabtitle)

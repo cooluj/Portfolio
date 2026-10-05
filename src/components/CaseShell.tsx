@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import { Fragment, useState, type CSSProperties, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { caseStudies, type CaseStudy } from '../data/work';
 import { prefersReducedMotion, useReveal } from './useReveal';
@@ -47,9 +47,6 @@ export function CaseHeader({ slug, lede, meta }: HeaderProps) {
   const i = caseStudies.findIndex((c) => c.slug === slug);
   const c = caseStudies[i];
   const [still] = useState(() => prefersReducedMotion());
-  useEffect(() => {
-    document.title = `${c.title} · Ujjawal Agrawal`;
-  }, [c.title]);
   const num = String(i + 1).padStart(2, '0');
   const total = String(caseStudies.length).padStart(2, '0');
   const letters = c.title.replace(/ /g, '').length;

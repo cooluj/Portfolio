@@ -13,7 +13,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Eventully',
     cat: 'Founder · Product design and build',
     year: 'Since 2024',
-    sum: 'UW has over 1,200 student organisations and students still said there was nothing to do. I built the platform that fixes discovery, and testing told me it had two kinds of user, not one.',
+    sum: 'UW has 1,231 student organizations and students still said there was nothing to do. I built the platform that fixes discovery, and testing told me it had two kinds of user, not one.',
     thumb: { src: 'eventully-landing.webp', alt: 'Eventully landing page', pos: '0% 30%' },
   },
   {
@@ -22,7 +22,7 @@ export const caseStudies: CaseStudy[] = [
     cat: 'Product Design & Development Intern',
     year: 'Summer 2026',
     sum: 'People stalled at the front door and in the main room. I rebuilt the testing flow and landing page around where they got stuck, then shipped it with engineering.',
-    thumb: { src: 'superpowr-research-plan.webp', alt: 'Superpowr research plan on candidate drop-off', pos: '0% 0%' },
+    thumb: { src: 'superpowr-dark.webp', alt: 'The Superpowr landing page in dark mode', pos: '50% 30%' },
   },
   {
     slug: 'painsights',
@@ -45,10 +45,10 @@ export const otherWork: { name: string; cat: string; desc: string; link?: string
 // Most recent first, so the strongest work is what people see before they stop scrolling.
 export const journey = [
   { n: '01', year: '2026', body: 'Product Design & Development intern at Superpowr.ai, June to September: led the redesign of an AI-powered career-discovery platform and shipped it as production front-end with the team. Rebuilt and launched Eventully at eventully.org. Designed PainSights at FigBuild, Figma’s student design-a-thon, and ArtisanCrafts for the IBM UX Design Capstone.', tags: ['Superpowr.ai', 'Eventully', 'FigBuild'] },
-  { n: '02', year: '2025', body: 'UX Research Assistant at UW, March to August: synthesised findings from 100+ studies on mental health and resilience in high-performance aviation, and turned them into data visualisations for a peer-reviewed publication.', tags: ['Research', 'Data visualisation'] },
+  { n: '02', year: '2025', body: 'UX Research Assistant at UW, March to August: synthesized findings from 100+ studies on mental health and resilience in high-performance aviation, and turned them into data visualizations for a peer-reviewed publication.', tags: ['Research', 'Data visualization'] },
   { n: '03', year: '2024', body: 'Founded Eventully in June. Data & UX Research intern at Pathways Bloodworks: mapped the donor journey, built dashboards that exposed retention drop-off, and ran segmentation in Python and SQL for campaigns tied to a 35% increase in donor turnout.', tags: ['Founder', 'Python', 'SQL'] },
   { n: '04', year: '2023', body: 'Started at UW in HCDE. Learned research methods and began pairing them with front-end code instead of treating them as separate skills. Joined the Autonomous Vehicle team: Arduino, Raspberry Pi, hardware that fails loudly.', tags: ['HCDE', 'Figma', 'Arduino'] },
-  { n: '05', year: '2022', body: 'First real exposure to building things. Fundamentals, logic, and the realisation that I liked making the thing more than talking about it.', tags: ['Foundations'] },
+  { n: '05', year: '2022', body: 'First real exposure to building things. Fundamentals, logic, and the realization that I liked making the thing more than talking about it.', tags: ['Foundations'] },
 ];
 
 export const marqueeWords = [

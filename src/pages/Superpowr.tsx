@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState, type MouseEvent } from 'react';
 import { flushSync } from 'react-dom';
 import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell';
-import { ImageSlot } from '../components/Placeholder';
+import { useHead } from '../components/useHead';
+import Figure from '../components/Figure';
 import { prefersReducedMotion } from '../components/useReveal';
 import BeforeAfter from '../visuals/BeforeAfter';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
+const SITE = 'https://superpowr.ai';
 
 type Theme = 'dark' | 'light';
 const KEY = 'ua-superpowr-theme';
@@ -70,7 +72,7 @@ function ThemeSwitch({ theme, switchTheme }: { theme: Theme; switchTheme: (t: Th
     switchTheme(t, r.left + r.width / 2, r.top + r.height / 2);
   };
   return (
-    <div className="theme-dock rv" role="group" aria-label="Page colour mode">
+    <div className="theme-dock rv" role="group" aria-label="Page color mode">
       <p>
         This page has both modes too. Switch it and read the rest in either.
       </p>
@@ -84,6 +86,7 @@ function ThemeSwitch({ theme, switchTheme }: { theme: Theme; switchTheme: (t: Th
 }
 
 export default function Superpowr() {
+  useHead('Superpowr.ai · Ujjawal Agrawal', 'The end-to-end redesign I led as Product Design & Development Intern, shipped as the production front-end with light and dark modes and WCAG accessibility.');
   const [theme, switchTheme] = useCaseTheme();
   return (
     <article className="cs gutter">
@@ -93,7 +96,7 @@ export default function Superpowr() {
         meta={[
           { k: 'Role', v: 'Product Design & Development Intern' },
           { k: 'Time', v: 'June to September 2026, full time' },
-          { k: 'Status', v: 'Shipped to production' },
+          { k: 'Status', v: <>Shipped to production at <a href={SITE} target="_blank" rel="noopener noreferrer">superpowr.ai</a></> },
         ]}
       />
 
@@ -123,71 +126,68 @@ export default function Superpowr() {
         <div className="prose">
           <p>
             Rather than a visual refresh, I rebuilt the experience around <strong>where people were actually getting
-            stuck</strong>. I redesigned the testing flow so users could get through it without hitting a wall, and
-            rebuilt the landing page so the product's value was clear before anyone signed up.
+            stuck</strong>.
+          </p>
+          <p>
+            The old testing flow was the main room people stalled in: the one thing the product exists to do, and
+            the flow they could not get through. I rebuilt it around the points where people got stuck, so a user
+            could reach the end without hitting a wall, and rebuilt the landing page so the product's value was
+            clear before anyone signed up. The old flow is not publicly archived and the new one needs an account,
+            so there is no side-by-side of it here.
           </p>
           <p>
             I owned the information architecture, user flows, wireframes and high-fidelity interfaces, plus the
             motion concepts for a scroll-driven product experience. The research started from one question: at
             which step does the ten-minute assessment promise stop being believed?
           </p>
-        </div>
-        <div className="cs-figs">
-          <ImageSlot
-            need="research plan"
-            src={img('superpowr-research-plan.webp')}
-            alt="Superpowr research plan titled Why candidates stop mid-battery, with background, objectives, four research questions, a methods table, a six-week timeline and planned outputs"
-            caption="The research plan behind the testing-flow work: why candidates stop mid-assessment. Figures in the plan are illustrative."
-          />
-        </div>
-        <BeforeAfter
-          label="Compare testing flow"
-          before={{ need: 'old testing flow screenshot', alt: 'The original Superpowr testing flow', src: img('superpowr-testing-before.webp') }}
-          after={{ need: 'new testing flow screenshot', alt: 'The redesigned Superpowr testing flow', src: img('superpowr-testing-after.webp') }}
-          caption="Testing flow, illustrated reconstruction. Drag the slider, or focus it and use the arrow keys."
-        />
-        <BeforeAfter
-          label="Compare landing page"
-          before={{ need: 'old landing page screenshot', alt: 'The original Superpowr landing page', src: img('superpowr-landing-before.webp') }}
-          after={{ need: 'new landing page screenshot', alt: 'The rebuilt Superpowr landing page', src: img('superpowr-landing-after.webp') }}
-          caption="Landing page, before and after: archived April 2026 versus the redesign."
-        />
-      </Block>
-
-      <Block n="03" title="Brand, modes, access">
-        <div className="prose">
-          <p>
-            Alongside that I led the branding redesign, shipped light and dark modes, and brought the interface up to
-            WCAG accessibility standards so every interactive element was <strong>reachable and usable, not just
-            present</strong>.
-          </p>
-        </div>
-        <div className="cs-figs">
-          <ImageSlot need="brand system overview" src={img('superpowr-brand.webp')} alt="Superpowr brand system: logo, type and colour" caption="The brand system, reconstructed from the shipped site." />
-        </div>
-        <div className="cs-figs two">
-          <ImageSlot need="light mode screen" src={img('superpowr-light.webp')} alt="Superpowr interface in light mode" caption="Light mode, captured from the live site." />
-          <ImageSlot need="dark mode screen" src={img('superpowr-dark.webp')} alt="Superpowr interface in dark mode" caption="Dark mode, captured from the live site." />
-        </div>
-      </Block>
-
-      <Block n="04" title="Working with engineering">
-        <div className="prose">
           <p>
             I worked directly alongside the engineering team through implementation. Not handing off mockups, but
             building with them until it shipped.
           </p>
         </div>
+        <BeforeAfter
+          label="Compare landing page"
+          before={{ alt: 'The original Superpowr landing page', src: img('superpowr-landing-before.webp') }}
+          after={{ alt: 'The rebuilt Superpowr landing page', src: img('superpowr-landing-after.webp') }}
+          caption="Landing page, before and after: archived April 2026 versus the redesign, live today."
+        />
+        <div className="cs-figs">
+          <Figure
+            src={img('superpowr-research-plan.webp')}
+            alt="Superpowr research plan titled Why candidates stop mid-battery, with background, objectives, four research questions, a methods table, a six-week timeline and planned outputs"
+            caption="The research plan from my deliverables file. Participant counts in it are placeholders."
+          />
+        </div>
       </Block>
 
-      <Block n="05" title="The outcome">
+      <Block n="03" title="Modes and access">
         <div className="prose">
-          <p>The redesign shipped to production. A live product people use, not a Figma file.</p>
+          <p>
+            Alongside that I shipped light and dark modes, and brought the interface up to WCAG accessibility
+            standards so every interactive element was <strong>reachable and usable, not just present</strong>.
+          </p>
+        </div>
+        <div className="cs-figs">
+          <Figure
+            src={img('superpowr-dark.webp')}
+            alt="The Superpowr landing page in dark mode: Hire the right people faster, with a fingerprint match card"
+            caption="Dark mode, captured from the live site. Switch this page to see both."
+          />
+        </div>
+      </Block>
+
+      <Block n="04" title="The outcome">
+        <div className="prose">
+          <p>
+            The redesign shipped to production and is live at{' '}
+            <a href={SITE} target="_blank" rel="noopener noreferrer">superpowr.ai</a>. A product people use, not a
+            Figma file.
+          </p>
           <p>
             The internship's metrics are not mine to publish, so there are no lift percentages here. What
             shipped is the evidence: the rebuilt testing flow and landing page are the production site today.
-            The landing page comparison and the light and dark screens above are captured from the live
-            product; the testing flow comparison is a labelled reconstruction.
+            The landing page comparison and the dark mode screen above are captured from the live product; the
+            research plan is from my deliverables file.
           </p>
         </div>
       </Block>

@@ -89,6 +89,8 @@ button.ft-kbd:hover { color: var(--fg); border-color: var(--fg); }
 .ft-help-list > div { display: grid; grid-template-columns: 7rem 1fr; align-items: center; gap: 1rem; padding: 0.5rem 0; border-top: 1px solid var(--line-50); }
 .ft-help-list dt { display: flex; gap: 0.3rem; }
 .ft-help-list dd { font-size: 0.875rem; color: var(--muted-fg); }
+.ft-help-switch { display: flex; align-items: center; gap: 0.6rem; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--line-50); font-size: 0.875rem; cursor: pointer; }
+.ft-help-switch input { width: 1rem; height: 1rem; margin: 0; accent-color: var(--ember); cursor: pointer; }
 .ft-help-note { margin-top: 1rem; font-family: var(--mono); font-size: 0.6875rem; line-height: 1.5; letter-spacing: 0.03em; color: var(--faint); }
 
 /* ---------- inspect mode ---------- */
@@ -214,6 +216,12 @@ html.ft-konami .wordmark::after {
   html[data-l-features~='print'] .hm-sec-head h2 { font-size: 11pt !important; text-transform: uppercase; letter-spacing: 0.08em; }
   html[data-l-features~='print'] .hm-sec-head p { font-size: 9pt; }
   html[data-l-features~='print'] .wb { display: block !important; margin-top: 0.5rem !important; }
+  /* The default work layout is the sticky stack: on paper it is plain stacked text, no pinning, no frames, no empty boxes. */
+  html[data-l-features~='print'] .wk { margin-top: 0.5rem !important; }
+  html[data-l-features~='print'] .wk-stack { display: block !important; padding-bottom: 0 !important; }
+  html[data-l-features~='print'] .wkk-card { position: static !important; transform: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; overflow: visible !important; margin-top: 0.5rem !important; break-inside: avoid; }
+  html[data-l-features~='print'] .wkk-in { display: block !important; padding: 0 !important; min-height: 0 !important; }
+  html[data-l-features~='print'] :is(.wkk-media, .wkk-shade, .wb-frame, .wk-stack a[aria-hidden='true']) { display: none !important; }
   html[data-l-features~='print'] .wb-title { font-size: 11pt !important; margin-top: 0.1rem; }
   html[data-l-features~='print'] :is(.wb-problem, .wb-call, .wb-kicker) { font-size: 9pt !important; margin-top: 0.2rem !important; max-width: none !important; }
   html[data-l-features~='print'] .hm-other { margin-top: 0.6rem !important; }

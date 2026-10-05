@@ -35,7 +35,7 @@ html:is([data-l-theme='paper'], [data-l-theme='sepia'], [data-l-theme='signal'],
 /* ---------- shared overrides: every rule in the reskin that hard-codes the void palette ---------- */
 html[data-l-theme] #header.scrolled:not(.menu-open) { background: color-mix(in srgb, var(--bg) 78%, transparent); }
 html[data-l-theme] ::selection { background: var(--fg); color: var(--bg); }
-html[data-l-theme] .lab-fab { box-shadow: 0 8px 30px var(--l-shadow); }
+html[data-l-theme] .lab-fab, html[data-l-theme] .lab-fab-reset { box-shadow: 0 8px 30px var(--l-shadow); }
 html[data-l-theme] .lab-panel { box-shadow: 0 24px 60px var(--l-shadow-2); }
 html[data-l-theme] .lab-fab-n { color: var(--on-ember); }
 html[data-l-theme] .scatter { background: var(--l-stage); }
@@ -264,7 +264,6 @@ html[data-l-theme='signal'] {
 /* Brand colours vanish against yellow, so logos hover in a darkened ink of their own hue. */
 html[data-l-theme='signal'] .kit-tile-in { --hover: color-mix(in srgb, var(--brand-light) 55%, #121008); }
 /* The inline placeholder's yellow outline would merge with the ground; the block one already has a black dashed border. */
-html[data-l-theme='signal'] .ph { outline-color: #121008; }
 
 /* ---------- dusk: warm charcoal ground, coral accent ---------- */
 html[data-l-theme='dusk'] {

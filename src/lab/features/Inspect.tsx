@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { isPlain } from './util';
+import { dialogOpen, singleKeysOn } from './Shortcuts';
 
 const CLASS = 'ft-inspect';
 
@@ -20,6 +21,7 @@ export default function Inspect() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape' && (!singleKeysOn() || dialogOpen())) return;
       if (e.key === 'i' && isPlain(e)) {
         e.preventDefault();
         setOn((v) => !v);

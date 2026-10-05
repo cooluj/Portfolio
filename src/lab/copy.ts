@@ -10,7 +10,7 @@ export type Voice = {
 
 export const VOICES: Record<string, Voice> = {
   current: {
-    eyebrow: 'Product designer, Seattle',
+    eyebrow: 'Ujjawal Agrawal. Product designer, Seattle.',
     h1: ['Designer', 'who builds.'],
     lede: 'From the first interview to production code. Founder of Eventully; led the Superpowr.ai redesign.',
     cta: 'See the work',
@@ -25,8 +25,8 @@ export const VOICES: Record<string, Voice> = {
   // Leads with the figures, then tells you what each one means.
   numbers: {
     eyebrow: 'Three numbers about Ujjawal Agrawal, product designer in Seattle.',
-    h1: ['1,231 organisations.', '3 products built.', '1 designer who codes.'],
-    lede: '1,231 is every UW student organisation indexed on Eventully, the campus platform I founded, with AI search and a match score on every result. 3 is Eventully, the Superpowr.ai redesign, and the PainSights clinical dashboard. 1 is me, designing in Figma and writing the React that ships.',
+    h1: ['1,231 organizations.', '3 products built.', '1 designer who codes.'],
+    lede: '1,231 is every UW student organization indexed on Eventully, the campus platform I founded, with AI search and a match score on every result. 3 is Eventully, the Superpowr.ai redesign, and the PainSights clinical dashboard. 1 is me, designing in Figma and writing the React that ships.',
     cta: 'Count them yourself',
   },
   // Asks the question a hiring manager is already asking, then answers it.
@@ -40,14 +40,14 @@ export const VOICES: Record<string, Voice> = {
   manifesto: {
     eyebrow: 'How I work. Ujjawal Agrawal, product designer and front-end developer, Seattle.',
     h1: ['Research first.', 'Decide, then build.', 'Ship it yourself.', 'Test it with people.'],
-    lede: 'Four habits, each one visible in Eventully, Superpowr.ai and PainSights, and each one learned from synthesising 100+ studies as a UX research assistant at UW.',
+    lede: 'Four habits, each one visible in Eventully, Superpowr.ai and PainSights, and each one learned from synthesizing 100+ studies as a UX research assistant at UW.',
     cta: 'See the habits at work',
   },
   // A magazine standfirst about him, written as if by an editor.
   third: {
     eyebrow: 'Profile. Product designer and front-end developer, Seattle.',
     h1: ['Ujjawal Agrawal', 'designs and ships.'],
-    lede: 'He studies Human Centered Design & Engineering at the University of Washington, class of 2027. In June 2024 he founded Eventully, a live platform indexing 1,231 UW student organisations, and this summer he led the redesign of Superpowr.ai and wrote the production front-end himself. He would like to do it again for your team.',
+    lede: 'He studies Human Centered Design & Engineering at the University of Washington, class of 2027. In June 2024 he founded Eventully, a live platform indexing 1,231 UW student organizations, and this summer he led the redesign of Superpowr.ai and wrote the production front-end himself. He would like to do it again for your team.',
     cta: 'Read the work',
   },
 };

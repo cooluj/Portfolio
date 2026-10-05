@@ -1,18 +1,12 @@
 import { useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 import { prefersReducedMotion } from '../components/useReveal';
 
-type Side = { need: string; alt: string; src?: string };
+type Side = { alt: string; src: string };
 
 function Layer({ side, className }: { side: Side; className: string }) {
   return (
     <div className={`ba-layer ${className}`}>
-      {side.src ? (
-        <img src={side.src} alt={side.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-      ) : (
-        <div className="ph-block" role="img" aria-label={`Placeholder, image not supplied yet: ${side.need}`}>
-          <span>[PLACEHOLDER: {side.need}]</span>
-        </div>
-      )}
+      <img src={side.src} alt={side.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
     </div>
   );
 }

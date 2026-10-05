@@ -69,6 +69,9 @@
 .wkk-in { display: grid; gap: 1.5rem; padding: 1.25rem; }
 .wkk-shade { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--bg); opacity: calc(var(--p) * 0.55); border-radius: inherit; }
 .wkk-media { display: block; }
+/* keyboard: the card holding focus is lifted above the cards after it and left unscaled, so nothing covers the focused control */
+.wkk-card:focus-within { z-index: 1; }
+.wkk-card:focus-within .wkk-shade { opacity: 0; }
 .wk-stack .wb-frame { aspect-ratio: 16 / 9; border-radius: 0.75rem; }
 .hm-work .wk-stack .wb-title { margin-top: 0.75rem; font-size: clamp(1.875rem, 3.4vw, 3rem); line-height: 1; }
 .wkk-problem { font-size: 1.0625rem; }

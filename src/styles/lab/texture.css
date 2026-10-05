@@ -23,7 +23,9 @@ html[data-l-texture]:not([data-l-texture='flat'])::before {
 
 /* ---------- grain: film grain from an SVG turbulence tile ---------- */
 /* The tile's alpha channel is the noise, so it is used as a mask over a flat text-colour fill:
-   the grain is always the ink of the current theme, never a fixed grey. */
+   the grain is always the ink of the current theme, never a fixed grey. The tile is static on purpose:
+   shifting the mask position every 150ms re-rasterised a full-viewport mask four times a second and
+   forced a style recalc each step, for a flicker nobody noticed. A still tile costs nothing after paint. */
 html[data-l-texture='grain']::before {
   background: var(--fg);
   opacity: 0.07;
@@ -31,13 +33,6 @@ html[data-l-texture='grain']::before {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.6 -0.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   -webkit-mask-size: 256px 256px;
   mask-size: 256px 256px;
-  animation: tx-grain 0.6s steps(1) infinite;
-}
-@keyframes tx-grain {
-  0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
-  25% { -webkit-mask-position: -64px 96px; mask-position: -64px 96px; }
-  50% { -webkit-mask-position: 128px -32px; mask-position: 128px -32px; }
-  75% { -webkit-mask-position: 32px 160px; mask-position: 32px 160px; }
 }
 
 /* ---------- dots: a layout canvas ---------- */
@@ -141,7 +136,6 @@ html[data-l-texture='halftone']::after {
 
 /* ---------- motion and print ---------- */
 @media (prefers-reduced-motion: reduce) {
-  html[data-l-texture='grain']::before,
   html[data-l-texture='scanlines']::before { animation: none; }
 }
 @media print {

@@ -1,5 +1,6 @@
 import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell';
-import { ImageSlot } from '../components/Placeholder';
+import { useHead } from '../components/useHead';
+import Figure from '../components/Figure';
 import BodyMap, { Caseload } from '../visuals/BodyMap';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
@@ -8,14 +9,15 @@ const PROTOTYPE = 'https://www.figma.com/proto/3qsWtlluXq8KKnCkaAjHPk/PainSights
 
 /** The prototype's clinical workflow, in the order a doctor moves through it. */
 const WORKFLOW = [
-  { name: 'Patient queue', does: 'Every patient, prioritised by urgency and whether they need a scan.' },
+  { name: 'Patient queue', does: 'Every patient, prioritized by urgency and whether they need a scan.' },
   { name: 'Patient profile', does: 'Vitals, medical history, and whether the patient can communicate.' },
   { name: 'Neural pain scan', does: 'Reads the brain activity associated with pain perception.' },
-  { name: 'Pain visualisation', does: 'Maps the signal onto the body, colour-coded by severity.' },
+  { name: 'Pain visualization', does: 'Maps the signal onto the body, color-coded by severity.' },
   { name: 'Clinical report', does: 'An AI summary of pain severity, risks and possible actions.' },
 ];
 
 export default function PainSights() {
+  useHead('PainSights · Ujjawal Agrawal', 'A clinical dashboard from FigBuild 2026: a hi-fi prototype built with a team of three for clinicians caring for patients who cannot report their pain.');
   return (
     <article className="cs gutter">
       <CaseHeader
@@ -44,7 +46,7 @@ export default function PainSights() {
             That breaks completely when the patient can't communicate: unconscious trauma patients, sedated ICU
             patients, young children, and patients facing language barriers or neurological impairments. Doctors
             fall back on indirect signals like heart rate, blood pressure or delayed imaging, which makes hidden
-            injuries hard to catch and care hard to prioritise when time matters.
+            injuries hard to catch and care hard to prioritize when time matters.
           </p>
           <p>
             <strong>How might we help doctors detect and understand pain in patients who cannot communicate it?</strong>
@@ -64,11 +66,10 @@ export default function PainSights() {
           </p>
         </div>
         <div className="cs-figs">
-          <ImageSlot
-            need="photo of the 3D-printed EEG prop"
+          <Figure
             src={img('painsights-eeg.webp')}
             alt="The 3D-printed mock EEG headset the team built for the PainSights demo"
-            caption="The mock neural interface, modelled in Onshape and Blender, then 3D printed."
+            caption="The mock neural interface, modeled in Onshape and Blender, then 3D printed."
           />
         </div>
       </Block>
@@ -78,10 +79,10 @@ export default function PainSights() {
           <p>
             PainSights renders that signal on a body model, so a doctor can see exactly where a patient hurts and
             how much, instead of parsing "sharp", "dull" or a number out of ten. We explored several approaches
-            before landing on colour-coded severity levels, because in triage the reading has to land at a glance.
+            before landing on color-coded severity levels, because in triage the reading has to land at a glance.
           </p>
           <p>
-            Across a caseload, it surfaces every patient's pain at once and turns that into prioritisation:
+            Across a caseload, it surfaces every patient's pain at once and turns that into prioritization:
             <strong> who is suffering most, right now</strong>.
           </p>
         </div>
@@ -108,14 +109,12 @@ export default function PainSights() {
         </a>
 
         <div className="cs-figs two">
-          <ImageSlot
-            need="pain visualisation screen (body map)"
+          <Figure
             src={img('painsights-scan.webp')}
             alt="PainSights patient profile after a scan: a body model with pain glowing at the head, right shoulder and upper chest, and a list of detected pain points rated critical and moderate"
             caption="After a scan: detected pain points on the body, ranked by severity."
           />
-          <ImageSlot
-            need="patient queue dashboard"
+          <Figure
             src={img('painsights-queue.webp')}
             alt="PainSights patient queue: patient cards tagged comatose, sedated, intubated and pediatric, each with detected pain or a scan-required warning, filterable by urgency"
             caption="The patient queue. Patients who can't communicate are flagged for a scan."
@@ -148,7 +147,7 @@ export default function PainSights() {
         <div className="prose">
           <p>
             Built at FigBuild 2026 by Ian Simmons, Aryan Taywade and me. Designed in Figma and Figma Make; the
-            headset prop was modelled in Onshape and Blender. The full submission is on{' '}
+            headset prop was modeled in Onshape and Blender. The full submission is on{' '}
             <a href={DEVPOST} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>Devpost</a>.
           </p>
           <p>
@@ -158,8 +157,7 @@ export default function PainSights() {
         </div>
         <div className="cs-figs">
           <div style={{ maxWidth: '22rem' }}>
-            <ImageSlot
-              need="team photo at FigBuild"
+            <Figure
               src={img('painsights-team.webp')}
               alt="Ujjawal Agrawal, Aryan Taywade and Ian Simmons holding a Figma pennant in a photo-booth print at FigBuild 2026"
               caption="Team A.P.E at FigBuild 2026."
