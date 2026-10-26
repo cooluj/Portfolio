@@ -177,3 +177,84 @@
 .hero-columns .tile.place span:first-child { color: var(--fg); }
 @media (prefers-reduced-motion: reduce) { .hero-columns .drift-track { animation: none; } }
 .hero-columns .drift-cols { padding-right: 4.5rem; }
+
+/* ======================================================================
+   spatial: the work as a globe of connected ideas (src/lab/heroes/Spatial.tsx)
+   ====================================================================== */
+.hm-hero.hero-spatial { max-width: none; display: grid; gap: 2.5rem; padding-block: 7rem 3rem; }
+.hero-spatial .hero-sp-text { min-width: 0; }
+.hero-spatial .hm-h1 { font-size: clamp(2.75rem, 6vw, 5.5rem); }
+.hero-spatial .hm-lede { max-width: 34rem; }
+.hero-sp-wrap { min-width: 0; }
+/* pan-y keeps vertical swipes with the page; a finger turns the globe sideways only. */
+.sp-stage {
+  position: relative; width: 100%; aspect-ratio: 1; touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: grab;
+  background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--fg) 5%, var(--bg)), var(--bg) 68%);
+  animation: hmFade 0.9s var(--expo) 0.3s both;
+}
+.sp-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.sp-svg.is-dragging { cursor: grabbing; }
+.sp-svg.is-dragging .sp-node { pointer-events: none; }
+/* While the globe turns, nothing eases: per-frame values would restart every transition. */
+.sp-svg.is-moving .sp-node, .sp-svg.is-moving .sp-edge, .sp-svg.is-moving .sp-dot, .sp-svg.is-moving .sp-label, .sp-svg.is-dragging .sp-node, .sp-svg.is-dragging .sp-edge { transition: none; }
+.sp-sphere { pointer-events: none; }
+.sp-limb { fill: none; stroke: var(--line); stroke-width: 1; }
+.sp-ring-path { fill: none; stroke: var(--line); stroke-width: 1; }
+.sp-ring-path.is-lat { stroke: var(--line-50); }
+.sp-ring-path.is-back { stroke: var(--line-50); stroke-dasharray: 2 4; }
+.sp-edges { pointer-events: none; }
+.sp-edge { stroke: var(--line); stroke-width: 1; transition: stroke 0.3s; }
+.sp-edge.is-soft { stroke: var(--line-50); }
+.sp-edge.is-near { stroke: color-mix(in srgb, var(--fg) 22%, transparent); }
+.sp-edge.is-lit, .sp-edge.is-soft.is-lit { stroke: color-mix(in srgb, var(--fg) 45%, transparent); }
+.sp-node { cursor: pointer; outline: none; transition: opacity 0.3s; }
+.sp-node .sp-hit { fill: transparent; stroke: none; pointer-events: all; }
+.sp-node .sp-dot { transition: fill 0.25s; }
+.sp-node .sp-ring { fill: none; stroke: var(--ember); stroke-width: 1.5; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+.sp-node .sp-label { pointer-events: none; fill: var(--muted-fg); transition: fill 0.25s; }
+.sp-theme .sp-dot { fill: var(--muted-fg); }
+.sp-theme .sp-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+.sp-theme .sp-label.is-small { font-size: 10px; }
+.sp-project .sp-dot { fill: var(--fg); }
+.sp-project .sp-label { font-family: var(--sans); font-size: 13px; font-weight: 600; fill: var(--fg); }
+.sp-node.is-lit .sp-dot, .sp-node.is-active .sp-dot { fill: var(--fg); }
+.sp-node.is-lit .sp-label, .sp-node.is-active .sp-label { fill: var(--fg); }
+.sp-node.is-selected .sp-dot { fill: var(--ember); }
+.sp-node.is-active .sp-ring, .sp-node.is-selected .sp-ring, .sp-node:focus-visible .sp-ring { opacity: 1; }
+.sp-node:focus-visible .sp-ring { stroke: var(--fg); stroke-width: 2; }
+.sp-node.is-near { opacity: 0.7; }
+.sp-node.is-dim { opacity: 0.3; }
+/* The node you point at or picked is never lost at the back of the globe. */
+.sp-node.is-active .sp-dot, .sp-node.is-selected .sp-dot, .sp-node.is-lit .sp-dot { opacity: 1 !important; }
+.sp-stage:focus-visible { box-shadow: 0 0 0 1px var(--bg), 0 0 0 3px var(--fg); border-radius: 0.5rem; }
+.sp-tip {
+  position: absolute; z-index: 2; pointer-events: none; display: grid; gap: 0.2rem; padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line); border-radius: 0.5rem; background: var(--card); box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.7);
+  animation: hmFade 0.25s var(--expo) both;
+}
+.sp-tip-kicker { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.06em; color: var(--muted-fg); line-height: 1.4; }
+.sp-tip-title { font-size: 0.9375rem; font-weight: 600; color: var(--fg); }
+.sp-tip-note { font-size: 0.8125rem; line-height: 1.45; color: var(--muted-fg); }
+.sp-under { margin-top: 0.75rem; display: grid; gap: 0.5rem; text-align: center; }
+.sp-hint { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); animation: hmFade 0.9s var(--expo) 0.5s both; }
+/* On a phone the note or project card is a line under the globe, never a card over it. */
+.sp-below { font-size: 0.8125rem; line-height: 1.45; color: var(--muted-fg); animation: hmFade 0.25s var(--expo) both; }
+.sp-below.is-card { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.04em; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.2rem 0.75rem; }
+.sp-below strong { font-family: var(--sans); font-size: 0.875rem; font-weight: 600; letter-spacing: 0; color: var(--fg); }
+@media (max-width: 899px) {
+  .sp-stage { width: calc(100% + 2rem); margin-inline: -1rem; overflow: hidden; }
+  /* Room for two lines of note so the page does not jump when one appears. */
+  .sp-under { min-height: 4.5rem; align-content: start; }
+}
+@media (min-width: 768px) and (max-width: 899px) {
+  .sp-stage { width: calc(100% + 8rem); margin-inline: -4rem; }
+}
+@media (min-width: 900px) {
+  .hm-hero.hero-spatial { grid-template-columns: minmax(0, 1fr) minmax(0, min(44vw, 70vh)); align-items: center; gap: 3rem; padding-block: 8rem 4rem; }
+  .sp-stage { max-height: 70vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp-stage, .sp-tip, .sp-hint, .sp-below { animation: none; }
+  .sp-edge, .sp-node, .sp-node .sp-dot, .sp-node .sp-ring, .sp-node .sp-label { transition: none; }
+}
+/* ---------------------------------------------------------------------- end spatial */

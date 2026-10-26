@@ -5,6 +5,7 @@ import Field from './Field';
 import Kinetic from './Kinetic';
 import Ledger from './Ledger';
 import Nameplate from './Nameplate';
+import Spatial from './Spatial';
 import Split from './Split';
 import Statement from './Statement';
 import Terminal from './Terminal';
@@ -22,6 +23,7 @@ export const HEROES: Record<string, ComponentType> = {
   toggle: Toggle,
   covers: Covers,
   columns: Columns,
+  spatial: Spatial,
   terminal: Terminal,
   ledger: Ledger,
 };

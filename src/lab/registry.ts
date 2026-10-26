@@ -68,6 +68,7 @@ export const DIMENSIONS: Dimension[] = [
       { id: 'field', name: 'Field', desc: 'The Eventully dot field behind the headline; dots follow the pointer.' },
       { id: 'toggle', name: 'Design / Build', desc: 'A switch in the headline flips the copy between the designer and the builder.' },
       { id: 'columns', name: 'Photo columns', desc: 'The claim, with two columns of photos drifting past in the corner.' },
+      { id: 'spatial', name: 'Constellation', desc: 'The work as a globe of connected ideas: drag it, hover a theme, open a project.' },
       { id: 'covers', name: 'Covers', desc: 'The three case study screens fan out under the headline.' },
       { id: 'terminal', name: 'Prompt', desc: 'The hero is a terminal that prints the intro line by line.' },
       { id: 'ledger', name: 'Ledger', desc: 'A compact fact table: role, location, studies, latest, contact.' },
@@ -191,7 +192,7 @@ export const DIMENSIONS: Dimension[] = [
 ];
 
 export const DEFAULTS: Record<string, string> = {
-  type: 'schibsted', theme: 'void', texture: 'grain', hero: 'columns', work: 'stack', transition: 'fade',
+  type: 'schibsted', theme: 'void', texture: 'grain', hero: 'spatial', work: 'stack', transition: 'fade',
   reveal: 'mask', images: 'plain', cursor: 'trail', layout: 'wide', copy: 'current', case: 'default',
   features: 'palette progress tabtitle print clock konami',
 };
