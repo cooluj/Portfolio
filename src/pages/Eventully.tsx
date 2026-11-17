@@ -8,12 +8,12 @@ const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 const STATS: { n: number; label: string }[] = [
   { n: 1231, label: 'registered organizations' },
   { n: 18, label: 'categories indexed' },
-  { n: 2, label: 'discovery paths' },
-  { n: 2, label: 'sides of the platform' },
+  { n: 2, label: 'primary user groups' },
+  { n: 0, label: ' ' },
 ];
 
 export default function Eventully() {
-  useHead('Eventully · Ujjawal Agrawal', 'A live campus platform indexing 1,231 UW student organizations in 18 categories. Designed for student discovery and club operations, with AI search and filters.');
+  useHead('Eventully · Ujjawal Agrawal', 'A campus platform for discovering and engaging with 1,231 UW student organizations across 18 categories, with personalized matching, events, and officer tools.');
   return (
     <article className="cs gutter">
       <CaseHeader
@@ -21,7 +21,7 @@ export default function Eventully() {
         lede="Supply was never the problem at UW. Discovery was."
         meta={[
           { k: 'Role', v: 'Founder, product designer and developer. Designed and built end to end.' },
-          { k: 'Status', v: <>Live at <a href="https://eventully.org" target="_blank" rel="noopener noreferrer">eventully.org</a></> },
+          { k: 'Status', v: 'Previously deployed; currently offline' },
           { k: 'Timeline', v: 'June 2024 to now' },
           { k: 'Built with', v: 'Flask and Tailwind CSS' },
         ]}
@@ -33,8 +33,8 @@ export default function Eventully() {
           w={1440}
           h={900}
           eager
-          alt="Eventully landing page: the headline Find Your People, Run Your Club, beside a preview of an AI search result and a club with a match score"
-          caption="The landing page, live at eventully.org."
+          alt="Eventully landing page: Find Your People, Run Your Club, with a preview of a club recommendation and match score"
+          caption="An archived capture of the production product."
         />
       </div>
 
@@ -48,20 +48,16 @@ export default function Eventully() {
             </li>
           ))}
         </ul>
-        <span className="stats-src mono-label">1,231 organizations and 18 categories come from the UW directory. The remaining figures describe the product's two discovery modes and two audiences.</span>
+        <span className="stats-src mono-label">The directory contained 1,231 UW organizations across 18 categories. Audience count is a product-scope descriptor, not an adoption metric.</span>
       </div>
 
       <Block n="01" title="The problem">
         <div className="prose">
           <p>
-            I came to the University of Washington as a freshman and struggled to find a sense of community.
-            What fixed that was a club. <strong>Once I found one that fit, I had my people.</strong> Getting there
-            was the broken part.
+            I started Eventully to address a problem I experienced at UW: finding a community takes more work than simply knowing clubs exist. The earliest class prototype focused on coordinating meetings and participation. Research and workflow mapping with students and club officers helped me see that scheduling was only one part of a larger journey.
           </p>
           <p>
-            UW has <strong>1,231 registered student organizations</strong>, and students still said there was
-            nothing to do. Supply was never the issue. Discovery was. Clubs lived across scattered pages, dead links
-            and social accounts, so finding the one that fit took more effort than most people would spend.
+            UW has <strong>1,231 registered student organizations</strong>. The challenge was not a lack of options; it was helping students understand which organizations fit their interests, major, and available time, then giving them a clear path from discovery to participation.
           </p>
           <p>
             The problem extended beyond discovery. Club officers also needed a better way to represent their
@@ -74,18 +70,13 @@ export default function Eventully() {
       <Block n="02" title="Research before the interface">
         <div className="prose">
           <p>
-            I used a combination of research methods to understand the experience from both sides of the campus
-            community. I looked at how students approached finding organizations and what made discovery difficult,
-            while also considering the needs of officers responsible for maintaining and promoting their clubs.
+            I used a combination of interviews, workflow mapping, prototyping, and user feedback to understand both sides of the campus community. Early research with students and club officers focused on how students discover and participate in organizations, and how officers coordinate meetings, communicate opportunities, and maintain club information.
           </p>
           <p>
-            One important distinction emerged: <strong>not every student starts the search in the same place.</strong>
-            Some arrive with a clear idea of the activity, identity or interest they want to pursue. Others know
-            they want to meet people or try something new, but cannot translate that feeling into a precise search.
+            The early project began with scheduling and participation. As I explored the broader journey, I saw that a student must first find an organization that fits before they can attend its events. That reframed the product from a scheduling utility into a platform spanning discovery, engagement, and club operations.
           </p>
           <p>
-            That difference changed the product question. Instead of asking how to make one search box smarter,
-            I needed to support both intentional and exploratory discovery without making either group work harder.
+            This changed the product question: how might one experience help students move from an initial interest to a relevant organization, then make it easier to participate?
           </p>
         </div>
       </Block>
@@ -93,9 +84,7 @@ export default function Eventully() {
       <Block n="03" title="Test the discovery model">
         <div className="prose">
           <p>
-            My first direction leaned entirely on AI: describe what you want and let the system find a club.
-            It looked simple, but it assumed students already knew how to describe what they were looking for.
-            <strong> A blank prompt created work before the product could help.</strong>
+            During exploration, I compared an AI-first prompt with a more structured discovery approach. The prompt assumed students could already articulate what they wanted. In testing, that assumption created friction for people who were still figuring out what options existed.
           </p>
         </div>
         <div className="cs-figs">
@@ -107,34 +96,26 @@ export default function Eventully() {
                 <span className="v1-mock-hint">No categories. No examples. No list.</span>
               </div>
             </div>
-            <figcaption>Version one, shown as a mock. This direction was explored, not deployed.</figcaption>
+            <figcaption>Retrospective illustration of an explored concept; this was not part of the production interface.</figcaption>
           </figure>
         </div>
         <div className="prose">
           <p>
-            I put two approaches in front of users: AI-only search and a combined experience with filters alongside
-            AI search. Testing both approaches helped expose the difference between students who wanted to narrow
-            a known interest and students who needed help exploring possibilities.
+            I tested both approaches with users. The feedback helped me understand the limits of asking students to generate a natural-language prompt before they had a clear idea of the available organizations. I treated this as comparative user testing, not a statistically controlled A/B experiment.
           </p>
           <p>
-            This was comparative user testing, not a claim of a statistically controlled A/B experiment. The
-            important outcome was qualitative: a single interaction model did not serve both discovery behaviors
-            equally well.
+            The takeaway was not that AI was inherently wrong; it was that discovery needed a lower-friction starting point and clearer structure.
           </p>
         </div>
       </Block>
 
-      <Block n="04" title="Two paths into one directory">
+      <Block n="04" title="From discovery to explainable recommendations">
         <div className="prose">
           <p>
-            I kept both approaches rather than forcing a winner. Students who know what they want can narrow the
-            directory with filters. Students who are still exploring can describe an interest in their own words
-            and use AI search to discover relevant organizations.
+            The production experience moved toward structured onboarding and interpretable recommendations. Students select interests, choose a major, and indicate their desired time commitment. They can also browse the directory through keyword search and category filters.
           </p>
           <p>
-            Both paths lead to the same directory and use a <strong>match score on each recommendation</strong>
-            to make relevance easier to understand. The goal was not to make AI the whole experience; it was to
-            give students a useful starting point, then let them judge the results.
+            The matching system ranks clubs against those preferences and provides human-readable reasons for recommendations. The goal was to reduce the effort of evaluating a large directory without presenting the score as an unquestionable answer.
           </p>
         </div>
 
@@ -151,7 +132,7 @@ export default function Eventully() {
             </li>
             <li className="border border-line rounded-md p-4">
               <span className="mono-label">Still exploring</span>
-              <p className="mt-2 text-lg leading-snug">Describe an interest</p>
+              <p className="mt-2 text-lg leading-snug">Choose interests and preferences</p>
             </li>
             <li aria-hidden="true" className="hidden md:block font-mono text-faint">&rarr;</li>
             <li className="border border-line rounded-md p-4">
@@ -162,7 +143,7 @@ export default function Eventully() {
           <div className="mt-4 rounded-md p-4" style={{ border: '1px solid var(--ember)' }}>
             <span className="mono-label" style={{ color: 'var(--fg)' }}>Shared destination</span>
             <p className="mt-2 text-lg leading-snug">
-              One campus directory, with a match score to help explain each recommendation.
+              One campus directory, with keyword search, category filters, and interpretable preference-based recommendations.
             </p>
           </div>
         </div>
@@ -173,7 +154,7 @@ export default function Eventully() {
             w={1440}
             h={900}
             alt="Eventully club directory listing 1,231 clubs, with category, status and sort filters above the results"
-            caption="The directory and filter experience: organizations narrowed by category, status and sort."
+            caption="The searchable directory, with category, status, and sort controls."
           />
         </div>
       </Block>
@@ -211,15 +192,12 @@ export default function Eventully() {
             w={1440}
             h={900}
             alt="The current Eventully landing page: Find Your People, Run Your Club, with an AI search preview and a club match score"
-            caption="Now: live at eventully.org."
+            caption="Production build: previously deployed at eventully.org."
           />
         </div>
         <div className="prose">
           <p>
-            The result is a live campus platform indexing all <strong>1,231 UW student organizations</strong>
-            across 18 categories, with two discovery paths and experiences for students and club officers.
-            The search direction was shaped by comparing approaches with users instead of assuming that a more
-            sophisticated prompt would automatically make discovery easier.
+            The production build brought together <strong>1,231 UW student organizations across 18 categories</strong>, preference-based recommendations, keyword search, category filters, memberships, saved clubs, events, RSVPs, messaging, and officer tools. The product was previously deployed at eventully.org; that hosted instance is currently offline.
           </p>
           <p>
             I do not publish usage or conversion figures that I cannot substantiate. The evidence I can show here
@@ -229,9 +207,7 @@ export default function Eventully() {
       </Block>
 
       <Reflection>
-        The AI-only version was the more impressive demo and the worse product. Testing both approaches made the
-        real problem clearer: discovery starts from different levels of certainty. The better product gives people
-        more than one way in, then brings them to the same useful directory.
+        The early prototype taught me that a compelling interaction is not necessarily the most useful one. Comparing an AI-first prompt with structured discovery helped me prioritize a more understandable path: collect a small amount of preference context, explain why organizations are recommended, and preserve direct browsing for people who already know what they want.
       </Reflection>
 
       <NextCase slug="eventully" />
