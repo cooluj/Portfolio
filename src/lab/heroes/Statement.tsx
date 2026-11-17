@@ -12,7 +12,7 @@ export default function Statement() {
       <p className="hm-lede">{v.lede}</p>
       <div className="hm-ctas">
         <a className="cta-pill" href="#work">{v.cta} <span aria-hidden="true">&darr;</span></a>
-        <a className="hm-ghost" href="mailto:ujjawal.agrawal@outlook.com">ujjawal.agrawal@outlook.com</a>
+        <a className="hm-ghost" href="mailto:ujjawal-agrawal@outlook.com">ujjawal-agrawal@outlook.com</a>
       </div>
     </section>
   );

@@ -38,7 +38,7 @@ export function seattleTime(d = new Date(), seconds = false) {
   return { time, period: get('dayPeriod').toLowerCase(), zone: get('timeZoneName') };
 }
 
-export const EMAIL = 'ujjawal.agrawal@outlook.com';
+export const EMAIL = 'ujjawal-agrawal@outlook.com';
 export const RESUME = `${import.meta.env.BASE_URL}Ujjawal-Agrawal-Resume.pdf`;
 
 /** Copies text, falling back to a hidden textarea where the clipboard API is blocked. */

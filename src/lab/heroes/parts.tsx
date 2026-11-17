@@ -1,5 +1,5 @@
 /** Shared bits for the hero variants: the email, the image helper, the two CTAs. */
-export const EMAIL = 'ujjawal.agrawal@outlook.com';
+export const EMAIL = 'ujjawal-agrawal@outlook.com';
 
 export const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 

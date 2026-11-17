@@ -119,7 +119,7 @@ export default function Layout() {
           ))}
         </nav>
         <div className="gutter menu-foot">
-          <a href="mailto:ujjawal.agrawal@outlook.com" tabIndex={menuOpen ? 0 : -1}>ujjawal.agrawal@outlook.com</a>
+          <a href="mailto:ujjawal-agrawal@outlook.com" tabIndex={menuOpen ? 0 : -1}>ujjawal-agrawal@outlook.com</a>
           <div className="links">
             <a href="https://github.com/cooluj" target="_blank" rel="noopener noreferrer" tabIndex={menuOpen ? 0 : -1}>GitHub</a>
             <a href="https://linkedin.com/in/ujjawal-agrawal" target="_blank" rel="noopener noreferrer" tabIndex={menuOpen ? 0 : -1}>LinkedIn</a>

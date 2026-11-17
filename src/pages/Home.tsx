@@ -127,7 +127,7 @@ export default function Home() {
           <p>Email is fastest.</p>
         </div>
         <div className="hm-contact-row rv">
-          <CopyEmail email="ujjawal.agrawal@outlook.com" />
+          <CopyEmail email="ujjawal-agrawal@outlook.com" />
         </div>
         <ul className="hm-links rv">
           <li><a href="https://linkedin.com/in/ujjawal-agrawal" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>

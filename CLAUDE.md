@@ -20,7 +20,10 @@ Vite + React 18 + TypeScript + react-router 6, plain CSS on tokens. No new depen
 ## Verify before pushing
 `npm run build` (runs the copy check, tsc and vite). Then look at the real thing: `npx vite preview --port 4190` and Playwright from `/opt/node22/lib/node_modules/playwright` (contexts need `{ ignoreHTTPSErrors: true }` in the sandbox or web fonts will not load). Check every route at 1440 and 390 for errors and overflow, and the keyboard.
 
+## Facts settled
+- Email is `ujjawal-agrawal@outlook.com` everywhere (site and resume agree).
+
 ## Open questions only Ujjawal can answer
-- Which email is real: `ujjawal.agrawal@outlook.com` (site) or `ujjawal-agrawal@outlook.com` (resume PDF)?
+- Which email is real: `ujjawal-agrawal@outlook.com` (site) or `ujjawal-agrawal@outlook.com` (resume PDF)?
 - One true sentence on what he coded at Superpowr.
 - Whether the real old Superpowr testing flow exists as a capture.
