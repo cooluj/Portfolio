@@ -20,7 +20,7 @@ export default function Eventully() {
         lede="Supply was never the problem at UW. Discovery was."
         meta={[
           { k: 'Role', v: 'Founder, product designer and developer. Designed and built end to end.' },
-          { k: 'Status', v: 'Previously deployed; currently offline' },
+          { k: 'Status', v: 'Launched at eventully.org' },
           { k: 'Timeline', v: 'June 2024 to now' },
           { k: 'Built with', v: 'Flask and Tailwind CSS' },
         ]}
@@ -108,7 +108,29 @@ export default function Eventully() {
         </div>
       </Block>
 
-      <Block n="04" title="From discovery to explainable recommendations">
+      <Block n="04" title="A parallel design exploration: Clubly">
+        <div className="prose">
+          <p>
+            Alongside the product build, I explored the same campus-discovery problem through Clubly, an
+            earlier HCDE design project. The mid-fidelity prototype helped shape the core information
+            architecture; the high-fidelity exploration developed the student-facing experience in greater
+            detail. I am showing these as design explorations, not as screenshots of the Eventully production build.
+          </p>
+          <p>
+            The work brought together a searchable club directory, a multi-step preference survey, explainable
+            match results, club profiles, and an info-session calendar. The strongest design decision was to
+            make recommendations legible: a match should explain which interests and availability signals
+            contributed, rather than presenting a score without context.
+          </p>
+          <p>
+            <a href="https://www.figma.com/design/ZAqhUvfYxK0JKNhODPMkQF/Clubly-HiFi?node-id=0-1" target="_blank" rel="noopener noreferrer">Explore the Clubly high-fidelity designs ↗</a>
+            {' · '}
+            <a href="https://www.figma.com/make/HbQfLrArF57xX8HMzOx9vy/Clubly-Mid-Fidelity-Website-Prototype" target="_blank" rel="noopener noreferrer">Explore the interactive mid-fidelity prototype ↗</a>
+          </p>
+        </div>
+      </Block>
+
+      <Block n="05" title="From discovery to explainable recommendations">
         <div className="prose">
           <p>
             The production experience moved toward structured onboarding and interpretable recommendations. Students select interests, choose a major, and indicate their desired time commitment. They can also browse the directory through keyword search and category filters.
@@ -158,7 +180,7 @@ export default function Eventully() {
         </div>
       </Block>
 
-      <Block n="05" title="Design for both sides of campus">
+      <Block n="06" title="Design for both sides of campus">
         <div className="prose">
           <p>
             Eventully is not only a student-facing discovery tool. It also includes an officer-facing experience,
@@ -177,7 +199,7 @@ export default function Eventully() {
         </div>
       </Block>
 
-      <Block n="06" title="What shipped">
+      <Block n="07" title="What shipped">
         <div className="cs-figs two" style={{ marginTop: 0, marginBottom: '2.5rem' }}>
           <Figure
             src={img('eventully-earlier.webp')}
