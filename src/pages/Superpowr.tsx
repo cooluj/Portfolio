@@ -160,7 +160,23 @@ export default function Superpowr() {
         </div>
       </Block>
 
-      <Block n="03" title="Modes and access">
+      <Block n="03" title="Design artifacts">
+        <div className="prose">
+          <p>
+            I also developed a high-fidelity homepage redesign concept to explore how the product could
+            communicate its talent-matching proposition, distinguish the employer and candidate journeys,
+            and make the assessment process easier to understand. This is a design exploration; it is not
+            presented as a pixel-for-pixel capture of the production site.
+          </p>
+          <p>
+            <a href="https://www.figma.com/design/dxNiYoSRwlY6UXc0Yl064c/Redesigns?node-id=38-1244" target="_blank" rel="noopener noreferrer">Explore the high-fidelity redesign concept ↗</a>
+            {' · '}
+            <a href="https://www.figma.com/design/Yfn8XglkOp4DToUCx8cuaG/Superpowr.ai-Product-Deliverables?node-id=0-1" target="_blank" rel="noopener noreferrer">Open the product deliverables file ↗</a>
+          </p>
+        </div>
+      </Block>
+
+      <Block n="04" title="Modes and access">
         <div className="prose">
           <p>
             Alongside that I shipped light and dark modes, and brought the interface up to WCAG accessibility
@@ -176,7 +192,7 @@ export default function Superpowr() {
         </div>
       </Block>
 
-      <Block n="04" title="The outcome">
+      <Block n="05" title="The outcome">
         <div className="prose">
           <p>
             The redesign shipped to production and is live at{' '}
