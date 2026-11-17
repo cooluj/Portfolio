@@ -149,7 +149,7 @@ export default function Superpowr() {
           label="Compare landing page"
           before={{ alt: 'The original Superpowr landing page', src: img('superpowr-landing-before.webp') }}
           after={{ alt: 'The rebuilt Superpowr landing page', src: img('superpowr-landing-after.webp') }}
-          caption="Landing page, before and after: archived April 2026 versus the redesign, live today."
+          caption="Original homepage supplied for comparison, alongside the redesigned production homepage."
         />
         <div className="cs-figs">
           <Figure
