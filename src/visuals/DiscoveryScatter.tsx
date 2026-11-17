@@ -4,7 +4,7 @@ import { seeded } from './random';
 
 const W = 1200;
 const H = 560;
-const COUNT = 1200;
+const COUNT = 1231;
 const SPOT = 90;
 const DIM_MS = 600;
 const RING_MS = 700;
@@ -25,7 +25,7 @@ const at = (t: Tween, now: number) => t.from + (t.to - t.from) * ease(t.dur > 0 
 const done = (t: Tween, now: number) => t.dur === 0 || now - t.t0 - t.delay >= t.dur;
 
 /**
- * Eventully hero. 1,200 dots on a canvas, one per registered organisation. Two ways in (filters or a
+ * Eventully hero. 1,231 dots on a canvas, one per registered organization. Two ways in (filters or a
  * described feeling) narrow the wall of noise to one match, and both end at the same match card.
  */
 export default function DiscoveryScatter() {
@@ -61,12 +61,12 @@ export default function DiscoveryScatter() {
     const list = Array.from({ length: COUNT }, () => ({
       x: 10 + r() * (W - 20),
       y: 10 + r() * (H - 20),
-      o: 0.25 + r() * 0.5,
+      o: 0.32 + r() * 0.5,
       s: r() < 0.8 ? 2.2 : 3.2,
       c: Math.floor(r() * CATS.length),
       f: 0,
     }));
-    PICKS.forEach(([x, y], i) => Object.assign(list[i], { x, y, c: i, s: 3.2, o: 0.7 }));
+    PICKS.forEach(([x, y], i) => Object.assign(list[i], { x, y, c: i, s: 3.2, o: 0.8 }));
     const [fx, fy] = PICKS[FEEL_PICK];
     const far = Math.hypot(W, H);
     list.forEach((d) => (d.f = Math.hypot(d.x - fx, d.y - fy) / far));
@@ -121,7 +121,7 @@ export default function DiscoveryScatter() {
           if (s > 0) busy = true;
         }
         const a = Math.min(1, 0.06 + (d.o - 0.06) * v + s * 0.7);
-        const g = Math.round(161 + 89 * s);
+        const g = Math.round(184 + 66 * s);
         ctx.fillStyle = `rgba(${g},${g},${g},${a.toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(cx, cy, d.s * k * (0.75 + 0.25 * v + 0.9 * s), 0, TAU);
@@ -289,23 +289,23 @@ export default function DiscoveryScatter() {
 
   const count =
     showCard && mode === 'feeling'
-      ? '1 of 1,200 organisations, with the reason it was picked'
+      ? '1 of 1,231 organizations, with the reason it was picked'
       : mode === 'filters' && anyPicked
-        ? `Illustrative: about ${fmt(matchCount)} of 1,200 organisations would match these filters`
+        ? `Illustrative: about ${fmt(matchCount)} of 1,231 organizations would match these filters`
         : mode === 'feeling' && typed
-          ? 'Narrowing 1,200 organisations to the closest one'
+          ? 'Narrowing 1,231 organizations to the closest one'
           : mode === 'feeling'
-            ? '1,200 organisations. Describe the feeling to narrow them.'
-            : '1,200 organisations. Pick a category to narrow them.';
+            ? '1,231 organizations. Describe the feeling to narrow them.'
+            : '1,231 organizations. Pick a category to narrow them.';
 
   const label =
     mode === 'filters' && anyPicked
       ? `${fmt(matchCount)} dots lit for ${pickedNames}, the rest faded, with one match ringed in orange.`
       : mode === 'feeling' && resolved
-        ? 'Twelve hundred faded dots, one per organisation, with a single highlighted dot: the one match that fits.'
+        ? '1,231 faded dots, one per organization, with a single highlighted dot: the one match that fits.'
         : mode === 'feeling' && typed
-          ? 'Twelve hundred dots fading as the description narrows the field.'
-          : 'Twelve hundred scattered dots, one per registered student organisation, with nothing to tell them apart.';
+          ? '1,231 dots fading as the description narrows the field.'
+          : '1,231 scattered dots, one per registered student organization, with nothing to tell them apart.';
 
   return (
     <div className="scatter" onPointerDownCapture={cancelDemo} onKeyDownCapture={cancelDemo}>

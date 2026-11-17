@@ -24,6 +24,7 @@ export default function Eventully() {
           { k: 'Role', v: 'Founder, product designer and developer. Designed and built end to end.' },
           { k: 'Status', v: <>Live at <a href="https://eventully.org" target="_blank" rel="noopener noreferrer">eventully.org</a></> },
           { k: 'Timeline', v: 'June 2024 to now' },
+          { k: 'Built with', v: 'Flask and Tailwind CSS' },
         ]}
       />
 
@@ -49,8 +50,10 @@ export default function Eventully() {
       <div style={{ marginTop: '3rem' }} className="rv">
         <Figure
           src={img('eventully-landing.webp')}
+          w={1440}
+          h={900}
           alt="Eventully landing page: the headline Find Your People, Run Your Club, beside a preview of an AI search result and a club with a match score"
-          caption="The Eventully landing page."
+          caption="The landing page, live at eventully.org."
         />
       </div>
 
@@ -81,9 +84,13 @@ export default function Eventully() {
         <div className="cs-figs">
           <figure className="cs-fig">
             <div className="v1-mock" role="img" aria-label="A single empty search box reading Ask for a club, and nothing else on the page">
-              <div className="v1-mock-input">Ask for a club...</div>
+              <div className="v1-mock-bar"><i /><i /><i />Eventully, version one</div>
+              <div className="v1-mock-body">
+                <div className="v1-mock-input">Ask for a club...</div>
+                <span className="v1-mock-hint">No categories. No examples. No list.</span>
+              </div>
             </div>
-            <figcaption>Version one: one box, nothing to react to. Mock of the first prototype, which was never deployed.</figcaption>
+            <figcaption>Version one, as a mock: one box and nothing to react to. It was never deployed.</figcaption>
           </figure>
         </div>
       </Block>
@@ -134,6 +141,8 @@ export default function Eventully() {
         <div className="cs-figs">
           <Figure
             src={img('eventully-directory.webp')}
+            w={1440}
+            h={900}
             alt="Eventully club directory listing 1,231 clubs, with category, status and sort filters above the results"
             caption="The filter path: every club, narrowed by category, status and sort."
           />
@@ -144,13 +153,17 @@ export default function Eventully() {
         <div className="cs-figs two" style={{ marginTop: 0, marginBottom: '2.5rem' }}>
           <Figure
             src={img('eventully-earlier.webp')}
+            w={1440}
+            h={900}
             alt="An earlier Eventully landing page in cream and gold: UW has 1231 clubs, Eventully finds yours, with a three-step sample route explaining how clubs are scored"
             caption="Earlier: the first full rebuild, July 2026."
           />
           <Figure
             src={img('eventully-landing.webp')}
+            w={1440}
+            h={900}
             alt="The current Eventully landing page: Find Your People, Run Your Club, with an AI search preview and a club match score"
-            caption="Now: the design live at eventully.org."
+            caption="Now: live at eventully.org."
           />
         </div>
         <div className="prose">

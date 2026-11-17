@@ -31,7 +31,7 @@
 .scatter-ask input:focus-visible { box-shadow: none; border-bottom-color: var(--ember); }
 
 .scatter-field { position: relative; }
-.scatter canvas { display: block; width: 100%; aspect-ratio: 1200 / 560; touch-action: pan-y; }
+.scatter canvas { display: block; width: 100%; aspect-ratio: 1200 / 560; max-height: min(58vh, 640px); touch-action: pan-y; }
 .scatter-field .match-card { z-index: 1; }
 .scatter-field .match-title { margin-top: 0.5rem; font-size: 1.125rem; font-weight: 700; line-height: 1.25; }
 .scatter-field .match-cat {
