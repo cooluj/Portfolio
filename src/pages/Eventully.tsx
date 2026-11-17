@@ -9,7 +9,6 @@ const STATS: { n: number; label: string }[] = [
   { n: 1231, label: 'registered organizations' },
   { n: 18, label: 'categories indexed' },
   { n: 2, label: 'primary user groups' },
-  { n: 0, label: ' ' },
 ];
 
 export default function Eventully() {
