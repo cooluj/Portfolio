@@ -108,8 +108,41 @@
 .hm-links a:hover { color: var(--fg); border-color: var(--fg); }
 
 /* ---------- footer ---------- */
-footer.hm-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line-50); padding-block: 1.75rem; font-size: 0.8125rem; color: var(--muted-fg); }
+footer.hm-foot { position: relative; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line-50); padding-block: 1.75rem; font-size: 0.8125rem; color: var(--muted-fg); }
 footer.hm-foot a:hover { color: var(--fg); }
+/* phones: the fixed Lab button sits over the footer's last row, so leave room under it */
+@media (max-width: 899px) { footer.hm-foot { padding-bottom: 4.5rem; } }
+
+/* ---------- before you leave: the lab note and its arrow to the Lab button ---------- */
+.foot-leave { flex-basis: 100%; margin-bottom: 1.5rem; }
+.foot-leave p { display: grid; gap: 0.6rem; max-width: 40ch; font-size: 1rem; line-height: 1.55; color: var(--fg); }
+.foot-leave-btn {
+  display: inline; padding: 0; border: 0; background: none; font: inherit; color: inherit;
+  text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ember); cursor: pointer;
+}
+.foot-leave-btn:hover { color: var(--ember); }
+/* the curve stretches to its box so the tip lands just above the Lab button once the page is scrolled to the end;
+   the head is a separate, undistorted mark */
+.foot-leave-arrow, .foot-leave-head { display: none; position: absolute; pointer-events: none; }
+@media (min-width: 900px) and (pointer: fine) {
+  .foot-leave-arrow {
+    display: block; right: 2.75rem; bottom: 3.9rem; width: clamp(14rem, 30vw, 28rem); height: 8rem; overflow: visible;
+  }
+  .foot-leave-arrow path {
+    fill: none; stroke: var(--ember); stroke-width: 1.5; stroke-linecap: round;
+    stroke-dasharray: 1; stroke-dashoffset: 1;
+  }
+  .foot-leave-head { display: block; right: 2.15rem; bottom: 3.7rem; width: 1.1rem; height: 1.1rem; opacity: 0; }
+  .foot-leave-head path { fill: none; stroke: var(--ember); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .foot-leave.in .foot-leave-arrow path { animation: footDraw 1s var(--expo) 0.2s forwards; }
+  .foot-leave.in .foot-leave-head { animation: footHead 0.3s ease-out 1.05s forwards; }
+}
+@keyframes footDraw { to { stroke-dashoffset: 0; } }
+@keyframes footHead { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .foot-leave-arrow path { animation: none !important; stroke-dashoffset: 0; }
+  .foot-leave-head { animation: none !important; opacity: 1; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .hm-h1-line, .hm-lede, .hm-ctas { animation: none; }

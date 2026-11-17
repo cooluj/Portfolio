@@ -38,7 +38,6 @@ html[data-l-theme] ::selection { background: var(--fg); color: var(--bg); }
 html[data-l-theme] .lab-fab, html[data-l-theme] .lab-fab-reset { box-shadow: 0 8px 30px var(--l-shadow); }
 html[data-l-theme] .lab-panel { box-shadow: 0 24px 60px var(--l-shadow-2); }
 html[data-l-theme] .lab-fab-n { color: var(--on-ember); }
-html[data-l-theme] .scatter { background: var(--l-stage); }
 html[data-l-theme] .body-stage { background: radial-gradient(ellipse at 50% 40%, var(--l-stage-hi), var(--l-stage) 70%); }
 html[data-l-theme] .body-stage .body-note { color: var(--l-stage-fg); }
 html[data-l-theme] .region-list button[aria-pressed='true'] { background: color-mix(in srgb, var(--ember) 12%, transparent); }

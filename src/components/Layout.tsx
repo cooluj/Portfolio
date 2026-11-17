@@ -3,6 +3,8 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { prefersReducedMotion } from './useReveal';
 import LabPanel from '../lab/LabPanel';
 import LabMount from '../lab/features/Mount';
+import { useLab } from '../lab/LabContext';
+import { NUMBERED } from '../lab/registry';
 
 const NAV = [
   { label: 'Work', hash: '#work' },
@@ -35,6 +37,53 @@ function ScrollManager() {
     window.scrollTo(0, 0);
   }, [pathname, hash]);
   return null;
+}
+
+/**
+ * The last thing on every page: the site is a design lab, and the arrow points at the Lab button in the corner.
+ * The arrow draws itself once the footer scrolls into view; it is hidden on narrow screens.
+ */
+function LeaveNote() {
+  const lab = useLab();
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) {
+      el.classList.add('in');
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          el.classList.add('in');
+          io.disconnect();
+        }
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <div className="foot-leave" ref={ref}>
+      <p>
+        <span className="mono-label">Before you leave</span>
+        <span className="foot-leave-body">
+          This site is a design lab: {NUMBERED.length} options across type, color, cursor, hero and layout, and what you
+          just read is my pick.{' '}
+          <button type="button" className="foot-leave-btn" onClick={() => lab.setOpen(true)}>Open the lab</button>
+          {' '}or press Shift+L.
+        </span>
+      </p>
+      <svg className="foot-leave-arrow" viewBox="0 0 350 100" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+        <path d="M 2 10 C 150 10, 280 4, 322 30 S 346 80, 348 97" pathLength="1" />
+      </svg>
+      <svg className="foot-leave-head" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M 2 7 L 8 14 L 14 7" />
+      </svg>
+    </div>
+  );
 }
 
 export default function Layout() {
@@ -137,6 +186,7 @@ export default function Layout() {
       <LabMount />
 
       <footer className="gutter hm-foot">
+        <LeaveNote />
         <span>&copy; 2026 Ujjawal Agrawal · Seattle</span>
         <Link to="/lab" className="foot-lab">Lab</Link>
         <span id="foot-slot" className="foot-slot" />

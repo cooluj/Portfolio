@@ -6,7 +6,6 @@ import { LabProvider } from './lab/LabContext';
 import './reskin.css';
 import './case.css';
 import './styles/toolkit.css';
-import './styles/scatter.css';
 import './styles/bodymap.css';
 import './styles/stats.css';
 import './styles/tilt.css';
