@@ -121,25 +121,30 @@ footer.hm-foot a:hover { color: var(--fg); }
   text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ember); cursor: pointer;
 }
 .foot-leave-btn:hover { color: var(--ember); }
-/* the curve stretches to its box so the tip lands just above the Lab button once the page is scrolled to the end;
-   the head is a separate, undistorted mark */
-.foot-leave-arrow, .foot-leave-head { display: none; position: absolute; pointer-events: none; }
-@media (min-width: 900px) and (pointer: fine) {
-  .foot-leave-arrow {
-    display: block; right: 2.75rem; bottom: 3.9rem; width: clamp(14rem, 30vw, 28rem); height: 8rem; overflow: visible;
+/* the arrow is three parts: a straight line from the end of the note, a fixed-shape curve that lands on the Lab
+   button, and a separate head. Nothing is stretched, so the stroke and the draw-on animation stay true. */
+.foot-leave-arrow, .foot-leave-head, .foot-leave-line { display: none; position: absolute; pointer-events: none; }
+@media (min-width: 1024px) and (pointer: fine) {
+  .foot-leave-line {
+    display: block; left: 30rem; right: 29.5rem; bottom: calc(11.9rem - 0.8rem); height: 1.5px; border-radius: 1px;
+    background: var(--ember); transform: scaleX(0); transform-origin: left center;
   }
+  .foot-leave-arrow { display: block; right: 2.75rem; bottom: 3.9rem; width: 28rem; height: 8rem; overflow: visible; }
   .foot-leave-arrow path {
     fill: none; stroke: var(--ember); stroke-width: 1.5; stroke-linecap: round;
     stroke-dasharray: 1; stroke-dashoffset: 1;
   }
   .foot-leave-head { display: block; right: 2.15rem; bottom: 3.7rem; width: 1.1rem; height: 1.1rem; opacity: 0; }
   .foot-leave-head path { fill: none; stroke: var(--ember); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .foot-leave.in .foot-leave-arrow path { animation: footDraw 1s var(--expo) 0.2s forwards; }
-  .foot-leave.in .foot-leave-head { animation: footHead 0.3s ease-out 1.05s forwards; }
+  .foot-leave.in .foot-leave-line { animation: footLine 0.55s var(--expo) 0.1s forwards; }
+  .foot-leave.in .foot-leave-arrow path { animation: footDraw 0.8s var(--expo) 0.6s forwards; }
+  .foot-leave.in .foot-leave-head { animation: footHead 0.3s ease-out 1.35s forwards; }
 }
+@keyframes footLine { to { transform: scaleX(1); } }
 @keyframes footDraw { to { stroke-dashoffset: 0; } }
 @keyframes footHead { to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
+  .foot-leave-line { animation: none !important; transform: none; }
   .foot-leave-arrow path { animation: none !important; stroke-dashoffset: 0; }
   .foot-leave-head { animation: none !important; opacity: 1; }
 }

@@ -76,6 +76,7 @@ function LeaveNote() {
           {' '}or press Shift+L.
         </span>
       </p>
+      <span className="foot-leave-line" aria-hidden="true" />
       <svg className="foot-leave-arrow" viewBox="0 0 350 100" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
         <path d="M 2 10 C 150 10, 280 4, 322 30 S 346 80, 348 97" pathLength="1" />
       </svg>
