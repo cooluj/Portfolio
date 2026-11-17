@@ -68,7 +68,7 @@ export default function LabCursor() {
           p.y += dy * p.k;
           moving = true;
         }
-        p.el.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
+        p.el.style.translate = `${p.x}px ${p.y}px`;
       }
       raf = moving ? requestAnimationFrame(step) : 0;
     };

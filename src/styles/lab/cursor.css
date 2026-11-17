@@ -2,8 +2,10 @@
 /*
   Contract: html[data-l-cursor="<id>"]; 'system' (the default) is never written and <LabCursor/> mounts nothing.
   The component renders a .lc host (display: contents, so it is not a stacking context) holding one or more
-  .lc-p points. Each point is its own fixed element, moved with an inline transform and centred with
-  translate(-50%, -50%), so size changes stay centred on the pointer and the spotlight can blend with the
+  .lc-p points. Each point is its own fixed element, moved with the inline translate property and centred
+  with transform: translate(-50%, -50%). That order matters: translate runs before scale and transform, so a
+  pressed or hovered point scales around the pointer instead of scaling its own position toward the corner.
+  Size changes stay centred on the pointer and the spotlight can blend with the
   page instead of with an isolating wrapper. Everything sits above the lab panel (401) and ignores the pointer.
   State classes on the host: is-on (pointer seen), is-off (over a text field), is-hover, is-word, is-down.
 */
@@ -19,9 +21,9 @@
 .lc { display: contents; }
 .lc-p {
   position: fixed; left: 0; top: 0; z-index: 500;
-  pointer-events: none; translate: -50% -50%;
+  pointer-events: none; transform: translate(-50%, -50%);
   opacity: 0; transition: opacity 0.25s;
-  will-change: transform;
+  will-change: translate;
 }
 .lc.is-on:not(.is-off) .lc-p { opacity: var(--o, 1); }
 
