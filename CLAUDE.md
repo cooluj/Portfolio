@@ -24,6 +24,5 @@ Vite + React 18 + TypeScript + react-router 6, plain CSS on tokens. No new depen
 - Email is `ujjawal-agrawal@outlook.com` everywhere (site and resume agree).
 
 ## Open questions only Ujjawal can answer
-- Which email is real: `ujjawal-agrawal@outlook.com` (site) or `ujjawal-agrawal@outlook.com` (resume PDF)?
 - One true sentence on what he coded at Superpowr.
 - Whether the real old Superpowr testing flow exists as a capture.
