@@ -2,7 +2,6 @@ import { Block, CaseHeader, NextCase, Reflection } from '../components/CaseShell
 import { useHead } from '../components/useHead';
 import CountUp from '../components/CountUp';
 import Figure from '../components/Figure';
-import DiscoveryScatter from '../visuals/DiscoveryScatter';
 
 const img = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 
@@ -28,8 +27,15 @@ export default function Eventully() {
         ]}
       />
 
-      <div className="rv">
-        <DiscoveryScatter />
+      <div className="rv" style={{ marginTop: '3rem' }}>
+        <Figure
+          src={img('eventully-landing.webp')}
+          w={1440}
+          h={900}
+          eager
+          alt="Eventully landing page: the headline Find Your People, Run Your Club, beside a preview of an AI search result and a club with a match score"
+          caption="The landing page, live at eventully.org."
+        />
       </div>
 
       <div className="stats rv">
@@ -45,16 +51,6 @@ export default function Eventully() {
           ))}
         </ul>
         <span className="stats-src mono-label">1,231 and 18 are from the UW organization directory Eventully indexes. The other two are design decisions.</span>
-      </div>
-
-      <div style={{ marginTop: '3rem' }} className="rv">
-        <Figure
-          src={img('eventully-landing.webp')}
-          w={1440}
-          h={900}
-          alt="Eventully landing page: the headline Find Your People, Run Your Club, beside a preview of an AI search result and a club with a match score"
-          caption="The landing page, live at eventully.org."
-        />
       </div>
 
       <Block n="01" title="The problem">

@@ -68,6 +68,8 @@ export default function PainSights() {
         <div className="cs-figs">
           <Figure
             src={img('painsights-eeg.webp')}
+            w={660}
+            h={650}
             alt="The 3D-printed mock EEG headset the team built for the PainSights demo"
             caption="The mock neural interface, modeled in Onshape and Blender, then 3D printed."
           />
