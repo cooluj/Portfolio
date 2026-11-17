@@ -56,12 +56,18 @@ export default function Eventully() {
       <Block n="01" title="The problem">
         <div className="prose">
           <p>
-            The University of Washington has <strong>1,231 registered student organizations</strong>, and
-            students still said there was nothing to do.
+            I came to the University of Washington as a freshman and struggled to find a sense of community.
+            What fixed that was a club. <strong>Once I found one that fit, I had my people.</strong> Getting there
+            was the broken part.
           </p>
           <p>
-            Supply was never the issue. Discovery was. Clubs lived across scattered pages, dead links and Instagram
-            accounts, so finding one thing you cared about cost more effort than it was worth.
+            UW has <strong>1,231 registered student organizations</strong>, and students still said there was
+            nothing to do. Supply was never the issue. Discovery was. Clubs lived across scattered pages, dead links
+            and Instagram accounts, so finding the one that fit cost more effort than most people would spend.
+          </p>
+          <p>
+            Running a club was just as broken. Officers had no one place to publish events and manage the club,
+            so even the organizations people would have loved stayed hard to find.
           </p>
         </div>
       </Block>
@@ -69,8 +75,9 @@ export default function Eventully() {
       <Block n="02" title="The approach">
         <div className="prose">
           <p>
-            I built Eventully as a live campus engagement platform. The first version leaned entirely on AI search:
-            ask for what you want and let it find the club.
+            I built Eventully as a live campus engagement platform for both sides: students finding a club, and
+            officers running one. The first version of search leaned entirely on AI: ask for what you want and let
+            it find the club.
           </p>
           <p>
             In testing, that broke down for a lot of people. <strong>They didn't know what to ask</strong>, and a
