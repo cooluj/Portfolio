@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /** Where the site lives. og:url is always absolute, whatever base the current build was made with. */
-const SITE = 'https://cooluj.github.io/Portfolio/';
+const SITE = 'https://ujjawalportfolio.com/';
 
 /** Writes a value into one head tag, creating the tag if index.html did not ship it. */
 function setTag(selector: string, make: () => HTMLMetaElement, content: string) {
@@ -33,7 +33,7 @@ export function useHead(title: string, description: string) {
     meta('property', 'og:description', description);
     meta('name', 'twitter:title', title);
     meta('name', 'twitter:description', description);
-    // Strip the build's base (/ in dev, /Portfolio/ on Pages) so the route is appended to the real site URL.
+    // Strip the build's base so the route is appended to the real site URL.
     const base = import.meta.env.BASE_URL;
     const path = location.pathname.startsWith(base) ? location.pathname.slice(base.length) : location.pathname.replace(/^\//, '');
     meta('property', 'og:url', SITE + path);

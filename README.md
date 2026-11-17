@@ -6,7 +6,6 @@ React + Vite + TypeScript, plain CSS on design tokens. Home, three case studies,
 npm install
 npm run dev          # local
 npm run build        # copy check (no em dashes, banned phrases), typecheck, build
-npm run build:pages  # rebuild docs/ for GitHub Pages
 node scripts/lab-list.mjs   # regenerate LAB.md from the lab registry
 ```
 
@@ -25,9 +24,8 @@ The full numbered list is in [LAB.md](LAB.md).
 
 To make an option the default, change `DEFAULTS` in `src/lab/registry.ts`.
 
-Hosted free on GitHub Pages from the `docs/` folder, at https://cooluj.github.io/Portfolio/.
-After changing anything, run `npm run build && npm run build:pages` and commit `docs/`.
-`vercel.json` covers Vercel too.
+Hosted on Vercel at https://ujjawalportfolio.com, deployed from this repository's default branch on every push
+(`vercel.json` holds the SPA rewrite and cache headers). The old GitHub Pages address redirects here from `docs/`.
 
 ## Provenance
 

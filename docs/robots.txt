@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://cooluj.github.io/Portfolio/sitemap.xml

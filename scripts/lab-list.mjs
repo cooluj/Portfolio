@@ -8,7 +8,7 @@ mkdirSync(new URL('../node_modules/.cache/', import.meta.url), { recursive: true
 await build({ entryPoints: ['src/lab/registry.ts'], format: 'esm', outfile: out.pathname, bundle: true, platform: 'neutral', logLevel: 'silent' });
 const { DIMENSIONS, DEFAULTS, NUMBERED } = await import(pathToFileURL(out.pathname).href);
 
-const site = 'https://cooluj.github.io/Portfolio/';
+const site = 'https://ujjawalportfolio.com/';
 const lines = [];
 lines.push('# Design lab: every exploration, numbered');
 lines.push('');

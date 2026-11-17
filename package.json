@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "node scripts/check-copy.mjs && tsc -p . && vite build",
     "preview": "vite preview",
-    "check:copy": "node scripts/check-copy.mjs",
-    "build:pages": "BASE_PATH=/Portfolio/ vite build --outDir docs --emptyOutDir && cp docs/index.html docs/404.html && touch docs/.nojekyll"
+    "check:copy": "node scripts/check-copy.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
