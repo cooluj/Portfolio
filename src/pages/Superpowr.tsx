@@ -170,8 +170,6 @@ export default function Superpowr() {
           </p>
           <p>
             <a href="https://www.figma.com/design/dxNiYoSRwlY6UXc0Yl064c/Redesigns?node-id=38-1244" target="_blank" rel="noopener noreferrer">Explore the high-fidelity redesign concept ↗</a>
-            {' · '}
-            <a href="https://www.figma.com/design/Yfn8XglkOp4DToUCx8cuaG/Superpowr.ai-Product-Deliverables?node-id=0-1" target="_blank" rel="noopener noreferrer">Open the product deliverables file ↗</a>
           </p>
         </div>
       </Block>
